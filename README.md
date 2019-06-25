@@ -1,7 +1,7 @@
 # 厳選な抽選ツール
 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
-[こちら](https://masakurapa.github.io/genseisan-svelte/public/) で公開しています
+[こちら](https://gensei.sakurapa.xyz/) で公開しています
 
 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
