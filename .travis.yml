@@ -7,6 +7,24 @@ before_script:
 script:
   - npm --prefix ./src run lint
 
+before_deploy:
+  - npm --prefix ./src run build
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_BUCKET
+  skip_cleanup: true
+  file:
+    - public/bundle.css
+    - public/bundle.js
+    - public/favicon.png
+    - public/global.css
+    - public/index.html
+  on:
+    branch: master
+
 cache:
   directories:
     - $HOME/.npm
