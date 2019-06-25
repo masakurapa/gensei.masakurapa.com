@@ -94,7 +94,7 @@
 {/if}
 
 <script>
-    import { userList, processing, removeUser } from '../store.js'
+    import { userList, processing } from '../store.js'
     import { sleep, random, randomOdd } from '../util.js'
 
     import BaseForm from './parts/BaseForm.svelte'
@@ -158,12 +158,6 @@
             active: false, // 通った道
             rivers: false, // 右から左に線を移動するためのフラグ
         }
-    }
-
-    // ユーザーの削除
-    function remove (item) {
-        removeUser(item.id)
-        resetAmidakuji()
     }
 
     // あみだくじを作る
