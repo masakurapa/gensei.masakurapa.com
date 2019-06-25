@@ -7,4 +7,7 @@ before_script:
 script:
   - npm --prefix ./src run lint
 
-cache: npm
+cache:
+  directories:
+    - $HOME/.npm
+    - src/node_modules
