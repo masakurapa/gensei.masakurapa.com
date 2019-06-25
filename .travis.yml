@@ -18,11 +18,12 @@ deploy:
   region: $AWS_REGION
   skip_cleanup: true
   file:
-    - public/bundle.css
-    - public/bundle.js
-    - public/favicon.png
-    - public/global.css
-    - public/index.html
+    - bundle.css
+    - bundle.js
+    - favicon.png
+    - global.css
+    - index.html
+  local_dir: src/public
   on:
     branch: master
 
