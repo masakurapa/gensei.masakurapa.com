@@ -15,11 +15,13 @@
 
     import RandomSelect from './components/RandomSelect.svelte'
     import Amidakuji from './components/Amidakuji.svelte'
+    import Slot from './components/Slot.svelte'
 
     const components = [
         { text: '', component: null },
         { text: 'ランダムで選ぶ', component: RandomSelect },
         { text: 'あみだくじで選ぶ', component: Amidakuji },
+        { text: 'スロットで選ぶ（β版）', component: Slot },
     ]
 
     let component = null
