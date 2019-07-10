@@ -5,7 +5,7 @@
 </div>
 
 <script>
-    import { userList, processing } from '../../store.js'
+    import { userList, processing } from '../store.js'
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false
@@ -26,7 +26,7 @@
         text-align: center;
         display: flexbox;
     }
-    .btn-area button {
+    button {
         width: 50%;
         max-width: 300px;
         font-family: inherit;
@@ -40,11 +40,11 @@
         outline: none;
         cursor: pointer;
     }
-    .btn-area button:disabled {
+    button:disabled {
         background-color: #ddd !important;;
         cursor: unset;
     }
-    .btn-area button:focus {
+    button:focus {
         border-color: #666;
     }
 </style>
