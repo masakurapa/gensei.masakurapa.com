@@ -1,5 +1,3 @@
-<h1>厳正な抽選ツール</h1>
-
 <ComponentFrame>
     <InputGroup label="抽選方法を選ぶ">
         <InputSelect
