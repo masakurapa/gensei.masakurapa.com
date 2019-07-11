@@ -1,17 +1,18 @@
 <div class="input-group">
-    <label>抽選対象（10文字以内） <span class="bold-text">{$userList.length}</span>/{userListMax}</label>
-    <input
+    <InputText
+        label="抽選対象（10文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}"
         {disabled}
-        type=text
+        value=""
         placeholder="Enterを押して対象を追加"
         on:keydown={add}
         size="25"
         maxlength="10"
-    >
+    />
 </div>
 
 <script>
     import { userList, processing, addUser } from '../store.js'
+    import InputText from './InputText.svelte'
 
     // userList更新時に動かしたい関数
     export let subscribe = () => {}

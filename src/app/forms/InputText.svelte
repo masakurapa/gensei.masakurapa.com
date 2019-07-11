@@ -6,6 +6,7 @@
         {placeholder}
         {size}
         {maxlength}
+        on:keydown
     >
 </InputGroup>
 
@@ -24,7 +25,7 @@
 </script>
 
 <style>
-    input[type="text"] {
+    input[type=text] {
         font-family: inherit;
         font-size: inherit;
         padding: 0.4em;
@@ -32,7 +33,7 @@
         border: 0.05em solid #ccc;
         border-radius: 0.25em;
     }
-    input[type="text"]:disabled {
+    input[type=text]:disabled {
         background-color: #eee  ;
     }
 </style>

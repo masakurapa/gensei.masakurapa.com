@@ -25,7 +25,7 @@
 </script>
 
 <style>
-    input[type="range"] {
+    input[type=range] {
         width: 80%;
         -webkit-appearance: none;
         border: none;
