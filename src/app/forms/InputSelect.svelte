@@ -1,16 +1,12 @@
-<InputGroup {label}>
-    <select on:change disabled={disabledForm}>
-        {#each options as data}
-            <option value={data.value}>{data.text}</option>
-        {/each}
-    </select>
-</InputGroup>
+<select on:change disabled={disabledForm}>
+    {#each options as data}
+        <option value={data.value}>{data.text}</option>
+    {/each}
+</select>
 
 <script>
     import { processing } from '../store.js'
-    import InputGroup from './common/InputGroup.svelte'
 
-    export let label = ''
     export let disabled = false
     export let options = []
 

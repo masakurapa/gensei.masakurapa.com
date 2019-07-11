@@ -1,21 +1,28 @@
-<div class="input-group">
+<InputGroup label="抽選対象（10文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}">
     <InputText
-        label="抽選対象（10文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}"
         {disabled}
-        value=""
+        value="{inputValue}"
         placeholder="Enterを押して対象を追加"
-        on:keydown={add}
+        on:keydown={keydown}
+        on:change={onchange}
         size="25"
         maxlength="10"
     />
-</div>
+    <button
+        {disabled}
+        on:click="{click}"
+    >追加</button>
+</InputGroup>
 
 <script>
     import { userList, processing, addUser } from '../store.js'
+    import InputGroup from './InputGroup.svelte'
     import InputText from './InputText.svelte'
 
     // userList更新時に動かしたい関数
     export let subscribe = () => {}
+
+    let inputValue = ''
 
     userList.subscribe((value) => {
         subscribe(value)
@@ -26,13 +33,44 @@
     // ユーザー追加の無効判定
     $: disabled = $processing || $userList.length >= userListMax
 
-    // ユーザー追加
-    function add (event) {
-        // event: 13 == Enterキー
-        if (event.which !== 13 || this.value.trim().length === 0) {
+    function click () {
+        if (inputValue.trim().length === 0) {
             return
         }
-        addUser(this.value.trim())
-        this.value = ''
+        addUser(inputValue.trim())
+        inputValue = ''
+    }
+
+    function onchange (event) {
+        inputValue = event.target.value
+    }
+
+    function keydown (event) {
+        // event: 13 == Enterキー
+        if (event.which !== 13 || event.target.value.trim().length === 0) {
+            return
+        }
+        addUser(event.target.value.trim())
+        event.target.value = ''
+        inputValue = ''
     }
 </script>
+
+<style>
+    button {
+        width: 5em;
+        margin-left: 1em;
+        padding: 0.5em;
+        box-sizing: border-box;
+        border: 0.05em solid #ccc;
+        border-radius: 0.25em;
+        background-color: #1976d2 !important;
+        color: #FFFFFF;
+        outline: none;
+        cursor: pointer;
+    }
+    button:disabled {
+        background-color: #ddd !important;;
+        cursor: unset;
+    }
+</style>

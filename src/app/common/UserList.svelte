@@ -15,7 +15,7 @@
 <script>
     import { userList } from '../store.js'
     import ComponentFrame from './ComponentFrame.svelte'
-    import InputGroup from '../forms/common/InputGroup.svelte'
+    import InputGroup from '../forms/InputGroup.svelte'
     import RemoveButton from './RemoveButton.svelte'
 </script>
 

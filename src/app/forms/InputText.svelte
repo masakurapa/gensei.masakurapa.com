@@ -1,21 +1,18 @@
-<InputGroup {label}>
-    <input
-        type=text
-        bind:value={value}
-        disabled={disabledForm}
-        {placeholder}
-        {size}
-        {maxlength}
-        on:keydown
-    >
-</InputGroup>
+<input
+    type=text
+    bind:value={value}
+    disabled={disabledForm}
+    {placeholder}
+    {size}
+    {maxlength}
+    on:change
+    on:keydown
+>
 
 <script>
     import { processing } from '../store.js'
-    import InputGroup from './common/InputGroup.svelte'
 
     export let value = ''
-    export let label = ''
     export let placeholder = ''
     export let size = 10
     export let maxlength = 10

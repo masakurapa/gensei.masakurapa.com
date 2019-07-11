@@ -1,17 +1,19 @@
 <h1>厳正な抽選ツール</h1>
 
 <ComponentFrame>
-    <InputSelect
-        label="抽選方法を選ぶ"
-        options="{components}"
-        on:change="{changeComponent}"
-    ></InputSelect>
+    <InputGroup label="抽選方法を選ぶ">
+        <InputSelect
+            options="{components}"
+            on:change="{changeComponent}"
+        ></InputSelect>
+    </InputGroup>
 </ComponentFrame>
 
 <svelte:component this={component}/>
 
 <script>
     import ComponentFrame from './common/ComponentFrame.svelte'
+    import InputGroup from './forms/InputGroup.svelte'
     import InputSelect from './forms/InputSelect.svelte'
 
     import RandomSelect from './components/RandomSelect/RandomSelect.svelte'

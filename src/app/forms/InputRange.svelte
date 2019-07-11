@@ -1,21 +1,17 @@
-<InputGroup {label}>
-    <input
-        type=range
-        bind:value={value}
-        {min}
-        {max}
-        {step}
-        disabled={disabledForm}
-        on:change
-    >
-</InputGroup>
+<input
+    type=range
+    bind:value={value}
+    {min}
+    {max}
+    {step}
+    disabled={disabledForm}
+    on:change
+>
 
 <script>
     import { processing } from '../store.js'
-    import InputGroup from './common/InputGroup.svelte'
 
     export let value = 1
-    export let label = ''
     export let min = 1
     export let max = 1
     export let step = 1
