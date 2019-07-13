@@ -16,7 +16,7 @@
 
     import RandomSelect from './components/randomSelect/RandomSelect.svelte'
     import Amidakuji from './components/amidakuji/Amidakuji.svelte'
-    import Slot from './components/Slot/slot.svelte'
+    import Slot from './components/slot/slot.svelte'
 
     const components = [
         { value: 0, text: '', component: null },
