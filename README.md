@@ -1,3 +1,9 @@
+<p>
+  <a href="https://travis-ci.org/masakurapa/gensei.masakurapa.com">
+    <img alt="Travis (.org) branch" src="https://travis-ci.org/masakurapa/gensei.masakurapa.com.svg?branch=master">
+  </a>
+</p>
+
 # 厳選な抽選ツール
 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
