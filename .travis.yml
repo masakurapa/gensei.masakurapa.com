@@ -6,12 +6,10 @@ before_script:
   - npm --prefix ./src install
 script:
   - npm --prefix ./src run lint
-  - sed -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" src/public/sitemap.xml
-  - sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" src/public/sitemap.xml
-  - cat src/public/sitemap.xml
 
 before_deploy:
   - npm --prefix ./src run build
+  - sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" src/public/sitemap.xml
 
 deploy:
   provider: s3
