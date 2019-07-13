@@ -2,7 +2,7 @@
     <InputRange
         value={$choiceNum}
         max="{maxChoiceNum}"
-        on:change="{(event) => { setChoiceNum(event.target.value) }}"
+        on:input="{(event) => { setChoiceNum(event.target.value) }}"
     ></InputRange>
 </InputGroup>
 

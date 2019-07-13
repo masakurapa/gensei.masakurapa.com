@@ -5,7 +5,7 @@
     {max}
     {step}
     disabled={disabledForm}
-    on:change
+    on:input
 >
 
 <script>

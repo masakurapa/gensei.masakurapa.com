@@ -2,7 +2,7 @@
     <InputRange
         value={$lineNum}
         max="{maxLineNum}"
-        on:change="{(event) => { setLineNum(event.target.value) }}"
+        on:input="{(event) => { setLineNum(event.target.value) }}"
     ></InputRange>
 </InputGroup>
 

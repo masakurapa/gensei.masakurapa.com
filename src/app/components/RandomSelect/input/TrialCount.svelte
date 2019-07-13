@@ -1,10 +1,10 @@
-<InputGroup label="抽選の厳正感 <span class='bold-text'>{$trialCount / $trialCountStep}</span> %">
+<InputGroup label="ランダムに <span class='bold-text'>{$trialCount}</span> 回選ばれるまで抽選する">
     <InputRange
         value={$trialCount}
         min="{$trialCountStep}"
         max="{$trialCountStep * 100}"
         step="{$trialCountStep}"
-        on:change="{(event) => { setTrialCount(event.target.value) }}"
+        on:input="{(event) => { setTrialCount(event.target.value) }}"
     ></InputRange>
 </InputGroup>
 
