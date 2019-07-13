@@ -13,10 +13,10 @@
 {/if}
 
 <script>
-    import { userList } from '../store.js'
+    import { userList } from '../../store.js'
     import ComponentFrame from './ComponentFrame.svelte'
-    import InputGroup from '../forms/InputGroup.svelte'
-    import RemoveButton from './RemoveButton.svelte'
+    import InputGroup from '../../parts/input/InputGroup.svelte'
+    import RemoveButton from '../../parts/button/RemoveButton.svelte'
 </script>
 
 <style>

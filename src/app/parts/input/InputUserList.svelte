@@ -15,7 +15,7 @@
 </InputGroup>
 
 <script>
-    import { userList, processing, addUser } from '../store.js'
+    import { userList, processing, addUser } from '../../store.js'
     import InputGroup from './InputGroup.svelte'
     import InputText from './InputText.svelte'
 

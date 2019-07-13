@@ -10,8 +10,8 @@
     import { userList } from '../../../store.js'
     import { choiceNum, setChoiceNum } from '../store.js'
 
-    import InputGroup from '../../../forms/InputGroup.svelte'
-    import InputRange from '../../../forms/InputRange.svelte'
+    import InputGroup from '../../../parts/input/InputGroup.svelte'
+    import InputRange from '../../../parts/input/InputRange.svelte'
 
     // 抽選数の最低数
     const choiceNumMin = 1

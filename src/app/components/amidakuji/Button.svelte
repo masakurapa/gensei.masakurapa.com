@@ -6,7 +6,7 @@
     import { lineNum, amidakuji, selectedUserList, disabledWriteLine, rank } from './store.js'
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util.js'
 
-    import MainButton from '../../common/MainButton.svelte'
+    import MainButton from '../../parts/button/MainButton.svelte'
 
     function generate () {
         amidakuji.set(generateRandomAmidakuji($amidakuji, $userList, $lineNum))

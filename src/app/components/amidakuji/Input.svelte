@@ -8,8 +8,8 @@
     import { lineNum, amidakuji, selectedUserList, disabledWriteLine, rank } from './store.js'
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util.js'
 
-    import ComponentFrame from '../../common/ComponentFrame.svelte'
-    import InputUserList from '../../forms/InputUserList.svelte'
+    import ComponentFrame from '../common/ComponentFrame.svelte'
+    import InputUserList from '../../parts/input/InputUserList.svelte'
     import LineNum from './input/LineNum.svelte'
 
     lineNum.subscribe(() => {

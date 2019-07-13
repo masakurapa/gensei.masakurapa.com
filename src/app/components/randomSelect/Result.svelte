@@ -37,7 +37,7 @@
     import { flip } from 'svelte/animate'
     import { tempUserList } from './store.js'
 
-    import RemoveButton from '../../common/RemoveButton.svelte'
+    import RemoveButton from '../../parts/button/RemoveButton.svelte'
 
     // 抽選対象用のユーザーリスト
     $: targetUserList = $tempUserList.filter(item => item.rank === 0)

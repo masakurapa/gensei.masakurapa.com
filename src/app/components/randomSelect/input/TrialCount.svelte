@@ -10,6 +10,6 @@
 
 <script>
     import { trialCountStep, trialCount, setTrialCount } from '../store.js'
-    import InputGroup from '../../../forms/InputGroup.svelte'
-    import InputRange from '../../../forms/InputRange.svelte'
+    import InputGroup from '../../../parts/input/InputGroup.svelte'
+    import InputRange from '../../../parts/input/InputRange.svelte'
 </script>

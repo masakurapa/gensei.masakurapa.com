@@ -5,7 +5,7 @@
 </div>
 
 <script>
-    import { userList, processing } from '../store.js'
+    import { userList, processing } from '../../store.js'
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false

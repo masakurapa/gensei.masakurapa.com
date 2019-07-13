@@ -5,7 +5,7 @@
     import { choiceNum, canvases } from './store.js'
     import { sleep, random } from '../../util.js'
 
-    import MainButton from '../../common/MainButton.svelte'
+    import MainButton from '../../parts/button/MainButton.svelte'
 
     $: userLength = $userList.length
     // 抽選人数の最大数を返却

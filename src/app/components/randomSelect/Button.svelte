@@ -4,7 +4,7 @@
     import { userList, processing } from '../../store.js'
     import { trialCount, choiceNum, tempUserList, resetTempUserList } from './store.js'
     import { random, sleep } from '../../util.js'
-    import MainButton from '../../common/MainButton.svelte'
+    import MainButton from '../../parts/button/MainButton.svelte'
 
     // 抽選処理
     async function run () {
