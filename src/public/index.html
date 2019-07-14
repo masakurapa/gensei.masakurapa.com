@@ -14,23 +14,39 @@
     <script type="application/ld+json">
         {"@type":"WebSite","headline":"厳選な抽選ツール","url":"https://gensei.masakurapa.com/","name":"厳正な抽選ツール","description":"厳正に抽選を行うためのWEBツールを公開しています。くじ引き、あみだくじ、スロットで抽選ができます。","@context":"http://schema.org"}
     </script>
+    <script src="https://kit.fontawesome.com/4e4a01a531.js"></script>
     <link rel='icon' type='image/png' href='favicon.png'>
     <link rel='stylesheet' href='global.css'>
     <link rel='stylesheet' href='bundle.css'>
 </head>
 <body>
-    <h1>厳正な抽選ツール</h1>
-    <div class="collapse">
-        <label class="collapse-btn" for="header-collapse">ツールについて</label>
-        <input class="collapse-open" type="checkbox" id="header-collapse" aria-hidden="true" hidden />
-        <div class="collapse-painel">
-            <div class="collapse-inner">
-                <div>ちょっとしたこと、なかなか決められないことなどなど...ツールでサクッと決めちゃいましょう！</div>
-                <div>ランダムで選ぶだけではなく、あみだくじ、スロット形式で気分を変えながら抽選ができます！</div>
+    <div class="wrapper">
+        <h1>厳正な抽選ツール</h1>
+        <div class="collapse">
+            <label class="collapse-btn" for="header-collapse">ツールについて</label>
+            <input class="collapse-open" type="checkbox" id="header-collapse" aria-hidden="true" hidden />
+            <div class="collapse-painel">
+                <div class="collapse-inner">
+                    <div>ちょっとしたこと、なかなか決められないことなどなど...ツールでサクッと決めちゃいましょう！</div>
+                    <div>ランダムで選ぶだけではなく、あみだくじ、スロット形式で気分を変えながら抽選ができます！</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="app">
+            <script src='bundle.js'></script>
+        </div>
+
+        <div class="footer">
+            <div class="copyright">
+                    &copy;2019 厳正な抽選ツール
+            </div>
+            <div class="footer-link">
+                <a href="https://github.com/masakurapa/gensei.masakurapa.com" target="_blank">
+                    <i class="fab fa-github-square" style="color: black; font-size: 1.5em;"></i>gensei.masakurapa.com
+                </a>
             </div>
         </div>
     </div>
-
-    <script src='bundle.js'></script>
 </body>
 </html>
