@@ -9,6 +9,7 @@ script:
 
 before_deploy:
   - npm --prefix ./src run build
+  - rm src/public/bundle.css.map src/public/bundle.js.map
   - sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" src/public/sitemap.xml
 
 deploy:
@@ -18,12 +19,6 @@ deploy:
   bucket: $AWS_BUCKET
   region: $AWS_REGION
   skip_cleanup: true
-  file:
-    - bundle.css
-    - bundle.js
-    - favicon.png
-    - global.css
-    - index.html
   local_dir: src/public
   on:
     branch: master
