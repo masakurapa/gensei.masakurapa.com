@@ -73,13 +73,13 @@
         while (o < 0) o++
         o %= 1
 
-        let h = Math.ceil(obj.canvas.height / 2 / scale)
+        const h = Math.ceil(obj.canvas.height / 2 / scale)
         for (let j = -h; j < h; j++) {
             let c = obj.end + j - Math.floor(obj.offset)
             while (c < 0) c += userLength
             c %= userLength
 
-            let s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1)
+            const s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1)
             obj.ctx.globalAlpha = s
             obj.ctx.font = scale * s + 'px Helvetica'
 

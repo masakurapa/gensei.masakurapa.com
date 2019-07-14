@@ -23,10 +23,11 @@ module.exports = {
     overrides: [
         {
             files: ['**/*.svelte'],
+            processor: 'svelte3/svelte3',
             rules: {
-                'import/first': false,
-                'import/no-duplicates': false,
-                'import/no-mutable-exports': false,
+                'import/first': 0,
+                'import/no-duplicates': 0,
+                'import/no-mutable-exports': 0,
             },
         },
     ],

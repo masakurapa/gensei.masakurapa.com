@@ -21,7 +21,7 @@ export const generateAmidakuji = (userList, lineNum) => {
     for (let h = 0; h < lineNum + 1; h++) {
         amidakuji[h] = []
         for (let v = 0; v < vn; v++) {
-            let horizonFlag = h === lineNum ? flags.none : flags.off
+            const horizonFlag = h === lineNum ? flags.none : flags.off
             amidakuji[h][v] = getRowObject(isHorizon(v) ? horizonFlag : flags.on)
         }
     }
