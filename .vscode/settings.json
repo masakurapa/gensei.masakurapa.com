@@ -1,0 +1,40 @@
+{
+    // Path Autocomplete (https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete)
+    // rollup.config.js -> importResolverと同じパスを設定する
+    "path-autocomplete.pathMappings": {
+        "app": "${folder}/src/app",
+        "components": "${folder}/src/app/components",
+        "parts": "${folder}/src/app/parts",
+    },
+
+    // .svelteのeslint用の設定
+    "files.associations": {
+        "*.svelte": "html"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+    ],
+    "eslint.autoFixOnSave": true,
+
+    // node_modulesがある場所を指定する
+    "eslint.workingDirectories": [
+        "./src"
+    ],
+
+    "jshint.options": {
+        "esversion": 6,
+        "asi": true,
+    },
+
+    "css.lint.emptyRules": "ignore",
+    "html.validate.styles": false,
+}
