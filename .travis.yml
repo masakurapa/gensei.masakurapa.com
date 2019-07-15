@@ -6,6 +6,7 @@ before_script:
   - npm --prefix ./src install
 script:
   - npm --prefix ./src run lint
+  - npm --prefix ./src run build
 
 before_deploy:
   - npm --prefix ./src run build
