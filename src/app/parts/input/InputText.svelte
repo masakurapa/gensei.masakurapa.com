@@ -10,7 +10,7 @@
 >
 
 <script>
-    import { processing } from '../../store.js'
+    import { processing } from 'app/store.js'
 
     export let value = ''
     export let placeholder = ''

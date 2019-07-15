@@ -1,4 +1,4 @@
-import { random, randomOdd } from '../../util'
+import { random, randomOdd } from 'app/util'
 
 export const flags = {
     off: 0,

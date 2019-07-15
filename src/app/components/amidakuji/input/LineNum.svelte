@@ -7,9 +7,9 @@
 </InputGroup>
 
 <script>
-    import { lineNum, setLineNum } from '../store.js'
-    import InputGroup from '../../../parts/input/InputGroup.svelte'
-    import InputRange from '../../../parts/input/InputRange.svelte'
+    import { lineNum, setLineNum } from 'components/amidakuji/store.js'
+    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputRange from 'parts/input/InputRange.svelte'
 
     // 線を引ける最大行数
     const maxLineNum = 25

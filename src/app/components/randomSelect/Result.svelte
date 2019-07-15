@@ -35,9 +35,9 @@
     import { quintOut } from 'svelte/easing'
     import { crossfade } from 'svelte/transition'
     import { flip } from 'svelte/animate'
-    import { tempUserList } from './store.js'
+    import { tempUserList } from 'components/randomSelect/store.js'
 
-    import RemoveButton from '../../parts/button/RemoveButton.svelte'
+    import RemoveButton from 'parts/button/RemoveButton.svelte'
 
     // 抽選対象用のユーザーリスト
     $: targetUserList = $tempUserList.filter(item => item.rank === 0)

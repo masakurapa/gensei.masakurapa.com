@@ -15,9 +15,9 @@
 </InputGroup>
 
 <script>
-    import { userList, processing, addUser } from '../../store.js'
-    import InputGroup from './InputGroup.svelte'
-    import InputText from './InputText.svelte'
+    import { userList, processing, addUser } from 'app/store.js'
+    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputText from 'parts/input/InputText.svelte'
 
     // userList更新時に動かしたい関数
     export let subscribe = () => {}

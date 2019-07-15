@@ -7,11 +7,11 @@
 </InputGroup>
 
 <script>
-    import { userList } from '../../../store.js'
-    import { choiceNum, setChoiceNum } from '../store.js'
+    import { userList } from 'app/store.js'
+    import { choiceNum, setChoiceNum } from 'components/slot/store.js'
 
-    import InputGroup from '../../../parts/input/InputGroup.svelte'
-    import InputRange from '../../../parts/input/InputRange.svelte'
+    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputRange from 'parts/input/InputRange.svelte'
 
     // 抽選数の最低数
     const choiceNumMin = 1

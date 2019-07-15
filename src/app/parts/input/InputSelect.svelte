@@ -5,7 +5,7 @@
 </select>
 
 <script>
-    import { processing } from '../../store.js'
+    import { processing } from 'app/store.js'
 
     export let disabled = false
     export let options = []

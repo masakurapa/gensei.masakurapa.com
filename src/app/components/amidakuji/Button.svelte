@@ -2,11 +2,11 @@
 <MainButton disabled={!$disabledWriteLine} label="やりなおす" labelProcessing="やりなおす" on:click="{reset}"/>
 
 <script>
-    import { userList } from '../../store.js'
-    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from './store.js'
-    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util.js'
+    import { userList } from 'app/store.js'
+    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from 'components/amidakuji/store.js'
+    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from 'components/amidakuji/util.js'
 
-    import MainButton from '../../parts/button/MainButton.svelte'
+    import MainButton from 'parts/button/MainButton.svelte'
 
     function generate () {
         amidakuji.set(generateRandomAmidakuji($amidakuji, $userList, $lineNum))

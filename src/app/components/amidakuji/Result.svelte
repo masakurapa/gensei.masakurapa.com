@@ -74,10 +74,10 @@
 {/if}
 
 <script>
-    import { userList, processing } from '../../store.js'
-    import { sleep } from '../../util.js'
-    import { amidakuji, selectedUserList, disabledWriteLine, rank } from './store.js'
-    import { flags, isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from './util.js'
+    import { userList, processing } from 'app/store.js'
+    import { sleep } from 'app/util.js'
+    import { amidakuji, selectedUserList, disabledWriteLine, rank } from 'components/amidakuji/store.js'
+    import { flags, isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from 'components/amidakuji/util.js'
 
     const numbers = [
         '①',

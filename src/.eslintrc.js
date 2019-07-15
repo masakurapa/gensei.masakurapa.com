@@ -19,6 +19,16 @@ module.exports = {
         'comma-dangle': ['error', 'always-multiline'],
     },
     settings: {
+        'import/resolver': {
+            alias: {
+                map: [
+                    ['app', './app'],
+                    ['components', './app/components'],
+                    ['parts', './app/parts'],
+                ],
+                extensions: ['.js', '.svelte'],
+            },
+        },
     },
     overrides: [
         {

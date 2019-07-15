@@ -5,7 +5,7 @@
 >x</button>
 
 <script>
-    import { processing, removeUser } from '../../store.js'
+    import { processing, removeUser } from 'app/store.js'
 
     // ユーザー削除用のID
     export let id

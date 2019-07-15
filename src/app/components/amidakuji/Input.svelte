@@ -4,13 +4,13 @@
 </ComponentFrame>
 
 <script>
-    import { userList } from '../../store.js'
-    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from './store.js'
-    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util.js'
+    import { userList } from 'app/store.js'
+    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from 'components/amidakuji/store.js'
+    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from 'components/amidakuji/util.js'
 
-    import ComponentFrame from '../common/ComponentFrame.svelte'
-    import InputUserList from '../../parts/input/InputUserList.svelte'
-    import LineNum from './input/LineNum.svelte'
+    import ComponentFrame from 'components/common/ComponentFrame.svelte'
+    import InputUserList from 'parts/input/InputUserList.svelte'
+    import LineNum from 'components/amidakuji/input/LineNum.svelte'
 
     lineNum.subscribe(() => {
         reset($userList)

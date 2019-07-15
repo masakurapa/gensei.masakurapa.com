@@ -4,8 +4,8 @@
 <Result/>
 
 <script>
-    import UserList from '../common/UserList.svelte'
-    import Input from './Input.svelte'
-    import Button from './Button.svelte'
-    import Result from './Result.svelte'
+    import UserList from 'components/common/UserList.svelte'
+    import Input from 'components/slot/Input.svelte'
+    import Button from 'components/slot/Button.svelte'
+    import Result from 'components/slot/Result.svelte'
 </script>

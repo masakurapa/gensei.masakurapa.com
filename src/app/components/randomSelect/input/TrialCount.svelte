@@ -9,7 +9,7 @@
 </InputGroup>
 
 <script>
-    import { trialCountStep, trialCount, setTrialCount } from '../store.js'
-    import InputGroup from '../../../parts/input/InputGroup.svelte'
-    import InputRange from '../../../parts/input/InputRange.svelte'
+    import { trialCountStep, trialCount, setTrialCount } from 'components/randomSelect/store.js'
+    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputRange from 'parts/input/InputRange.svelte'
 </script>

@@ -10,13 +10,13 @@
 <svelte:component this={component}/>
 
 <script>
-    import ComponentFrame from './components/common/ComponentFrame.svelte'
-    import InputGroup from './parts/input/InputGroup.svelte'
-    import InputSelect from './parts/input/InputSelect.svelte'
+    import ComponentFrame from 'components/common/ComponentFrame.svelte'
+    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputSelect from 'parts/input/InputSelect.svelte'
 
-    import RandomSelect from './components/randomSelect/RandomSelect.svelte'
-    import Amidakuji from './components/amidakuji/Amidakuji.svelte'
-    import Slot from './components/slot/Slot.svelte'
+    import RandomSelect from 'components/randomSelect/RandomSelect.svelte'
+    import Amidakuji from 'components/amidakuji/Amidakuji.svelte'
+    import Slot from 'components/slot/Slot.svelte'
 
     const components = [
         { value: 0, text: '', component: null },

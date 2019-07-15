@@ -9,7 +9,7 @@
 >
 
 <script>
-    import { processing } from '../../store.js'
+    import { processing } from 'app/store.js'
 
     export let value = 1
     export let min = 1
