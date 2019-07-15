@@ -15,3 +15,8 @@ export const selectedUserList = writable([])
 export const setLineNum = (num) => {
     lineNum.set(parseInt(num, 10))
 }
+
+// 線を引ける行数を設定
+export const setRank = (num) => {
+    rank.set(parseInt(num, 10))
+}

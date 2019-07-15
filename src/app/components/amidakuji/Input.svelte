@@ -5,7 +5,7 @@
 
 <script>
     import { userList } from '../../store.js'
-    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, rank } from './store.js'
+    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from './store.js'
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util.js'
 
     import ComponentFrame from '../common/ComponentFrame.svelte'
@@ -19,7 +19,7 @@
     // あみだくじの内容をリセットする
     function reset (value) {
         disabledWriteLine.set(false)
-        rank.set(1)
+        setRank(1)
         const newAmidakuji = generateAmidakuji(value, $lineNum)
         if (newAmidakuji.length === 0) {
             return

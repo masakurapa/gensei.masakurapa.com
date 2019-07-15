@@ -29,9 +29,9 @@
                     {:else if data.flag === flags.none}
                         <div class="line-h line-none"></div>
                     {:else if data.flag === flags.off}
-                        <div class="line-h" on:click="{() => !disabledWriteLine && writeHrizon($amidakuji, h, v)}"></div>
+                        <div class="line-h" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
                     {:else if data.flag === flags.on}
-                        <div class="line-h line-active" on:click="{() => !disabledWriteLine && writeHrizon($amidakuji, h, v)}"></div>
+                        <div class="line-h line-active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
                     {/if}
                 {:else}
                     <!-- 縦線 -->
@@ -154,7 +154,7 @@
         const index = vertical / 2
         if ($selectedUserList[index].rank === 0) {
             $selectedUserList[index].rank = $rank
-            rank.update(val => val++)
+            rank.update(val => ++val)
         }
 
         processing.set(false)
