@@ -58,11 +58,11 @@
 
         // スタイル設定（ぐるぐるするエリアの背景塗りつぶす）
         obj.ctx.globalAlpha = 1
-        obj.ctx.fillStyle = '#668ad8'
+        obj.ctx.fillStyle = '#c1d1f3'
         obj.ctx.fillRect(0, (obj.canvas.height - scale) / 2, obj.canvas.width, scale)
 
         // 文字の色・フォントとか
-        obj.ctx.fillStyle = '#FFF'
+        obj.ctx.fillStyle = '#000'
         obj.ctx.textBaseline = 'middle'
         obj.ctx.textAlign = 'center'
 

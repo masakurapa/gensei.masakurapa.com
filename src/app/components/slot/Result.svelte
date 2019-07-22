@@ -33,11 +33,15 @@
     .canvas-area {
         margin: auto;
         display: flex;
-        flex-wrap: wrap
+        flex-wrap: wrap;
+        width: 90%;
+    }
+    .canvas-box {
+        margin: auto;
     }
 
     canvas{
-        background-color: #668ad8;
+        background-color: #c1d1f3;
         outline: black 1px solid;
         height: 100px;
         width: 200px;
