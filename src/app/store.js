@@ -13,6 +13,10 @@ export const addUser = function (value) {
     userList.update(items => [...items, item])
     uid.update(id => id + 1)
 }
+export const setUser = function (value) {
+    userList.set(value)
+    uid.set(value.length + 1)
+}
 export const removeUser = function (id) {
     userList.set(get(userList).filter(row => row.id !== id))
 }

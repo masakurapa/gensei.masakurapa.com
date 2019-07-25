@@ -7,7 +7,7 @@
 <script>
     import { onMount } from 'svelte'
     import { getUserList } from 'app/storage.js'
-    import { userList } from 'app/store.js'
+    import { setUser } from 'app/store.js'
 
     import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
     import Input from 'components/common/userList/Input.svelte'
@@ -15,6 +15,6 @@
     import SaveStorage from 'components/common/userList/SaveStorage.svelte'
 
     onMount(() => {
-        userList.set(getUserList())
+        setUser(getUserList())
     })
 </script>
