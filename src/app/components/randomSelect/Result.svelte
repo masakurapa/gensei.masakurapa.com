@@ -9,7 +9,6 @@
                 animate:flip
             >
                 <input disabled bind:value={item.name}>
-                <RemoveButton id="{item.id}"/>
             </label>
         {/each}
     </div>
@@ -25,7 +24,6 @@
             >
                 {item.rank}
                 <input disabled bind:value={item.name}>
-                <RemoveButton id="{item.id}" disabledColor="rgb(180,240,100)"/>
             </label>
         {/each}
     </div>
@@ -36,8 +34,6 @@
     import { crossfade } from 'svelte/transition'
     import { flip } from 'svelte/animate'
     import { tempUserList } from 'components/randomSelect/store.js'
-
-    import RemoveButton from 'parts/button/RemoveButton.svelte'
 
     // 抽選対象用のユーザーリスト
     $: targetUserList = $tempUserList.filter(item => item.rank === 0)
