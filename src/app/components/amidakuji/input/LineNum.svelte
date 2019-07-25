@@ -1,4 +1,4 @@
-<InputGroup label="横線を引ける行数 <span class='bold'>{$lineNum}</span>/25</label>">
+<InputGroup label="あみだくじの行数 <span class='bold'>{$lineNum}</span>/25 行</label>">
     <InputRange
         value={$lineNum}
         max="{maxLineNum}"

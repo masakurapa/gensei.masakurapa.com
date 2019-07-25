@@ -1,6 +1,5 @@
-{#if $userList.length > 0}
-    <ComponentFrame>
-        <InputGroup label="抽選対象リスト"/>
+<div class="user-list-wrapper">
+    <CollapseSimpleFrame id="user-list" label="抽選対象リスト">
         <div class="items">
             {#each $userList as item (item.id)}
                 <label>
@@ -9,23 +8,27 @@
                 </label>
             {/each}
         </div>
-    </ComponentFrame>
-{/if}
+    </CollapseSimpleFrame>
+</div>
 
 <script>
     import { userList } from 'app/store.js'
-    import ComponentFrame from 'components/common/ComponentFrame.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
     import RemoveButton from 'parts/button/RemoveButton.svelte'
+
+    import CollapseSimpleFrame from 'components/common/collapse//CollapseSimpleFrame.svelte'
 </script>
 
 <style>
+    .user-list-wrapper {
+        margin-top: 1em;
+    }
+
     .items {
         display: flex;
         flex-wrap: wrap;
     }
 
-    .items label {
+    label {
         top: 0;
         left: 0;
         display: block;
@@ -36,9 +39,9 @@
         border-radius: 0.5em;
         background-color: #eee;
         user-select: none;
-        width: 10em;
+        width: 25%;
     }
-    .items input {
+    input {
         height: 2em;
         width: 80%;
         font-family: inherit;
@@ -49,7 +52,7 @@
         border: 0;
         background-color: #eee;
     }
-    .items input:disabled {
+    input:disabled {
         color: #000;
     }
 </style>

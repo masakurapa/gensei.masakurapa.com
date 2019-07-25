@@ -19,14 +19,7 @@
     import InputGroup from 'parts/input/InputGroup.svelte'
     import InputText from 'parts/input/InputText.svelte'
 
-    // userList更新時に動かしたい関数
-    export let subscribe = () => {}
-
     let inputValue = ''
-
-    userList.subscribe((value) => {
-        subscribe(value)
-    })
 
     // 入力可能な対象の最大数
     const userListMax = 15

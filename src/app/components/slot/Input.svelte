@@ -1,10 +1,8 @@
-<ComponentFrame>
+<CollapseFrame id="slot-input" label="③スロットの設定をする">
     <ChoiceNum/>
-    <InputUserList/>
-</ComponentFrame>
+</CollapseFrame>
 
 <script>
-    import ComponentFrame from 'components/common/ComponentFrame.svelte'
-    import InputUserList from 'parts/input/InputUserList.svelte'
+    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
     import ChoiceNum from 'components/slot/input/ChoiceNum.svelte'
 </script>

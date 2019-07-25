@@ -1,14 +1,17 @@
-<ComponentFrame>
+<CollapseFrame id="random-select-input" label="③抽選の設定をする">
     <TrialCount/>
     <ChoiceNum/>
-    <InputUserList subscribe="{resetTempUserList}"/>
-</ComponentFrame>
+</CollapseFrame>
 
 <script>
+    import { userList } from 'app/store.js'
     import { resetTempUserList } from 'components/randomSelect/store.js'
 
-    import ComponentFrame from 'components/common/ComponentFrame.svelte'
-    import InputUserList from 'parts/input/InputUserList.svelte'
+    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
     import TrialCount from 'components/randomSelect/input/TrialCount.svelte'
     import ChoiceNum from 'components/randomSelect/input/ChoiceNum.svelte'
+
+    userList.subscribe((value) => {
+        resetTempUserList(value)
+    })
 </script>
