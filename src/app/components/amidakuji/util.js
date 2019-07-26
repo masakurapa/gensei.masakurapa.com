@@ -34,7 +34,6 @@ export const generateRandomAmidakuji = (amidakuji, userList, lineNum) => {
     const vertical = userList.length
 
     // 横線を全部初期化する
-    // 一番下はマージンなので無視
     for (let h = 0; h < amidakuji.length - 1; h++) {
         for (let v = 1; v < amidakuji[h].length; v += 2) {
             amidakuji[h][v].flag = flags.off
@@ -43,7 +42,7 @@ export const generateRandomAmidakuji = (amidakuji, userList, lineNum) => {
     clearActiveLine(amidakuji)
 
     const vn = vertical - 1
-    let num = Math.ceil((lineNum * vn) / 4)
+    let num = Math.ceil((lineNum * vn) / 3)
     while (num > 0) {
         const h = random(lineNum)
         const v = randomOdd(amidakuji[0].length - 1)

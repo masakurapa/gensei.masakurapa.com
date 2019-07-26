@@ -2,6 +2,7 @@
     <InputRange
         value={$lineNum}
         max="{maxLineNum}"
+        min="{minLineNum}"
         on:input="{(event) => { setLineNum(event.target.value) }}"
     ></InputRange>
 </InputGroup>
@@ -13,4 +14,6 @@
 
     // 線を引ける最大行数
     const maxLineNum = 25
+    // 線を引ける最小行数
+    const minLineNum = 5
 </script>
