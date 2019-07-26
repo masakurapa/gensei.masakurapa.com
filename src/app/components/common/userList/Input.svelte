@@ -1,12 +1,12 @@
-<InputGroup label="抽選対象（10文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}">
+<InputGroup label="抽選対象（5文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}">
     <InputText
         {disabled}
         value="{inputValue}"
-        placeholder="Enterを押して対象を追加"
+        placeholder="Enterを押して追加"
         on:keydown={keydown}
         on:change={onchange}
-        size="25"
-        maxlength="10"
+        size="18"
+        maxlength="5"
     />
     <button
         {disabled}
