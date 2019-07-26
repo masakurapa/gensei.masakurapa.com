@@ -1,6 +1,7 @@
 <MainButton
     label="抽選対象を保存する"
     labelProcessing="抽選対象を保存する"
+    btnStyle="{{ width: '200px' }}"
     on:click="{save}"
 ></MainButton>
 <div class="text">※次回アクセス時に保存した抽選対象を使用します</div>

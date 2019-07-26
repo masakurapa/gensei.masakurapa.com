@@ -1,5 +1,5 @@
 <div class="btn-area">
-    <button disabled={disabledBtn} on:click>
+    <button disabled={disabledBtn} style={getBtnStyle()} on:click>
         {#if !$processing}{label}{:else}{labelProcessing}{/if}
     </button>
 </div>
@@ -13,9 +13,19 @@
     export let label = '抽選開始！'
     // 処理中のボタンテキスト
     export let labelProcessing = '抽選中！'
+    // ボタンのクラス
+    export let btnStyle = {}
 
     // ボタンの有効・無効判定
     $: disabledBtn = disabled || $processing || $userList.length === 0
+
+    function getBtnStyle () {
+        const styles = []
+        for (const key in btnStyle) {
+            styles.push(`${key}: ${btnStyle[key]};`)
+        }
+        return styles
+    }
 </script>
 
 <style>
