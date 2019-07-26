@@ -3,8 +3,8 @@
         <div class="items">
             {#each $userList as item (item.id)}
                 <label>
-                    <input disabled bind:value={item.name}>
-                    <RemoveButton id={item.id}/>
+                    <div class="name">{item.name}</div>
+                    <div><RemoveButton id={item.id}/></div>
                 </label>
             {/each}
         </div>
@@ -40,19 +40,19 @@
         background-color: #eee;
         user-select: none;
         width: 25%;
+        display: flex;
     }
-    input {
+    .name {
         height: 2em;
-        width: 80%;
+        width: 70%;
         font-family: inherit;
         font-size: inherit;
-        padding: 0.4em;
+        padding: 0.3em 0 0 0.4em;
         margin: 0;
         box-sizing: border-box;
         border: 0;
         background-color: #eee;
-    }
-    input:disabled {
-        color: #000;
+        text-align: left;
+        word-wrap: break-word;
     }
 </style>
