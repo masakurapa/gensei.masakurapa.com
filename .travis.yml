@@ -20,6 +20,8 @@ deploy:
   region: $AWS_REGION
   skip_cleanup: true
   local_dir: src/public
+  file_glob: true
+  file: src/**/*
   on:
     branch: master
 
