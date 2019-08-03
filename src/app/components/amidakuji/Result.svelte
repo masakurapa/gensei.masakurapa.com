@@ -65,7 +65,7 @@
                     {#if user.rank !== 0}
                         <div>
                             <div class="result-text">{user.rank}</div>
-                            <div>{user.name}</div>
+                            <div class="result-name-text">{user.name}</div>
                         </div>
                     {:else}
                         <div class="result-text">㋪</div>
@@ -251,6 +251,9 @@
         font-family: inherit;
         font-size: inherit;
         color: rgb(170,30,30);
+    }
+    .result-name-text {
+        margin-bottom: 10px;
     }
 
     .number-button {
