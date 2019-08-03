@@ -55,7 +55,7 @@
         </div>
     {/each}
 
-    <div class="row">
+    <div class="row unset-align-items">
         {#each $selectedUserList as user, i}
             {#if i !== 0}
                 <div class="line-h line-none"></div>
@@ -199,6 +199,9 @@
         justify-content: center;
         align-items: flex-end;
     }
+    .unset-align-items {
+        align-items: unset;
+    }
 
     .line-v {
         background-color: #666;
@@ -246,6 +249,7 @@
     .result-text-group {
         word-break: break-all;
         vertical-align: top;
+        margin-top: 10px;
     }
     .result-text {
         font-family: inherit;
