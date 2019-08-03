@@ -7,7 +7,11 @@
             {/if}
             <div class="line-v line-none number-button-line-v">
                 <div class="line-v-inner">
-                    <button class="number-button" on:click="{() => run(i)}" disabled={$processing}>{numbers[i]}</button>
+                    <button
+                        class="number-button"
+                        on:click="{() => run(i)}"
+                        disabled={$processing || selectedNumber.indexOf(i) !== -1}
+                    >{numbers[i]}</button>
                 </div>
             </div>
         {/each}
@@ -97,6 +101,8 @@
         '⑮',
     ]
 
+    const selectedNumber = []
+
     // 抽選
     async function run (num) {
         processing.set(true)
@@ -104,6 +110,8 @@
         // 抽選前に線を初期化する
         amidakuji.set(clearActiveLine($amidakuji))
         amidakuji.set(hideUnselectedLine($amidakuji))
+
+        selectedNumber.push(num)
 
         await sleep(500)
 
