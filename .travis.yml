@@ -20,8 +20,7 @@ deploy:
   region: $AWS_REGION
   skip_cleanup: true
   local_dir: src/public
-  on:
-    branch: master
+  if: tag IS present
 
 cache:
   directories:
