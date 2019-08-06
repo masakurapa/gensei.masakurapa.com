@@ -1,8 +1,8 @@
-<MainButton disabled={$disabledWriteLine} label="線を引き直す" labelProcessing="線を引き直す" on:click="{generate}"/>
-<MainButton disabled={!$disabledWriteLine} label="やりなおす" labelProcessing="やりなおす" on:click="{reset}"/>
+<MainButton {disabled} label="線を引き直す" labelProcessing="線を引き直す" on:click="{generate}"/>
+<MainButton disabled={!disabled} label="やりなおす" labelProcessing="やりなおす" on:click="{reset}"/>
 
 <script>
-    import { userList } from 'app/store.js'
+    import { userList, processing } from 'app/store.js'
     import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from 'components/amidakuji/store.js'
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from 'components/amidakuji/util.js'
 
@@ -11,6 +11,9 @@
     function generate () {
         amidakuji.set(generateRandomAmidakuji($amidakuji, $userList, $lineNum))
     }
+
+    // ボタン無効判定
+    $: disabled = $disabledWriteLine || $userList.length === 0 || $processing
 
     // あみだくじの内容をリセットする
     function reset () {

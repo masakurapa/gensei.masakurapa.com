@@ -1,4 +1,4 @@
-<MainButton label="スタート!!" labelProcessing="スタート!!" on:click="{() => start()}"/>
+<MainButton label="スタート!!" labelProcessing="スタート!!" {disabled} on:click="{() => start()}"/>
 
 <script>
     import { userList, processing } from 'app/store.js'
@@ -10,6 +10,8 @@
     $: userLength = $userList.length
     // 抽選人数の最大数を返却
     $: maxChoiceNum = userLength > 0 ? userLength : 1
+    // ボタン無効判定
+    $: disabled = $userList.length === 0 || $processing
 
     const scale = 50
     const breaks = 0.003

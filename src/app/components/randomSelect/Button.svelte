@@ -1,10 +1,13 @@
-<MainButton on:click="{run}"/>
+<MainButton {disabled} on:click="{run}"/>
 
 <script>
     import { userList, processing } from 'app/store.js'
     import { trialCount, choiceNum, tempUserList, resetTempUserList } from 'components/randomSelect/store.js'
     import { random, sleep } from 'app/util.js'
     import MainButton from 'parts/button/MainButton.svelte'
+
+    // ボタン無効判定
+    $: disabled = $userList.length === 0 || $processing
 
     // 抽選処理
     async function run () {

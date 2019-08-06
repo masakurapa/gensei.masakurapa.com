@@ -1,4 +1,4 @@
-<MainButton on:click="{run}"/>
+<MainButton {disabled} on:click="{run}"/>
 
 <script>
     import { processing } from 'app/store.js'
@@ -7,6 +7,9 @@
     import MainButton from 'parts/button/MainButton.svelte'
 
     let id = 1
+
+    // ボタン無効判定
+    $: disabled = $userList.length === 0 || $processing
 
     // 抽選処理
     async function run () {

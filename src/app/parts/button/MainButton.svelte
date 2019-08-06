@@ -1,23 +1,23 @@
 <div class="btn-area">
-    <button disabled={disabledBtn} style={getBtnStyle()} on:click>
+    <button {disabled} style={getBtnStyle()} on:click>
         {#if !$processing}{label}{:else}{labelProcessing}{/if}
     </button>
 </div>
 
 <script>
-    import { userList, processing } from 'app/store.js'
+    import { processing } from 'app/store.js'
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false
+    // 呼び出し元からボタンを無効にするための判定関数
+    // ここが指定されていたら disabled は使用しない
+    export let disabledFnc = null
     // 通常のボタンテキスト
     export let label = '抽選開始！'
     // 処理中のボタンテキスト
     export let labelProcessing = '抽選中！'
     // ボタンのクラス
     export let btnStyle = {}
-
-    // ボタンの有効・無効判定
-    $: disabledBtn = disabled || $processing || $userList.length === 0
 
     function getBtnStyle () {
         const styles = []
