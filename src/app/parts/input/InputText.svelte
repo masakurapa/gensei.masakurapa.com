@@ -31,6 +31,6 @@
         border-radius: 0.25em;
     }
     input[type=text]:disabled {
-        background-color: #eee  ;
+        background-color: #eee;
     }
 </style>

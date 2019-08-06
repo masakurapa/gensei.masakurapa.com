@@ -24,4 +24,8 @@
         width: 80%;
         resize: vertical;
     }
+    textarea:disabled {
+        border: 1px solid #aaa;
+        background-color: #eee;
+    }
 </style>
