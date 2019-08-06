@@ -30,3 +30,19 @@ export const randomOdd = (n) => {
 export const sleep = (ms) => {
     return new Promise(resolve => setTimeout(() => resolve(), ms))
 }
+
+/**
+ * 配列をシャッフルする
+ * @param {array} target
+ * @return {array}
+ */
+export const shuffle = (target) => {
+    const result = target.concat()
+    for (let i = result.length - 1; i > 0; i--) {
+        const r = Math.floor(Math.random() * (i + 1))
+        const tmp = result[i]
+        result[i] = result[r]
+        result[r] = tmp
+    }
+    return result
+}

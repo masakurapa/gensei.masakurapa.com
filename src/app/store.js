@@ -4,6 +4,8 @@ import { writable, get } from 'svelte/store'
 export const userList = writable([])
 // 処理中フラグ
 export const processing = writable(false)
+// ユーザーリストの表示フラグ
+export const showUserList = writable(true)
 // UID
 export const uid = writable(1)
 

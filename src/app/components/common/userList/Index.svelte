@@ -1,4 +1,4 @@
-<CollapseFrame id="user-list^wrapper" label="①抽選対象を入力する">
+<CollapseFrame id="user-list-wrapper" label="②抽選対象を入力する">
     <Input/>
     <List/>
     <SaveStorage/>

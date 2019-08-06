@@ -6,6 +6,7 @@
     {step}
     disabled={disabledForm}
     on:input
+    on:change
 >
 
 <script>
