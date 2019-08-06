@@ -31,7 +31,7 @@
         { value: 4, text: 'ランダムでチーム分けする', component: ShuffleTeam },
     ]
 
-    let component = ShuffleTeam
+    let component = null
     function changeComponent (event) {
         component = components[event.target.value].component
     }
