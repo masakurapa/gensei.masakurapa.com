@@ -1,4 +1,5 @@
 <InputGroup label="抽選対象 <span class='bold-text'>{$userList.length}</span>人">
+    <div><small>改行区切りで入力してください。</small></div>
     <InputTextarea
         value={inputUserList}
         on:change={change}
@@ -17,3 +18,4 @@
         userList.set(filtered)
     }
 </script>
+
