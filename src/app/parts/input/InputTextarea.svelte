@@ -2,8 +2,9 @@
     bind:value={value}
     placeholder={placeholder}
     rows={rows}
-    on:change
     disabled={disabledForm}
+    on:change
+    on:input
 ></textarea>
 
 <script>
