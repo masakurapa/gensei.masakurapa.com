@@ -28,7 +28,7 @@ jobs:
         skip_cleanup: true
         local_dir: src/public
         on:
-          tag: true
+          tags: true
       before_deploy:
         - npm --prefix ./src run build
         - rm src/public/bundle.css.map src/public/bundle.js.map
