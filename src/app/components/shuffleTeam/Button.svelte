@@ -20,6 +20,7 @@
 
         // グループを選ぶ順番はシャッフル
         const targets = shuffle($userList)
+
         // 一つのチームに所属可能な対象の数
         let maxNum = 0
         if (targets.length === $teamNum) {
@@ -27,26 +28,32 @@
         } else if ($teamNum === 1) {
             maxNum = targets.length
         } else {
-            maxNum = Math.ceil(targets.length / 2)
+            maxNum = Math.floor(targets.length / $teamNum)
         }
 
-        // チーム
+        // 1チームに入れる数を決める
+        // 余った枠は先頭から1つずつ割り当てる
+        let rem = targets.length % $teamNum
         let teams = []
-        for (let i = 0; i <= $teamNum - 1; i++) {
-            teams.push(i)
+        for (let no = 0; no <= $teamNum - 1; no++) {
+            let count = maxNum
+            if (rem > 0) {
+                count++
+                rem--
+            }
+            teams.push({ no, count })
         }
 
         const result = $resultUserList.concat()
         while (targets.length > 0) {
-            const no = teams[random(teams.length)]
+            const no = random(teams.length)
+            teams[no].count--
 
             // 先頭の対象者をグループに入れる
-            result[no].push({ id: id++, name: targets.shift() })
+            result[teams[no].no].push({ id: id++, name: targets.shift() })
 
             // 所属可能な数の最大になったらチーム抽選の対象からは外しておく
-            if (result[no].length === maxNum) {
-                teams = teams.filter(val => val !== no)
-            }
+            teams = teams.filter(val => val.count !== 0)
 
             resultUserList.set(result)
             await sleep(150)
