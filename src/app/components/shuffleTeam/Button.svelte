@@ -49,7 +49,7 @@
             }
 
             resultUserList.set(result)
-            await sleep(300)
+            await sleep(150)
         }
 
         await sleep(1000)
