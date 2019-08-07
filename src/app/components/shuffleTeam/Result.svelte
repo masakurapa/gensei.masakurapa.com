@@ -1,7 +1,7 @@
 <div class="result">
     {#each $resultUserList as users, i}
         <div class="{i % 2 === 0 ? 'left' : 'right'}">
-            <h2>チーム{i + 1}</h2>
+            <h2>チーム{i + 1} <small>({users.length}人)</small></h2>
             {#each users as { id, name} (id)}
                 <label
                     in:receive={{ key: id }}
