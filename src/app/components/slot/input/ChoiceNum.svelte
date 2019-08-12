@@ -1,4 +1,4 @@
-<InputGroup label="抽選対象から <span class='bold-text'>{$choiceNum}個</span> 抽選する</label>">
+<InputGroup label="抽選対象から <span class='bold-text'>{$choiceNum}個</span> 抽選する">
     <InputRange
         value={$choiceNum}
         max="{maxChoiceNum}"

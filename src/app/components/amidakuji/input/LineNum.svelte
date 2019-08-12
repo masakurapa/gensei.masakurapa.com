@@ -1,4 +1,4 @@
-<InputGroup label="あみだくじの行数 <span class='bold'>{$lineNum}</span>/25 行</label>">
+<InputGroup label="あみだくじの行数 <span class='bold'>{$lineNum}</span>/25 行">
     <InputRange
         value={$lineNum}
         max="{maxLineNum}"

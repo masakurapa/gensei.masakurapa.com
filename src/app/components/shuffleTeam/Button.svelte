@@ -2,7 +2,7 @@
 
 <script>
     import { processing } from 'app/store.js'
-    import { userList, teamNum, resultUserList, resetResultUserList } from 'components/shuffleTeam/store.js'
+    import { userList, teamNum, equalityFlag, resultUserList, resetResultUserList } from 'components/shuffleTeam/store.js'
     import { random, sleep, shuffle } from 'app/util.js'
     import MainButton from 'parts/button/MainButton.svelte'
 
@@ -21,6 +21,18 @@
         // グループを選ぶ順番はシャッフル
         const targets = shuffle($userList)
 
+        if ($equalityFlag) {
+            await equality(targets)
+        } else {
+            await bias(targets)
+        }
+
+        await sleep(1000)
+        processing.set(false)
+    }
+
+    // 均等にチーム分けする
+    async function equality (targets) {
         // 一つのチームに所属可能な対象の数
         let maxNum = 0
         if (targets.length === $teamNum) {
@@ -56,12 +68,23 @@
             teams = teams.filter(val => val.count !== 0)
 
             resultUserList.set(result)
-            await sleep(150)
+            await sleep(50)
         }
+    }
 
-        await sleep(1000)
+    // 均等にチーム分けしない
+    async function bias (targets) {
+        const result = $resultUserList.concat()
+        const num = $teamNum
 
-        resultUserList.set(result)
-        processing.set(false)
+        while (targets.length > 0) {
+            const no = random(num)
+
+            // 先頭の対象者をグループに入れる
+            result[no].push({ id: id++, name: targets.shift() })
+
+            resultUserList.set(result)
+            await sleep(50)
+        }
     }
 </script>

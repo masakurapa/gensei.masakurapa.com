@@ -1,4 +1,4 @@
-<InputGroup label="抽選対象を <span class='bold-text'>{$teamNum}</span> チームに分ける</label>">
+<InputGroup label="抽選対象を <span class='bold-text'>{$teamNum}</span> チームに分ける">
     <InputRange
         value={$teamNum}
         max="{maxTeamNum}"

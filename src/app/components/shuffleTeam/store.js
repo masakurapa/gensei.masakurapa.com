@@ -4,6 +4,8 @@ import { writable, get } from 'svelte/store'
 export const teamNum = writable(1)
 // 抽選データ
 export const userList = writable([])
+// 均等に人数を振り分けるかのフラグ
+export const equalityFlag = writable(true)
 // 抽選結果
 export const resultUserList = writable([[]])
 
