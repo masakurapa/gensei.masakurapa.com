@@ -10,7 +10,7 @@
                     <button
                         class="number-button"
                         on:click="{() => run(i)}"
-                        disabled={$processing || selectedNumber.indexOf(i) !== -1}
+                        disabled={$processing || $selectedNumber.indexOf(i) !== -1}
                     >{numbers[i]}</button>
                 </div>
             </div>
@@ -80,7 +80,7 @@
 <script>
     import { userList, processing } from 'app/store.js'
     import { sleep } from 'app/util.js'
-    import { amidakuji, selectedUserList, disabledWriteLine, rank } from 'components/amidakuji/store.js'
+    import { amidakuji, selectedUserList, disabledWriteLine, selectedNumber, rank } from 'components/amidakuji/store.js'
     import { flags, isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from 'components/amidakuji/util.js'
 
     const numbers = [
@@ -101,8 +101,6 @@
         '⑮',
     ]
 
-    const selectedNumber = []
-
     // 抽選
     async function run (num) {
         processing.set(true)
@@ -111,7 +109,10 @@
         amidakuji.set(clearActiveLine($amidakuji))
         amidakuji.set(hideUnselectedLine($amidakuji))
 
-        selectedNumber.push(num)
+        selectedNumber.update(val => {
+            val.push(num)
+            return val
+        })
 
         await sleep(500)
 

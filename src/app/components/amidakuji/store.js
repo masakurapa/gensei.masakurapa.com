@@ -10,6 +10,8 @@ export const rank = writable(1)
 export const amidakuji = writable([])
 // あたりのユーザーリスト
 export const selectedUserList = writable([])
+// 抽選済みの番号を保持する
+export const selectedNumber = writable([])
 
 // 線を引ける行数を設定
 export const setLineNum = (num) => {
