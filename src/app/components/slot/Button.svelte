@@ -1,4 +1,4 @@
-<MainButton label="スタート!!" labelProcessing="スタート!!" {disabled} on:click="{() => start()}"/>
+<MainButton label="スタート!!" {disabled} on:click="{() => start()}"/>
 
 <script>
     import { userList, processing } from 'app/store.js'

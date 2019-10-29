@@ -1,4 +1,4 @@
-<MainButton {disabled} on:click="{run}"/>
+<MainButton label={btnLabel} {disabled} on:click="{run}"/>
 
 <script>
     import { processing } from 'app/store.js'
@@ -10,6 +10,7 @@
 
     // ボタン無効判定
     $: disabled = $userList.length === 0 || $processing
+    $: btnLabel = $processing ? '抽選中！' : '抽選開始！'
 
     // 抽選処理
     async function run () {

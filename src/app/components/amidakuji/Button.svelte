@@ -1,5 +1,5 @@
-<MainButton {disabled} label="線を引き直す" labelProcessing="線を引き直す" on:click="{generate}"/>
-<MainButton disabled={!disabled} label="やりなおす" labelProcessing="やりなおす" on:click="{reset}"/>
+<MainButton {disabled} label="線を引き直す" on:click="{generate}"/>
+<MainButton disabled={!disabled} label="やりなおす" on:click="{reset}"/>
 
 <script>
     import { userList, processing } from 'app/store.js'

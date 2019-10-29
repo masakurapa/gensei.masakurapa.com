@@ -4,7 +4,12 @@
             {#each $userList as item (item.id)}
                 <label>
                     <div class="name">{item.name}</div>
-                    <div><RemoveButton id={item.id}/></div>
+                    <div>
+                        <button
+                            disabled={$processing}
+                            on:click="{() => removeUser(item.id)}"
+                        >x</button>
+                    </div>
                 </label>
             {/each}
         </div>
@@ -12,9 +17,7 @@
 </div>
 
 <script>
-    import { userList } from 'app/store.js'
-    import RemoveButton from 'parts/button/RemoveButton.svelte'
-
+    import { userList, processing, removeUser } from 'app/store.js'
     import CollapseSimpleFrame from 'components/common/collapse//CollapseSimpleFrame.svelte'
 </script>
 
@@ -54,5 +57,22 @@
         background-color: #eee;
         text-align: left;
         word-wrap: break-word;
+    }
+
+    button {
+        font-family: inherit;
+        font-size: inherit;
+        float: right;
+        height: 1.7em;
+        box-sizing: border-box;
+        padding: 0 0.5em;
+        line-height: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: rgb(170,30,30);
+    }
+    button:disabled {
+        color: #eee;
     }
 </style>
