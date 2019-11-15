@@ -11,15 +11,19 @@
             label="入力済みの抽選対象を使う"
             on:click={onClickSetUserList}
             btnStyle={{
-                width: '250px',
+                width: '180px',
+                padding: '0.25em',
+                'font-size': 'small',
             }}
         ></MainButton>
         <MainButton
             label="リセット"
             on:click={onClickReset}
             btnStyle={{
-                width: '100px',
+                width: '80px',
+                padding: '0.25em',
                 'background-color': '#ff9933',
+                'font-size': 'small',
             }}
         ></MainButton>
     </div>
