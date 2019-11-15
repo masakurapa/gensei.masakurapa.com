@@ -1,6 +1,6 @@
 <select on:change disabled={disabledForm}>
     {#each options as data}
-        <option value={data.value}>{data.text}</option>
+        <option value={data.value} selected={data.value === selectedValue}>{data.text}</option>
     {/each}
 </select>
 
@@ -9,6 +9,7 @@
 
     export let disabled = false
     export let options = []
+    export let selectedValue = ''
 
     $: disabledForm = disabled || $processing
 </script>
