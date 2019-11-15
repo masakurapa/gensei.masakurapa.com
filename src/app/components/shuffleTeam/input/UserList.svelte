@@ -2,27 +2,61 @@
     <div><small>改行区切りで入力してください。</small></div>
     <InputTextarea
         value={inputUserList}
-        on:change={change}
-        on:input={keydown}
+        on:change={onChange}
+        on:input={onKeydown}
     ></InputTextarea>
+
+    <div class="btn-area">
+        <MainButton
+            label="入力済みの抽選対象を使う"
+            on:click={onClickSetUserList}
+            btnStyle={{
+                width: '250px',
+            }}
+        ></MainButton>
+        <MainButton
+            label="リセット"
+            on:click={onClickReset}
+            btnStyle={{
+                width: '100px',
+                'background-color': '#ff9933',
+            }}
+        ></MainButton>
+    </div>
 </InputGroup>
 
 <script>
+    import { userList as appUserList } from 'app/store.js'
     import { userList } from 'components/shuffleTeam/store.js'
+    import MainButton from 'parts/button/MainButton.svelte'
     import InputGroup from 'parts/input/InputGroup.svelte'
     import InputTextarea from 'parts/input/InputTextarea.svelte'
 
     let inputUserList = joinUserList($userList)
     let listSize = 0
 
-    function change (event) {
+    function onChange (event) {
         const filtered = filterUserList(event.target.value)
         inputUserList = joinUserList(filtered)
-        userList.set(filtered)
+        userList.set(filterUserList(event.target.value))
     }
 
-    function keydown (event) {
+    function onKeydown (event) {
         listSize = filterUserList(event.target.value).length
+    }
+
+    function onClickSetUserList () {
+        const names = $appUserList.map(obj => obj.name)
+
+        inputUserList = joinUserList(names)
+        listSize = names.length
+        userList.set(names)
+    }
+
+    function onClickReset () {
+        inputUserList = []
+        listSize = 0
+        userList.set(inputUserList)
     }
 
     function filterUserList (str) {
@@ -33,3 +67,9 @@
     }
 </script>
 
+<style>
+    .btn-area {
+        display: flex;
+        margin-bottom: 1em;
+    }
+</style>

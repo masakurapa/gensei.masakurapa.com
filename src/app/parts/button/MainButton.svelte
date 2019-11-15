@@ -17,7 +17,7 @@
         for (const key in btnStyle) {
             styles.push(`${key}: ${btnStyle[key]};`)
         }
-        return styles
+        return styles.join(' ')
     }
 </script>
 
@@ -38,7 +38,7 @@
         box-sizing: border-box;
         border: 0.05em solid #ccc;
         border-radius: 0.25em;
-        background-color: #1976d2 !important;
+        background-color: #1976d2;
         color: #FFFFFF;
         outline: none;
         cursor: pointer;
