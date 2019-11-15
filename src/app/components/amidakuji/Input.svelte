@@ -4,7 +4,7 @@
 
 <script>
     import { userList } from 'app/store.js'
-    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank } from 'components/amidakuji/store.js'
+    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank, selectedNumber } from 'components/amidakuji/store.js'
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from 'components/amidakuji/util.js'
 
     import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
@@ -16,6 +16,7 @@
 
     userList.subscribe((value) => {
         reset(value)
+        selectedNumber.set([])
     })
 
     // あみだくじの内容をリセットする
