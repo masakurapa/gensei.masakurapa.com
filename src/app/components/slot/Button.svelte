@@ -13,7 +13,7 @@
     // ボタン無効判定
     $: disabled = $userList.length === 0 || $processing
 
-    const scale = 50
+    const scale = 40
     const breaks = 0.003
     const endSpeed = 0.05
     const firstLetter = 220
@@ -60,8 +60,10 @@
 
         // スタイル設定（ぐるぐるするエリアの背景塗りつぶす）
         obj.ctx.globalAlpha = 1
-        obj.ctx.fillStyle = '#c1d1f3'
-        obj.ctx.fillRect(0, (obj.canvas.height - scale) / 2, obj.canvas.width, scale)
+        obj.ctx.fillStyle = '#e9eefa'
+        // 背景がボーダーにかぶるので横幅を左+5、右-10してる
+        // 高さも微妙にずれるので5プラスしている
+        obj.ctx.fillRect(5, (obj.canvas.height - scale + 5) / 2, obj.canvas.width - 10, scale)
 
         // 文字の色・フォントとか
         obj.ctx.fillStyle = '#000'

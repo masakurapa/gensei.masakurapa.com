@@ -41,12 +41,13 @@
     }
 
     canvas{
-        background-color: #c1d1f3;
-        outline: black 1px solid;
+        background-color: #e9eefa;
         height: 100px;
         width: 200px;
         left: 0;
         top: 0;
         margin: 10px;
+        border-radius: 3em;
+        border: 0.1em solid #668ad8;
     }
 </style>

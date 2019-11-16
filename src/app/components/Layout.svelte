@@ -29,7 +29,8 @@
         { value: '', text: '', component: null },
         { value: 'randomSelect', text: 'ランダムで選ぶ', component: RandomSelect },
         { value: 'amidakuji', text: 'あみだくじで選ぶ', component: Amidakuji },
-        { value: 'slot', text: 'スロットで選ぶ（β版）', component: Slot },
+        { value: 'amidakuji', text: 'あみだくじで選ぶ', component: Amidakuji },
+        { value: 'slot', text: 'スロットで選ぶ', component: Slot },
         { value: 'shuffleTeam', text: 'ランダムでチーム分けする', component: ShuffleTeam },
     ]
 
