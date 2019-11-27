@@ -31,8 +31,6 @@ export const generateAmidakuji = (userList, lineNum) => {
 
 // ランダムで横線を引く
 export const generateRandomAmidakuji = (amidakuji, userList, lineNum) => {
-    const vertical = userList.length
-
     // 横線を全部初期化する
     for (let h = 0; h < amidakuji.length - 1; h++) {
         for (let v = 1; v < amidakuji[h].length; v += 2) {
@@ -41,16 +39,15 @@ export const generateRandomAmidakuji = (amidakuji, userList, lineNum) => {
     }
     clearActiveLine(amidakuji)
 
-    const vn = vertical - 1
-    let num = Math.ceil((lineNum * vn) / 3)
-    while (num > 0) {
-        const h = random(lineNum)
-        const v = randomOdd(amidakuji[0].length - 1)
-        if (amidakuji[h][v].flag !== flags.off) {
-            continue
+    // 全行に引けるだけの線を引く
+    for (let h = 0; h < lineNum; h++) {
+        while (amidakuji[h].filter(v => v.flag === flags.off).length > 0) {
+            const v = randomOdd(amidakuji[0].length - 1)
+            if (amidakuji[h][v].flag !== flags.off) {
+                continue
+            }
+            writeHrizon(amidakuji, h, v)
         }
-        writeHrizon(amidakuji, h, v)
-        num--
     }
 
     return amidakuji
