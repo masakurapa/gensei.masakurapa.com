@@ -32,7 +32,11 @@
             setDuplicatePrizeCnt(1)
         } else {
             // 景品が抽選対象より多い場合は強制的に重複当選を許容させる
-            minCnt = (cnt % uLen) + 1
+            if (cnt % uLen === 0) {
+                minCnt = (cnt / uLen) + 1
+            } else {
+                minCnt = (cnt / uLen) + (cnt % uLen) + 1
+            }
             setDuplicatePrizeCnt(minCnt)
         }
     }

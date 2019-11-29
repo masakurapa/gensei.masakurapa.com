@@ -1,4 +1,6 @@
-{#if $canvases.length > 0}
+<MainButton label="抽選終了" disabled="{disabledFinishBtn}" on:click="{() => finish()}"/>
+
+{#if $giftList.length > 0}
     <div class="result">
         {#each $canvases as obj, index (obj.no)}
             {#if index <= $giftList.length - 1}
@@ -37,13 +39,19 @@
     const firstLetter = 220
     const delay = 40
 
-    const selected = []
-    const finished = []
-
     $: disabledBtn = $processing || $userList.length === 0
+    $: disabledFinishBtn = $processing || !$blocking
     $: userLength = $userList.length
 
+    let selected = []
+    let finished = []
     let frameId = 0
+
+    function finish () {
+        blocking.set(false)
+        selected = []
+        finished = []
+    }
 
     async function start (no) {
         if (frameId > 0) {

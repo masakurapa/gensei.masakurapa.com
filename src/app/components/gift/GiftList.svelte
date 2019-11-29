@@ -32,9 +32,9 @@
     import InputGroup from 'parts/input/InputGroup.svelte'
     import InputTextarea from 'parts/input/InputTextarea.svelte'
 
-    let inputGitfList = $giftList
     let listSize = 0
 
+    let inputGitfList = $giftList
     $: disabled = $processing || $blocking
 
     function onChange (event) {
