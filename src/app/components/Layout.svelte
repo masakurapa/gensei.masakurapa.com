@@ -23,6 +23,7 @@
     import RandomSelect from 'components/randomSelect/RandomSelect.svelte'
     import Amidakuji from 'components/amidakuji/Amidakuji.svelte'
     import Slot from 'components/slot/Slot.svelte'
+    import Gift from 'components/gift/Gift.svelte'
     import ShuffleTeam from 'components/shuffleTeam/ShuffleTeam.svelte'
 
     const components = [
@@ -30,6 +31,7 @@
         { value: 'randomSelect', text: 'ランダムで選ぶ', component: RandomSelect },
         { value: 'amidakuji', text: 'あみだくじで選ぶ', component: Amidakuji },
         { value: 'slot', text: 'スロットで選ぶ', component: Slot },
+        { value: 'gift', text: '景品を抽選する', component: Gift },
         { value: 'shuffleTeam', text: 'ランダムでチーム分けする', component: ShuffleTeam },
     ]
 

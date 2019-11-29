@@ -64,7 +64,7 @@
     }
 
     function filterUserList (str) {
-        return event.target.value.trim().split(/\n/).filter((val) => val.trim() !== '')
+        return str.trim().split(/\n/).filter((val) => val.trim() !== '')
     }
     function joinUserList (list) {
         return list.join('\n')
