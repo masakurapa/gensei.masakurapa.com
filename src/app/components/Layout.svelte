@@ -1,6 +1,6 @@
 <CollapseFrame id="components" label="①抽選方法を選ぶ">
     <InputSelect
-        options="{components}"
+        options="{getComponents()}"
         selectedValue="{defaultSelected}"
         on:change="{onChangeComponent}"
     ></InputSelect>
@@ -14,6 +14,7 @@
 
 <script>
     import { showUserList } from 'app/store.js'
+    import { isSmartPhone } from 'app/util.js'
     import { setLot, getLot, removeLot } from 'app/storage.js'
 
     import InputSelect from 'parts/input/InputSelect.svelte'
@@ -27,19 +28,28 @@
     import ShuffleTeam from 'components/shuffleTeam/ShuffleTeam.svelte'
 
     const components = [
-        { value: '', text: '', component: null },
-        { value: 'randomSelect', text: 'ランダムで選ぶ', component: RandomSelect },
-        { value: 'amidakuji', text: 'あみだくじで選ぶ', component: Amidakuji },
-        { value: 'slot', text: 'スロットで選ぶ', component: Slot },
-        { value: 'gift', text: '景品を抽選する（β版）', component: Gift },
-        { value: 'shuffleTeam', text: 'ランダムでチーム分けする', component: ShuffleTeam },
+        { value: '', text: '', useSp: true, component: null },
+        { value: 'randomSelect', text: 'ランダムで選ぶ', useSp: true, component: RandomSelect },
+        { value: 'amidakuji', text: 'あみだくじで選ぶ', useSp: true, component: Amidakuji },
+        { value: 'slot', text: 'スロットで選ぶ', useSp: true, component: Slot },
+        { value: 'gift', text: '景品を抽選する（β版）', useSp: false, component: Gift },
+        { value: 'shuffleTeam', text: 'ランダムでチーム分けする', useSp: true, component: ShuffleTeam },
     ]
 
     let component = null
 
+    // スマホか
+    const isSp = isSmartPhone()
     // ローカルストレージに前回の抽選方法があればデフォルトにする
     const defaultSelected = getLot()
     setComponent(defaultSelected)
+
+    function getComponents () {
+        if (!isSp) {
+            return components
+        }
+        return components.filter(obj => obj.useSp)
+    }
 
     // プルダウン変更
     function onChangeComponent (event) {

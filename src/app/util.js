@@ -46,3 +46,15 @@ export const shuffle = (target) => {
     }
     return result
 }
+
+/**
+ * UAがスマートフォンか判定する
+ */
+export const isSmartPhone = () => {
+    const ua = navigator.userAgent
+    if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
+        return true
+    } else {
+        return false
+    }
+}
