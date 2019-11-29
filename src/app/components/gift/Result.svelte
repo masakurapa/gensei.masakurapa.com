@@ -27,7 +27,7 @@
 <script>
     import { processing } from 'app/store.js'
     import { random } from 'app/util.js'
-    import { giftList, userList, canvases, blocking } from 'components/gift/store.js'
+    import { giftList, userList, canvases, duplicatePrizeCnt, blocking } from 'components/gift/store.js'
 
     import MainButton from 'parts/button/MainButton.svelte'
 
@@ -73,14 +73,14 @@
         const indexes = []
         for (const key in $userList) {
             const n = Number(key)
-            if (selected.indexOf(n) === -1) {
+            if (selected[n] === undefined || selected[n] < $duplicatePrizeCnt) {
                 indexes.push(n)
             }
         }
 
-        const idx = Number(indexes[random(indexes.length)])
+        const idx = indexes[random(indexes.length)]
         $canvases[no].end = idx
-        selected.push(idx)
+        selected[idx] = selected[idx] === undefined ? 1 : selected[idx] + 1
     }
 
     function slot (obj) {
