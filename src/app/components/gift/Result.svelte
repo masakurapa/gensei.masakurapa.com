@@ -55,8 +55,6 @@
         selectEndpoint(no)
         finished.push(no)
 
-        console.log($canvases)
-
         const obj = $canvases[no]
         obj.ctx = obj.canvas.getContext('2d')
 
@@ -80,11 +78,9 @@
             }
         }
 
-        console.log(indexes)
         const idx = Number(indexes[random(indexes.length)])
         $canvases[no].end = idx
         selected.push(idx)
-        console.log(selected)
     }
 
     function slot (obj) {
