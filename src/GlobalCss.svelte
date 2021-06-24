@@ -1,11 +1,14 @@
 <style>
-    :global(html, body) {
+    :global(html) {
         position: relative;
         width: 100%;
         height: 100%;
     }
 
     :global(body) {
+        position: relative;
+        width: 100%;
+        height: 100%;
         background: #F5FFFA !important;
         color: #2c3e50 !important;
         font-family: 'Hannotate SC','Chalkboard SE','ＭＳ 明朝', 'MS Mincho',sans-serif !important;

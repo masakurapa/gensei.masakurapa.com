@@ -11,15 +11,15 @@
     <label for="{name}-{data.value}">{data.text}</label>
 {/each}
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import { processing } from '../../store';
 
-    export let disabled = false
-    export let options = []
-    export let name = ''
-    export let selectedValue = ''
+    export let disabled = false;
+    export let options = [];
+    export let name = '';
+    export let selectedValue = '';
 
-    $: disabledForm = disabled || $processing
+    $: disabledForm = disabled || $processing;
 </script>
 
 <style>

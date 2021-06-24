@@ -1,36 +1,32 @@
 /**
  * 0 ~ n までのランダムな数字を返す
- * @param {number} n
  */
-export const random = (n) => {
+export const random = (n: number): number => {
     return Math.floor(Math.random() * n)
 }
 
 /**
  * 0 ~ n までのランダムな偶数を返す
- * @param {number} n
  */
-export const randomEven = (n) => {
+export const randomEven = (n: number): number => {
     return random(n / 2) * 2
 }
 
 /**
  * 0 ~ n までのランダムな奇数を返す
- * @param {number} n
  */
-export const randomOdd = (n) => {
+export const randomOdd = (n: number): number => {
     return random(n / 2) * 2 + 1
 }
 
 /**
  * スリープ用のPromiseを返す
- * @param {number} ms
- * @return {Promise}
  */
-export const sleep = (ms) => {
+export const sleep = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(() => resolve(), ms))
 }
 
+// FIXME: 型定義
 /**
  * 配列をシャッフルする
  * @param {array} target
@@ -50,7 +46,7 @@ export const shuffle = (target) => {
 /**
  * UAがスマートフォンか判定する
  */
-export const isSmartPhone = () => {
+export const isSmartPhone = (): boolean => {
     const ua = navigator.userAgent
     if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || (ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
         return true

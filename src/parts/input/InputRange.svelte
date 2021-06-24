@@ -9,16 +9,16 @@
     on:change
 >
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import { processing } from '../../store';
 
-    export let value = 1
-    export let min = 1
-    export let max = 1
-    export let step = 1
-    export let disabled = false
+    export let value = 1;
+    export let min = 1;
+    export let max = 1;
+    export let step = 1;
+    export let disabled = false;
 
-    $: disabledForm = disabled || $processing
+    $: disabledForm = disabled || $processing;
 </script>
 
 <style>

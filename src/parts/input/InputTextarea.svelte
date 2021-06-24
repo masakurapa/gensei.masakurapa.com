@@ -7,15 +7,15 @@
     on:input
 ></textarea>
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import { processing } from '../../store.js';
 
-    export let value = ''
-    export let placeholder = ''
-    export let rows = 5
-    export let disabled = false
+    export let value = '';
+    export let placeholder = '';
+    export let rows = 5;
+    export let disabled = false;
 
-    $: disabledForm = disabled || $processing
+    $: disabledForm = disabled || $processing;
 </script>
 
 <style>

@@ -1,17 +1,17 @@
-<select on:change disabled={disabledForm}>
+<select on:blur disabled={disabledForm}>
     {#each options as data}
         <option value={data.value} selected={data.value === selectedValue}>{data.text}</option>
     {/each}
 </select>
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import { processing } from '../../store.js';
 
-    export let disabled = false
-    export let options = []
-    export let selectedValue = ''
+    export let disabled = false;
+    export let options = [];
+    export let selectedValue = '';
 
-    $: disabledForm = disabled || $processing
+    $: disabledForm = disabled || $processing;
 </script>
 
 <style>

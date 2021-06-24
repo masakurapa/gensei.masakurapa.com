@@ -7,7 +7,7 @@
 
 <Layout/>
 
-<script>
+<script lang="ts">
     import GlobalCss from 'app/GlobalCss.svelte'
     import CollapseSimpleFrame from 'components/common/collapse/CollapseSimpleFrame.svelte'
     import Layout from 'components/Layout.svelte'

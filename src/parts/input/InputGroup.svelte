@@ -1,10 +1,10 @@
 <div class="input-group">
-    <label>{@html label }</label>
+    <div class="label">{@html label }</div>
     <slot></slot>
 </div>
 
-<script>
-    export let label = ''
+<script lang="ts">
+    export let label = '';
 </script>
 
 <style>
@@ -14,8 +14,7 @@
     .input-group:first-child {
         padding: 0.25em 0 0 0.5em;
     }
-    label {
-        display: block;
+    .label {
         margin: 0 0 0.25em 0;
     }
 </style>

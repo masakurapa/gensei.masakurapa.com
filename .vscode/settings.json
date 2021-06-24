@@ -2,39 +2,47 @@
     // Path Autocomplete (https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete)
     // rollup.config.js -> importResolverと同じパスを設定する
     "path-autocomplete.pathMappings": {
-        "app": "${folder}/src/app",
-        "components": "${folder}/src/app/components",
-        "parts": "${folder}/src/app/parts",
+        "app": "${folder}/src",
+        "components": "${folder}/src/components",
+        "parts": "${folder}/src/parts",
     },
 
     // .svelteのeslint用の設定
-    "files.associations": {
-        "*.svelte": "html"
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        {
-            "language": "html",
-            "autoFix": true
-        },
-        {
-            "language": "javascript",
-            "autoFix": true
-        },
-    ],
-    "eslint.autoFixOnSave": true,
+    // "files.associations": {
+    //     "*.svelte": "html"
+    // },
+    // "eslint.validate": [
+    //     "javascript",
+    //     "javascriptreact",
+    //     {
+    //         "language": "html",
+    //         "autoFix": true
+    //     },
+    //     {
+    //         "language": "javascript",
+    //         "autoFix": true
+    //     },
+    // ],
+    // "eslint.autoFixOnSave": true,
 
     // node_modulesがある場所を指定する
-    "eslint.workingDirectories": [
-        "./src"
-    ],
+    // "eslint.workingDirectories": [
+    //     "./src"
+    // ],
+
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
 
     "jshint.options": {
-        "esversion": 6,
+        "esversion": 9,
         "asi": true,
     },
 
     "css.lint.emptyRules": "ignore",
     "html.validate.styles": false,
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }

@@ -9,16 +9,16 @@
     on:keydown
 >
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import { processing } from '../../store.js';
 
-    export let value = ''
-    export let placeholder = ''
-    export let size = 10
-    export let maxlength = 10
-    export let disabled = false
+    export let value = '';
+    export let placeholder = '';
+    export let size = 10;
+    export let maxlength = 10;
+    export let disabled = false;
 
-    $: disabledForm = disabled || $processing
+    $: disabledForm = disabled || $processing;
 </script>
 
 <style>
