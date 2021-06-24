@@ -4,15 +4,15 @@
     </button>
 </div>
 
-<script>
+<script lang="ts">
     // 呼び出し元からボタンを無効にするためのフラグ
-    export let disabled = false
+    export let disabled = false;
     // 通常のボタンテキスト
-    export let label = 'BUTTON!!'
+    export let label = 'BUTTON!!';
     // ボタンのクラス
-    export let btnStyle = {}
+    export let btnStyle: { [key: string]: string } = {};
 
-    function getBtnStyle () {
+    function getBtnStyle (): string {
         const styles = []
         for (const key in btnStyle) {
             styles.push(`${key}: ${btnStyle[key]};`)
