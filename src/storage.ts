@@ -1,3 +1,5 @@
+import type { users } from './@types/user';
+
 const lotKey = 'lotType';
 const userListKey = 'userList';
 
@@ -22,24 +24,22 @@ export const removeLot = (): void => {
     removeItem(lotKey);
 };
 
-// FIXME: 型定義
 /**
  * ユーザーリストをローカルストレージに保存する
  */
-export const setUserList = (userList): boolean => {
+export const setUserList = (userList: users): boolean => {
     return setItem(userListKey, JSON.stringify(userList));
 };
 
-// FIXME: 型定義
 /**
  * ローカルストレージからユーザーリストを取得する
  */
-export const getUserList = () => {
+export const getUserList = (): users => {
     const val = getItem(userListKey);
     if (val === null) {
         return [];
     }
-    const userList = JSON.parse(window.localStorage.getItem(userListKey));
+    const userList: users = JSON.parse(window.localStorage.getItem(userListKey));
     return userList !== null ? userList : [];
 };
 
