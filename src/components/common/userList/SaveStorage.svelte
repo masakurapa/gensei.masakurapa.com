@@ -6,18 +6,18 @@
 ></MainButton>
 <div class="text">※次回アクセス時に保存した抽選対象を使用します</div>
 
-<script>
-    import { setUserList } from 'app/storage.js'
-    import { userList, processing } from 'app/store.js'
-    import MainButton from 'parts/button/MainButton.svelte'
+<script lang="ts">
+    import { setUserList } from '../../../storage';
+    import { userList, processing } from '../../../store';
+    import MainButton from '../../../parts/button/MainButton.svelte';
 
-    function save () {
+    const save = (): void => {
         if (setUserList($userList)) {
-            alert('抽選対象を保存しました')
+            alert('抽選対象を保存しました');
         } else {
-            alert('抽選対象を保存に失敗しました')
+            alert('抽選対象を保存に失敗しました');
         }
-    }
+    };
 </script>
 
 <style>

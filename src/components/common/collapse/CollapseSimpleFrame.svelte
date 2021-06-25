@@ -4,12 +4,12 @@
     </Collapse>
 </div>
 
-<script>
+<script lang="ts">
     import Collapse from 'components/common/collapse/Collapse.svelte'
 
-    export let id
-    export let label = ''
-    export let open = false
+    export let id: string;
+    export let label = '';
+    export let open = false;
 </script>
 
 <style>

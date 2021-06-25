@@ -15,12 +15,12 @@
     </div>
 </div>
 
-<script>
-    export let id
-    export let label = ''
-    export let open = false
+<script lang="ts">
+    export let id: string;
+    export let label = '';
+    export let open = false;
 
-    $: icon = open ? 'fa-chevron-down' : 'fa-chevron-up'
+    $: icon = open ? 'fa-chevron-down' : 'fa-chevron-up';
 </script>
 
 <style>

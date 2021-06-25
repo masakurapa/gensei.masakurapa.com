@@ -2,7 +2,7 @@
     <CollapseSimpleFrame id="user-list" label="抽選対象リスト">
         <div class="items">
             {#each $userList as item (item.id)}
-                <label>
+                <div class="label">
                     <div class="name">{item.name}</div>
                     <div>
                         <button
@@ -10,15 +10,15 @@
                             on:click="{() => removeUser(item.id)}"
                         >x</button>
                     </div>
-                </label>
+                </div>
             {/each}
         </div>
     </CollapseSimpleFrame>
 </div>
 
-<script>
-    import { userList, processing, removeUser } from 'app/store.js'
-    import CollapseSimpleFrame from 'components/common/collapse//CollapseSimpleFrame.svelte'
+<script lang="ts">
+    import { userList, processing, removeUser } from '../../../store';
+    import CollapseSimpleFrame from '../collapse/CollapseSimpleFrame.svelte';
 </script>
 
 <style>
@@ -31,7 +31,7 @@
         flex-wrap: wrap;
     }
 
-    label {
+    .label {
         top: 0;
         left: 0;
         display: block;

@@ -19,14 +19,14 @@
     import { setLot, getLot, removeLot } from '../storage';
 
     import InputSelect from '../parts/input/InputSelect.svelte';
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte';
-    import UserList from 'components/common/userList/Index.svelte';
+    import CollapseFrame from '../components/common/collapse/CollapseFrame.svelte';
+    import UserList from '../components/common/userList/Index.svelte';
 
-    import RandomSelect from 'components/randomSelect/RandomSelect.svelte';
-    import Amidakuji from 'components/amidakuji/Amidakuji.svelte';
-    import Slot from 'components/slot/Slot.svelte';
-    import Gift from 'components/gift/Gift.svelte';
-    import ShuffleTeam from 'components/shuffleTeam/ShuffleTeam.svelte';
+    import RandomSelect from '../components/randomSelect/RandomSelect.svelte';
+    import Amidakuji from '../components/amidakuji/Amidakuji.svelte';
+    import Slot from '../components/slot/Slot.svelte';
+    import Gift from '../components/gift/Gift.svelte';
+    import ShuffleTeam from '../components/shuffleTeam/ShuffleTeam.svelte';
 
     interface componentSetting {
         value: string;

@@ -4,9 +4,9 @@
         value="{inputValue}"
         placeholder="Enterを押して追加"
         on:keydown={keydown}
-        on:change={onchange}
-        size="18"
-        maxlength="5"
+        on:change={onChange}
+        size={18}
+        maxlength={5}
     />
     <button
         {disabled}
@@ -14,39 +14,41 @@
     >追加</button>
 </InputGroup>
 
-<script>
-    import { userList, processing, addUser } from 'app/store.js'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputText from 'parts/input/InputText.svelte'
+<script lang="ts">
+    import type { InputEvent, KeyEvent } from '../../../@types/event';
 
-    let inputValue = ''
+    import { userList, processing, addUser } from '../../../store';
+    import InputGroup from '../../../parts/input/InputGroup.svelte';
+    import InputText from '../../../parts/input/InputText.svelte';
+
+    let inputValue = '';
 
     // 入力可能な対象の最大数
-    const userListMax = 15
+    const userListMax = 15;
     // ユーザー追加の無効判定
-    $: disabled = $processing || $userList.length >= userListMax
+    $: disabled = $processing || $userList.length >= userListMax;
 
-    function click () {
+    const click = (): void => {
         if (inputValue.trim().length === 0) {
-            return
+            return;
         }
-        addUser(inputValue.trim())
-        inputValue = ''
-    }
+        addUser(inputValue.trim());
+        inputValue = '';
+    };
 
-    function onchange (event) {
-        inputValue = event.target.value
-    }
+    const onChange = (event: InputEvent): void => {
+        inputValue = event.target.value;
+    };
 
-    function keydown (event) {
+    const keydown = (event: KeyEvent): void => {
         // event: 13 == Enterキー
         if (event.which !== 13 || event.target.value.trim().length === 0) {
-            return
+            return;
         }
-        addUser(event.target.value.trim())
-        event.target.value = ''
-        inputValue = ''
-    }
+        addUser(event.target.value.trim());
+        event.target.value = '';
+        inputValue = '';
+    };
 </script>
 
 <style>

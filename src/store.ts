@@ -1,27 +1,27 @@
-import { writable, get } from 'svelte/store'
+import { writable, get } from 'svelte/store';
 
 // ユーザーリスト
-export const userList = writable([])
+export const userList = writable([]);
 // 処理中フラグ
-export const processing = writable(false)
+export const processing = writable(false);
 // ユーザーリストの表示フラグ
-export const showUserList = writable(true)
+export const showUserList = writable(true);
 // UID
-export const uid = writable(1)
+export const uid = writable(1);
 
 // FIXME: 型定義
 // ユーザーリストの操作関数
 export const addUser = function (value) {
-    const item = { id: get(uid), name: value }
-    userList.update(items => [...items, item])
-    uid.update(id => id + 1)
-}
+    const item = { id: get(uid), name: value };
+    userList.update(items => [...items, item]);
+    uid.update(id => id + 1);
+};
 // FIXME: 型定義
 export const setUser = function (value) {
-    userList.set(value)
-    uid.set(value.length + 1)
-}
+    userList.set(value);
+    uid.set(value.length + 1);
+};
 // FIXME: 型定義
 export const removeUser = function (id) {
-    userList.set(get(userList).filter(row => row.id !== id))
-}
+    userList.set(get(userList).filter(row => row.id !== id));
+};
