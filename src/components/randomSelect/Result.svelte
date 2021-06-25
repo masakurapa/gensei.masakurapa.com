@@ -29,23 +29,23 @@
     </div>
 </div>
 
-<script>
-    import { quintOut } from 'svelte/easing'
-    import { crossfade } from 'svelte/transition'
-    import { flip } from 'svelte/animate'
-    import { tempUserList } from 'components/randomSelect/store.js'
+<script lang="ts">
+    import { quintOut } from 'svelte/easing';
+    import { crossfade } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
+    import { tempUserList } from './store';
 
     // 抽選対象用のユーザーリスト
-    $: targetUserList = $tempUserList.filter(item => item.rank === 0)
+    $: targetUserList = $tempUserList.filter(item => item.rank === 0);
     // 抽選結果用のユーザーリスト
-    $: resultUserList = $tempUserList.filter(item => item.rank !== 0).sort((a, b) => a.rank > b.rank ? 1 : -1)
+    $: resultUserList = $tempUserList.filter(item => item.rank !== 0).sort((a, b) => a.rank > b.rank ? 1 : -1);
 
     // アニメーションの設定
     const [send, receive] = crossfade({
         duration: d => Math.sqrt(d * 200),
-        fallback (node, params) {
-            const style = getComputedStyle(node)
-            const transform = style.transform === 'none' ? '' : style.transform
+        fallback (node, _) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
 
             return {
                 duration: 400,
@@ -54,9 +54,9 @@
                     transform: ${transform} scale(${t})
                     opacity: ${t}
                 `,
-            }
+            };
         },
-    })
+    });
 </script>
 
 <style>

@@ -4,12 +4,17 @@
         min="{$trialCountStep}"
         max="{$trialCountStep * 100}"
         step="{$trialCountStep}"
-        on:input="{(event) => { setTrialCount(event.target.value) }}"
+        on:input="{onInput}"
     ></InputRange>
 </InputGroup>
 
-<script>
-    import { trialCountStep, trialCount, setTrialCount } from 'components/randomSelect/store.js'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputRange from 'parts/input/InputRange.svelte'
+<script lang="ts">
+    import type { InputEvent } from '../../../@types/event';
+    import { trialCountStep, trialCount } from '../store';
+    import InputGroup from '../../../parts/input/InputGroup.svelte';
+    import InputRange from '../../../parts/input/InputRange.svelte';
+
+    const onInput = (event: InputEvent): void => {
+        trialCount.set(parseInt(event.target.value, 10));
+    };
 </script>
