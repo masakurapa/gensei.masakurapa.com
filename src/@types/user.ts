@@ -1,7 +1,7 @@
 /**
  * ユーザー情報
  */
-export interface user {
+export interface User {
     id: number;
     name: string;
 };
@@ -9,4 +9,4 @@ export interface user {
 /**
  * ユーザー情報のリスト
  */
-export type users = user[];
+export type UserList = User[];

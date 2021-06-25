@@ -14,6 +14,8 @@
 
 <script lang="ts">
     import type { InputEvent } from '../@types/event';
+    import type { ComponentList } from '../@types/component';
+
     import { showUserList } from '../store';
     import { isSmartPhone } from '../util';
     import { setLot, getLot, removeLot } from '../storage';
@@ -28,14 +30,7 @@
     import Gift from '../components/gift/Gift.svelte';
     // import ShuffleTeam from '../components/shuffleTeam/ShuffleTeam.svelte';
 
-    interface componentSetting {
-        value: string;
-        text: string;
-        useSp: boolean;
-        component?: any;
-    };
-
-    const components: componentSetting[] = [
+    const components: ComponentList = [
         { value: '', text: '', useSp: true, component: null },
         // { value: 'randomSelect', text: 'ランダムで選ぶ', useSp: true, component: RandomSelect },
         // { value: 'amidakuji', text: 'あみだくじで選ぶ', useSp: true, component: Amidakuji },
@@ -49,7 +44,7 @@
     // スマホか
     const isSp = isSmartPhone();
 
-    const getComponents = (): componentSetting[] => {
+    const getComponents = (): ComponentList => {
         if (!isSp) {
             return components;
         }

@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store'
-import type { canvasList } from '../../@types/canvas';
+import type { CanvasList } from '../../@types/canvas';
 
 // 抽選中の機能ブロックフラグ
 export const blocking = writable(false);
@@ -11,7 +11,7 @@ export const userList = writable<string[]>([]);
 export const duplicatePrizeCnt = writable(1);
 // 抽選結果用のキャンバス
 let no = 1;
-export const canvases = writable<canvasList>([]);
+export const canvases = writable<CanvasList>([]);
 
 // キャンバスを追加
 export const addCanvas = () => {

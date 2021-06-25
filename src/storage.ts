@@ -1,4 +1,4 @@
-import type { users } from './@types/user';
+import type { UserList } from './@types/user';
 
 const lotKey = 'lotType';
 const userListKey = 'userList';
@@ -27,19 +27,19 @@ export const removeLot = (): void => {
 /**
  * ユーザーリストをローカルストレージに保存する
  */
-export const setUserList = (userList: users): boolean => {
+export const setUserList = (userList: UserList): boolean => {
     return setItem(userListKey, JSON.stringify(userList));
 };
 
 /**
  * ローカルストレージからユーザーリストを取得する
  */
-export const getUserList = (): users => {
+export const getUserList = (): UserList => {
     const val = getItem(userListKey);
     if (val === null) {
         return [];
     }
-    const userList: users = JSON.parse(window.localStorage.getItem(userListKey));
+    const userList: UserList = JSON.parse(window.localStorage.getItem(userListKey));
     return userList !== null ? userList : [];
 };
 

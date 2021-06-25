@@ -1,7 +1,7 @@
 /**
  * ユーザー情報
  */
-export interface canvasRow {
+export interface Canvas {
     no: number;
     canvas?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;
@@ -13,4 +13,4 @@ export interface canvasRow {
 /**
  * ユーザー情報のリスト
  */
-export type canvasList = canvasRow[];
+export type CanvasList = Canvas[];

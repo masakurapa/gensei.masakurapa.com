@@ -1,8 +1,8 @@
 import { writable, get } from 'svelte/store';
-import type { user, users } from './@types/user';
+import type { User, UserList } from './@types/user';
 
 // ユーザーリスト
-export const userList = writable<users>([]);
+export const userList = writable<UserList>([]);
 // 処理中フラグ
 export const processing = writable(false);
 // ユーザーリストの表示フラグ
@@ -12,11 +12,11 @@ export const uid = writable(1);
 
 // ユーザーリストの操作関数
 export const addUser = function (name: string) {
-    const item: user = { name, id: get(uid) };
+    const item: User = { name, id: get(uid) };
     userList.update(items => [...items, item]);
     uid.update(id => id + 1);
 };
-export const setUser = function (value: users) {
+export const setUser = function (value: UserList) {
     userList.set(value);
     uid.set(value.length + 1);
 };
