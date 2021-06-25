@@ -7,7 +7,7 @@
 </CollapseFrame>
 
 {#if $showUserList}
-<UserList style="display: none;"/>
+    <UserList />
 {/if}
 
 <svelte:component this={component}/>
