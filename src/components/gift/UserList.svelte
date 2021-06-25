@@ -4,7 +4,7 @@
         <InputTextarea
             value={inputUserList}
             on:change={onChange}
-            on:input={onKeydown}
+            on:input={onInput}
             {disabled}
         ></InputTextarea>
 
@@ -22,40 +22,41 @@
     </InputGroup>
 </CollapseFrame>
 
-<script>
-    import { processing } from 'app/store.js'
-    import { userList, blocking } from 'components/gift/store.js'
+<script lang="ts">
+    import type { InputEvent } from '../../@types/event';
+    import { processing } from '../../store';
+    import { userList, blocking } from './store';
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
+    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte';
 
-    import MainButton from 'parts/button/MainButton.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputTextarea from 'parts/input/InputTextarea.svelte'
+    import MainButton from 'parts/button/MainButton.svelte';
+    import InputGroup from 'parts/input/InputGroup.svelte';
+    import InputTextarea from 'parts/input/InputTextarea.svelte';
 
-    let inputUserList = $userList
-    let listSize = 0
+    const onChange = (event: InputEvent): void => {
+        const filtered = filterUserList(event.target.value);
+        inputUserList = joinUserList(filtered);
+        userList.set(filtered);
+    };
 
-    $: disabled = $processing || $blocking
+    const onInput = (event: InputEvent): void => {
+        listSize = filterUserList(event.target.value).length;
+    };
 
-    function onChange (event) {
-        const filtered = filterUserList(event.target.value)
-        inputUserList = joinUserList(filtered)
-        userList.set(filtered)
-    }
+    const onClickReset = (): void => {
+        inputUserList = '';
+        userList.set([]);
+    };
 
-    function onKeydown () {
-        listSize = filterUserList(event.target.value).length
-    }
+    const filterUserList = (str: string): string[] => {
+        return str.trim().split(/\n/).filter((val) => val.trim() !== '');
+    };
+    const joinUserList = (list: string[]): string => {
+        return list.join('\n');
+    };
 
-    function onClickReset () {
-        inputUserList = []
-        userList.set(inputUserList)
-    }
+    let inputUserList = joinUserList($userList);
+    let listSize = 0;
 
-    function filterUserList (str) {
-        return str.trim().split(/\n/).filter((val) => val.trim() !== '')
-    }
-    function joinUserList (list) {
-        return list.join('\n')
-    }
+    $: disabled = $processing || $blocking;
 </script>

@@ -26,121 +26,123 @@
     </div>
 {/if}
 
-<script>
-    import { processing } from 'app/store.js'
-    import { random } from 'app/util.js'
-    import { giftList, userList, canvases, duplicatePrizeCnt, blocking } from 'components/gift/store.js'
+<script lang="ts">
+    import type { canvasRow } from '../../@types/canvas';
 
-    import MainButton from 'parts/button/MainButton.svelte'
+    import { processing } from '../../store';
+    import { random } from '../../util';
+    import { giftList, userList, canvases, duplicatePrizeCnt, blocking } from './store';
 
-    const scale = 40
-    const breaks = 0.003
-    const endSpeed = 0.05
-    const firstLetter = 220
-    const delay = 40
+    import MainButton from '../../parts/button/MainButton.svelte';
 
-    $: disabledBtn = $processing || $userList.length === 0
-    $: disabledFinishBtn = $processing || !$blocking
-    $: userLength = $userList.length
+    const scale = 40;
+    const breaks = 0.003;
+    const endSpeed = 0.05;
+    const firstLetter = 220;
+    const delay = 40;
 
-    let selected = []
-    let finished = []
-    let frameId = 0
+    $: disabledBtn = $processing || $userList.length === 0;
+    $: disabledFinishBtn = $processing || !$blocking;
+    $: userLength = $userList.length;
 
-    function finish () {
-        blocking.set(false)
-        selected = []
-        finished = []
+    let selected: number[] = [];
+    let finished: number[] = [];
+    let frameId = 0;
+
+    const finish = (): void => {
+        blocking.set(false);
+        selected = [];
+        finished = [];
     }
 
-    async function start (no) {
+    const start = async (no: number): Promise<void> => {
         if (frameId > 0) {
-            cancelAnimationFrame(frameId)
+            cancelAnimationFrame(frameId);
         }
 
-        processing.set(true)
-        blocking.set(true)
-        selectEndpoint(no)
-        finished.push(no)
+        processing.set(true);
+        blocking.set(true);
+        selectEndpoint(no);
+        finished.push(no);
 
-        const obj = $canvases[no]
-        obj.ctx = obj.canvas.getContext('2d')
+        const obj = $canvases[no];
+        obj.ctx = obj.canvas.getContext('2d');
 
-        const f = firstLetter + delay * (obj.no - 1)
+        const f = firstLetter + delay * (obj.no - 1);
 
-        obj.offsetV = (endSpeed + breaks * f)
-        obj.offset = -(1 + f) * (breaks * f + 2 * endSpeed) / 2
-        obj.canvas.width = obj.canvas.clientWidth
-        obj.canvas.height = obj.canvas.clientHeight
+        obj.offsetV = (endSpeed + breaks * f);
+        obj.offset = -(1 + f) * (breaks * f + 2 * endSpeed) / 2;
+        obj.canvas.width = obj.canvas.clientWidth;
+        obj.canvas.height = obj.canvas.clientHeight;
 
-        requestAnimationFrame(() => slot(obj))
+        requestAnimationFrame(() => slot(obj));
     }
 
     // 当り位置を決める
-    function selectEndpoint (no) {
-        const indexes = []
+    const selectEndpoint = (no: number): void => {
+        const indexes: number[] = [];
         for (const key in $userList) {
-            const n = Number(key)
+            const n = Number(key);
             if (selected[n] === undefined || selected[n] < $duplicatePrizeCnt) {
-                indexes.push(n)
+                indexes.push(n);
             }
         }
 
-        const idx = indexes[random(indexes.length)]
-        $canvases[no].end = idx
-        selected[idx] = selected[idx] === undefined ? 1 : selected[idx] + 1
+        const idx = indexes[random(indexes.length)];
+        $canvases[no].end = idx;
+        selected[idx] = selected[idx] === undefined ? 1 : selected[idx] + 1;
     }
 
-    function slot (obj) {
+    const slot = (obj: canvasRow): void => {
         // 変換マトリクスを作る
-        obj.ctx.setTransform(1, 0, 0, 1, 0, 0)
+        obj.ctx.setTransform(1, 0, 0, 1, 0, 0);
         // canvasをクリア
-        obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height)
+        obj.ctx.clearRect(0, 0, obj.canvas.width, obj.canvas.height);
 
         // スタイル設定（ぐるぐるするエリアの背景塗りつぶす）
-        obj.ctx.globalAlpha = 1
-        obj.ctx.fillStyle = '#e9eefa'
+        obj.ctx.globalAlpha = 1;
+        obj.ctx.fillStyle = '#e9eefa';
         // 背景がボーダーにかぶるので横幅を左+5、右-10してる
         // 高さも微妙にずれるので5プラスしている
-        obj.ctx.fillRect(5, (obj.canvas.height - scale + 5) / 2, obj.canvas.width - 10, scale)
+        obj.ctx.fillRect(5, (obj.canvas.height - scale + 5) / 2, obj.canvas.width - 10, scale);
 
         // 文字の色・フォントとか
-        obj.ctx.fillStyle = '#000'
-        obj.ctx.textBaseline = 'middle'
-        obj.ctx.textAlign = 'center'
+        obj.ctx.fillStyle = '#000';
+        obj.ctx.textBaseline = 'middle';
+        obj.ctx.textAlign = 'center';
 
         // 変換マトリクスを作る
         obj.ctx.setTransform(1, 0, 0, 1, Math.floor(obj.canvas.width / 2), Math.floor(obj.canvas.height / 2))
 
-        let o = obj.offset
-        while (o < 0) o++
-        o %= 1
+        let o = obj.offset;
+        while (o < 0) o++;
+        o %= 1;
 
-        const h = Math.ceil(obj.canvas.height / 2 / scale)
+        const h = Math.ceil(obj.canvas.height / 2 / scale);
         for (let j = -h; j < h; j++) {
-            let c = obj.end + j - Math.floor(obj.offset)
-            while (c < 0) c += userLength
-            c %= userLength
+            let c = obj.end + j - Math.floor(obj.offset);
+            while (c < 0) c += userLength;
+            c %= userLength;
 
-            const s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1)
-            obj.ctx.globalAlpha = s
-            obj.ctx.font = scale * s + 'px Helvetica'
+            const s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1);
+            obj.ctx.globalAlpha = s;
+            obj.ctx.font = scale * s + 'px Helvetica';
 
             // テキストを描画する
-            obj.ctx.fillText($userList[c], 0, (j + o) * scale)
+            obj.ctx.fillText($userList[c], 0, (j + o) * scale);
         }
 
-        obj.offset += obj.offsetV
-        obj.offsetV -= breaks
+        obj.offset += obj.offsetV;
+        obj.offsetV -= breaks;
         if (obj.offsetV < endSpeed) {
-            obj.offset = 0
-            obj.offsetV = 0
-            cancelAnimationFrame(frameId)
-            processing.set(false)
-            return
+            obj.offset = 0;
+            obj.offsetV = 0;
+            cancelAnimationFrame(frameId);
+            processing.set(false);
+            return;
         }
 
-        frameId = requestAnimationFrame(() => slot(obj))
+        frameId = requestAnimationFrame(() => slot(obj));
     }
 </script>
 

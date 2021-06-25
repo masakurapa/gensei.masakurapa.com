@@ -4,7 +4,7 @@
         <InputTextarea
             value={inputGitfList}
             on:change={onChange}
-            on:input={onKeydown}
+            on:input={onInput}
             {disabled}
         ></InputTextarea>
 
@@ -22,44 +22,46 @@
     </InputGroup>
 </CollapseFrame>
 
-<script>
-    import { processing } from 'app/store.js'
-    import { giftList, addCanvas, blocking } from 'components/gift/store.js'
+<script lang="ts">
+    import type { InputEvent } from '../../@types/event';
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
+    import { processing } from '../../store.js';
+    import { giftList, addCanvas, blocking } from './store.js';
 
-    import MainButton from 'parts/button/MainButton.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputTextarea from 'parts/input/InputTextarea.svelte'
+    import CollapseFrame from '../../components/common/collapse/CollapseFrame.svelte';
 
-    let listSize = 0
+    import MainButton from '../../parts/button/MainButton.svelte';
+    import InputGroup from '../../parts/input/InputGroup.svelte';
+    import InputTextarea from '../../parts/input/InputTextarea.svelte';
 
-    let inputGitfList = $giftList
-    $: disabled = $processing || $blocking
-
-    function onChange (event) {
-        const filtered = filterGiftList(event.target.value)
-        inputGitfList = joinGiftList(filtered)
-        giftList.set(filtered)
+    const onChange = (event: InputEvent): void => {
+        const filtered = filterGiftList(event.target.value);
+        inputGitfList = joinGiftList(filtered);
+        giftList.set(filtered);
 
         for (let i = 0; i < $giftList.length; i++) {
-            addCanvas()
+            addCanvas();
         }
     }
 
-    function onKeydown () {
-        listSize = filterGiftList(event.target.value).length
+    const onInput = (event: InputEvent): void => {
+        listSize = filterGiftList(event.target.value).length;
     }
 
-    function onClickReset () {
-        inputGitfList = []
-        giftList.set(inputGitfList)
+    const onClickReset = (): void => {
+        inputGitfList = '';
+        giftList.set([]);
     }
 
-    function filterGiftList (str) {
-        return str.trim().split(/\n/).filter((val) => val.trim() !== '')
+    const filterGiftList = (str: string): string[] => {
+        return str.trim().split(/\n/).filter((val) => val.trim() !== '');
     }
-    function joinGiftList (list) {
-        return list.join('\n')
+    const joinGiftList = (list: string[]): string => {
+        return list.join('\n');
     }
+
+    let listSize = 0;
+    let inputGitfList = joinGiftList($giftList);
+
+    $: disabled = $processing || $blocking;
 </script>

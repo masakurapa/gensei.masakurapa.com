@@ -4,46 +4,51 @@
             value={$duplicatePrizeCnt}
             min="{minCnt}"
             max="{maxCnt}"
-            on:input="{(event) => { setDuplicatePrizeCnt(event.target.value) }}"
+            on:input="{onInput}"
             {disabled}
         ></InputRange>
     </InputGroup>
 </CollapseFrame>
 
-<script>
-    import { processing } from 'app/store.js'
+<script lang="ts">
+    import type { InputEvent } from '../../@types/event';
+
+    import { processing } from '../../store';
     import {
         giftList,
         userList,
         duplicatePrizeCnt,
-        setDuplicatePrizeCnt,
         blocking,
-    } from 'components/gift/store.js'
+    } from './store';
 
-    let minCnt = $duplicatePrizeCnt
-    $: maxCnt = $giftList.length
+    import CollapseFrame from '../../components/common/collapse/CollapseFrame.svelte';
+    import InputGroup from '../../parts/input/InputGroup.svelte';
+    import InputRange from '../../parts/input/InputRange.svelte';
+
+    let minCnt = $duplicatePrizeCnt;
+    $: maxCnt = $giftList.length;
     $: {
-        const uLen = $userList.length
-        const gLen = $giftList.length
-        const cnt = gLen - uLen
+        const uLen = $userList.length;
+        const gLen = $giftList.length;
+        const cnt = gLen - uLen;
 
         if (uLen === 0 || cnt < 1) {
-            minCnt = 1
-            setDuplicatePrizeCnt(1)
+            minCnt = 1;
+            duplicatePrizeCnt.set(1);
         } else {
             // 景品が抽選対象より多い場合は強制的に重複当選を許容させる
             if (cnt % uLen === 0) {
-                minCnt = (cnt / uLen) + 1
+                minCnt = (cnt / uLen) + 1;
             } else {
-                minCnt = (cnt / uLen) + (cnt % uLen) + 1
+                minCnt = (cnt / uLen) + (cnt % uLen) + 1;
             }
-            setDuplicatePrizeCnt(minCnt)
+            duplicatePrizeCnt.set(minCnt);
         }
     }
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputRange from 'parts/input/InputRange.svelte'
+    $: disabled = $processing || $blocking;
 
-    $: disabled = $processing || $blocking
+    const onInput = (event: InputEvent): void => {
+        duplicatePrizeCnt.set(parseInt(event.target.value, 10));
+    };
 </script>
