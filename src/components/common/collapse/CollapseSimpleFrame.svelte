@@ -5,7 +5,7 @@
 </div>
 
 <script lang="ts">
-    import Collapse from 'components/common/collapse/Collapse.svelte'
+    import Collapse from './Collapse.svelte'
 
     export let id: string;
     export let label = '';

@@ -27,11 +27,11 @@
     import { processing } from '../../store';
     import { userList, blocking } from './store';
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte';
+    import CollapseFrame from '../../components/common/collapse/CollapseFrame.svelte';
 
-    import MainButton from 'parts/button/MainButton.svelte';
-    import InputGroup from 'parts/input/InputGroup.svelte';
-    import InputTextarea from 'parts/input/InputTextarea.svelte';
+    import MainButton from '../../parts/button/MainButton.svelte';
+    import InputGroup from '../../parts/input/InputGroup.svelte';
+    import InputTextarea from '../../parts/input/InputTextarea.svelte';
 
     const onChange = (event: InputEvent): void => {
         const filtered = filterUserList(event.target.value);

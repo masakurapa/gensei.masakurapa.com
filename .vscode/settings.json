@@ -1,11 +1,11 @@
 {
     // Path Autocomplete (https://marketplace.visualstudio.com/items?itemName=ionutvmi.path-autocomplete)
     // rollup.config.js -> importResolverと同じパスを設定する
-    "path-autocomplete.pathMappings": {
-        "app": "${folder}/src",
-        "components": "${folder}/src/components",
-        "parts": "${folder}/src/parts",
-    },
+    // "path-autocomplete.pathMappings": {
+    //     "app": "${folder}/src",
+    //     "components": "${folder}/src/components",
+    //     "parts": "${folder}/src/parts",
+    // },
 
     // .svelteのeslint用の設定
     // "files.associations": {
