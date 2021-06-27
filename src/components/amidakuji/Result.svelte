@@ -30,11 +30,11 @@
                                 <div class="line-selected-h line-selected" style="width: {data.size}%;"></div>
                             {/if}
                         </div>
-                    {:else if data.flag === flags.none}
+                    {:else if data.flag === Flag.NONE}
                         <div class="line-h line-none"></div>
-                    {:else if data.flag === flags.off}
+                    {:else if data.flag === Flag.OFF}
                         <div class="line-h" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
-                    {:else if data.flag === flags.on}
+                    {:else if data.flag === Flag.ON}
                         <div class="line-h line-active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
                     {/if}
                 {:else}
@@ -77,11 +77,12 @@
 </div>
 {/if}
 
-<script>
-    import { userList, processing } from 'app/store.js'
-    import { sleep } from 'app/util.js'
-    import { amidakuji, selectedUserList, disabledWriteLine, selectedNumber, rank } from 'components/amidakuji/store.js'
-    import { flags, isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from 'components/amidakuji/util.js'
+<script lang="ts">
+    import { Flag } from '../../@types/amidakuji';
+    import { userList, processing } from '../../store';
+    import { sleep } from '../../util';
+    import { amidakuji, selectedUserList, disabledWriteLine, selectedNumber, rank } from './store';
+    import { isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from './util';
 
     const numbers = [
         '①',
@@ -99,83 +100,83 @@
         '⑬',
         '⑭',
         '⑮',
-    ]
+    ];
 
     // 抽選
-    async function run (num) {
-        processing.set(true)
-        disabledWriteLine.set(true)
+    const run = async (num: number): Promise<void> => {
+        processing.set(true);
+        disabledWriteLine.set(true);
         // 抽選前に線を初期化する
-        amidakuji.set(clearActiveLine($amidakuji))
-        amidakuji.set(hideUnselectedLine($amidakuji))
+        amidakuji.set(clearActiveLine($amidakuji));
+        amidakuji.set(hideUnselectedLine($amidakuji));
 
         selectedNumber.update(val => {
-            val.push(num)
-            return val
+            val.push(num);
+            return val;
         })
 
-        await sleep(500)
+        await sleep(500);
 
-        let horizon = 0
-        let vertical = num * 2
-        let oldVertical = vertical
+        let horizon = 0;
+        let vertical = num * 2;
+        let oldVertical = vertical;
 
         while ($amidakuji[horizon] !== undefined) {
-            const point = $amidakuji[horizon][vertical].flag
-            $amidakuji[horizon][vertical].active = true
+            const point = $amidakuji[horizon][vertical].flag;
+            $amidakuji[horizon][vertical].active = true;
 
             // 現在地が横線
             // 横線続きはないので下に降りる
-            if (isHorizon(vertical) && point === flags.on) {
-                $amidakuji[horizon][vertical].rivers = oldVertical > vertical
-                await progress(horizon, vertical)
+            if (isHorizon(vertical) && point === Flag.ON) {
+                $amidakuji[horizon][vertical].rivers = oldVertical > vertical;
+                await progress(horizon, vertical);
 
-                horizon++
+                horizon++;
 
                 // 前の縦線が今の縦線より大きい → 左に移動した
                 // 前の縦線が今の縦線より小さい → 右に移動した
-                vertical += oldVertical > vertical ? -1 : 1
-                continue
+                vertical += oldVertical > vertical ? -1 : 1;
+                continue;
             }
 
             // 現在地が縦線
-            await progress(horizon, vertical)
+            await progress(horizon, vertical);
 
             // 左右どちらかに行ければ横にずれる
-            const rowl = $amidakuji[horizon][vertical - 1]
-            if (rowl !== undefined && rowl.flag === flags.on) {
-                oldVertical = vertical
-                vertical -= 1
-                continue
+            const rowl = $amidakuji[horizon][vertical - 1];
+            if (rowl !== undefined && rowl.flag === Flag.ON) {
+                oldVertical = vertical;
+                vertical -= 1;
+                continue;
             }
-            const rowr = $amidakuji[horizon][vertical + 1]
-            if (rowr !== undefined && rowr.flag === flags.on) {
-                oldVertical = vertical
-                vertical += 1
-                continue
+            const rowr = $amidakuji[horizon][vertical + 1];
+            if (rowr !== undefined && rowr.flag === Flag.ON) {
+                oldVertical = vertical;
+                vertical += 1;
+                continue;
             }
             // 無ければ下に降りる
-            horizon++
+            horizon++;
         }
 
-        await sleep(1000)
+        await sleep(1000);
 
-        const index = vertical / 2
+        const index = vertical / 2;
         if ($selectedUserList[index].rank === 0) {
-            $selectedUserList[index].rank = $rank
-            rank.update(val => ++val)
+            $selectedUserList[index].rank = $rank;
+            rank.update(val => ++val);
         }
 
-        processing.set(false)
+        processing.set(false);
     }
 
     // background-colorの移動
-    async function progress (h, v) {
+    const progress = async (h: number, v: number): Promise<void> => {
         for (let i = 1; i <= 10; i++) {
-            $amidakuji[h][v].size = i * 10
-            await sleep(15)
+            $amidakuji[h][v].size = i * 10;
+            await sleep(15);
         }
-    }
+    };
 </script>
 
 <style>

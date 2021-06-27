@@ -15,8 +15,6 @@ export type UserList = User[];
  * ユーザー情報（ランダム抽選用）
  */
  export interface RandomSelectUser extends User {
-    id: number;
-    name: string;
     count: number;
     rank: number;
 };
@@ -26,3 +24,14 @@ export type UserList = User[];
  */
 export type RandomSelectUserList = RandomSelectUser[];
 
+/**
+ * ユーザー情報（あみだくじ用）
+ */
+ export interface AmidakujiUser extends User {
+    rank: number;
+};
+
+/**
+ * ユーザー情報のリスト（あみだくじ用）
+ */
+export type AmidakujiUserList = AmidakujiUser[];

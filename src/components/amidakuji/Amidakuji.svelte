@@ -2,17 +2,17 @@
 <Button/>
 <Result/>
 
-<script>
-    import { onMount } from 'svelte'
-    import { showUserList } from 'app/store.js'
-    import { selectedNumber } from 'components/amidakuji/store.js'
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { showUserList } from '../../store';
+    import { selectedNumber } from './store';
 
-    import Input from 'components/amidakuji/Input.svelte'
-    import Button from 'components/amidakuji/Button.svelte'
-    import Result from 'components/amidakuji/Result.svelte'
+    import Input from './Input.svelte';
+    import Button from './Button.svelte';
+    import Result from './Result.svelte';
 
     onMount(() => {
-        showUserList.set(true)
-        selectedNumber.set([])
-})
+        showUserList.set(true);
+        selectedNumber.set([]);
+    });
 </script>

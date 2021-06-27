@@ -2,32 +2,33 @@
     <LineNum/>
 </CollapseFrame>
 
-<script>
-    import { userList } from 'app/store.js'
-    import { lineNum, amidakuji, selectedUserList, disabledWriteLine, setRank, selectedNumber } from 'components/amidakuji/store.js'
-    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from 'components/amidakuji/util.js'
+<script lang="ts">
+    import type { UserList } from '../../@types/user';
+    import { userList } from '../../store';
+    import { lineNum, amidakuji, rank, selectedUserList, disabledWriteLine, selectedNumber } from './store';
+    import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util';
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
-    import LineNum from 'components/amidakuji/input/LineNum.svelte'
-
-    lineNum.subscribe(() => {
-        reset($userList)
-    })
-
-    userList.subscribe((value) => {
-        reset(value)
-        selectedNumber.set([])
-    })
+    import CollapseFrame from '../common/collapse/CollapseFrame.svelte';
+    import LineNum from './input/LineNum.svelte';
 
     // あみだくじの内容をリセットする
-    function reset (value) {
-        disabledWriteLine.set(false)
-        setRank(1)
-        const newAmidakuji = generateAmidakuji(value, $lineNum)
+    const reset = (value: UserList): void => {
+        disabledWriteLine.set(false);
+        rank.set(1);
+        const newAmidakuji = generateAmidakuji(value, $lineNum);
         if (newAmidakuji.length === 0) {
-            return
+            return;
         }
-        amidakuji.set(generateRandomAmidakuji(newAmidakuji, value, $lineNum))
-        selectedUserList.set(shuffleUserList(value))
-    }
+        amidakuji.set(generateRandomAmidakuji(newAmidakuji, $lineNum));
+        selectedUserList.set(shuffleUserList(value));
+    };
+
+    lineNum.subscribe(() => {
+        reset($userList);
+    });
+
+    userList.subscribe((value) => {
+        reset(value);
+        selectedNumber.set([]);
+    });
 </script>
