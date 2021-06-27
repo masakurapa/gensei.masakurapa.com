@@ -26,13 +26,10 @@ export const sleep = (ms: number): Promise<void> => {
     return new Promise(resolve => setTimeout(() => resolve(), ms));
 };
 
-// FIXME: 型定義
 /**
  * 配列をシャッフルする
- * @param {array} target
- * @return {array}
  */
-export const shuffle = (target) => {
+export const shuffle = <T> (target: T[]): T[] => {
     const result = target.concat();
     for (let i = result.length - 1; i > 0; i--) {
         const r = Math.floor(Math.random() * (i + 1));
