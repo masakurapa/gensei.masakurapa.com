@@ -27,7 +27,7 @@
 {/if}
 
 <script lang="ts">
-    import type { canvasRow } from '../../@types/canvas';
+    import type { Canvas } from '../../@types/canvas';
 
     import { processing } from '../../store';
     import { random } from '../../util';
@@ -93,7 +93,7 @@
         selected[idx] = selected[idx] === undefined ? 1 : selected[idx] + 1;
     }
 
-    const slot = (obj: canvasRow): void => {
+    const slot = (obj: Canvas): void => {
         // 変換マトリクスを作る
         obj.ctx.setTransform(1, 0, 0, 1, 0, 0);
         // canvasをクリア

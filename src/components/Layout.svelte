@@ -26,7 +26,7 @@
 
     import RandomSelect from '../components/randomSelect/RandomSelect.svelte';
     // import Amidakuji from '../components/amidakuji/Amidakuji.svelte';
-    // import Slot from '../components/slot/Slot.svelte';
+    import Slot from '../components/slot/Slot.svelte';
     import Gift from '../components/gift/Gift.svelte';
     // import ShuffleTeam from '../components/shuffleTeam/ShuffleTeam.svelte';
 
@@ -34,7 +34,7 @@
         { value: '', text: '', useSp: true, component: null },
         { value: 'randomSelect', text: 'ランダムで選ぶ', useSp: true, component: RandomSelect },
         // { value: 'amidakuji', text: 'あみだくじで選ぶ', useSp: true, component: Amidakuji },
-        // { value: 'slot', text: 'スロットで選ぶ', useSp: true, component: Slot },
+        { value: 'slot', text: 'スロットで選ぶ', useSp: true, component: Slot },
         { value: 'gift', text: '景品を抽選する（β版）', useSp: false, component: Gift },
         // { value: 'shuffleTeam', text: 'ランダムでチーム分けする', useSp: true, component: ShuffleTeam },
     ];

@@ -14,8 +14,8 @@
     </div>
 </div>
 
-<script>
-    import { choiceNum, canvases } from 'components/slot/store.js'
+<script lang="ts">
+    import { choiceNum, canvases } from './store';
 </script>
 
 <style>

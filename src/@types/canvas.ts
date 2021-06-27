@@ -8,6 +8,7 @@ export interface Canvas {
     offset: number;
     offsetV: number;
     end: number;
+    frameId?: number;
 };
 
 /**

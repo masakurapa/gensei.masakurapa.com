@@ -2,7 +2,7 @@
     <ChoiceNum/>
 </CollapseFrame>
 
-<script>
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
-    import ChoiceNum from 'components/slot/input/ChoiceNum.svelte'
+<script lang="ts">
+    import CollapseFrame from '../common/collapse/CollapseFrame.svelte';
+    import ChoiceNum from './input/ChoiceNum.svelte';
 </script>

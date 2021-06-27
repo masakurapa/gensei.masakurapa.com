@@ -2,13 +2,13 @@
 <Button/>
 <Result/>
 
-<script>
-    import { onMount } from 'svelte'
-    import { showUserList } from 'app/store.js'
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { showUserList } from '../../store';
 
-    import Input from 'components/slot/Input.svelte'
-    import Button from 'components/slot/Button.svelte'
-    import Result from 'components/slot/Result.svelte'
+    import Input from './Input.svelte';
+    import Button from './Button.svelte';
+    import Result from './Result.svelte';
 
-    onMount(() => showUserList.set(true))
+    onMount(() => showUserList.set(true));
 </script>
