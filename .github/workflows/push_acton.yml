@@ -41,5 +41,5 @@ jobs:
         env:
           S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
         run: |
-          aws s3 cp ./public/* s3://$S3_UPLOAD_BUCKET
+          aws s3 cp ./public s3://$S3_UPLOAD_BUCKET/
 
