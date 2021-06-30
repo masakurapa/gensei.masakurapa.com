@@ -36,7 +36,6 @@ jobs:
       - name: Build
         run: |
           npm run build
-          rm public/bundle.css.map public/bundle.js.map
           sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" public/sitemap.xml
       - name: Deploy
         env:
