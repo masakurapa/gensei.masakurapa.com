@@ -1,4 +1,4 @@
-<select on:blur disabled={disabledForm}>
+<select on:input disabled={disabledForm}>
     {#each options as data}
         <option value={data.value} selected={data.value === selectedValue}>{data.text}</option>
     {/each}

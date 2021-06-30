@@ -2,7 +2,7 @@
     <InputSelect
         options="{getComponents()}"
         selectedValue="{defaultSelected}"
-        on:blur="{onBlurComponent}"
+        on:input="{onInputComponent}"
     ></InputSelect>
 </CollapseFrame>
 
@@ -52,7 +52,7 @@
     };
 
     // プルダウン変更
-    const onBlurComponent = (event: InputEvent) => {
+    const onInputComponent = (event: InputEvent) => {
         const val = event.target.value;
         setComponent(val);
         setLot(val);
