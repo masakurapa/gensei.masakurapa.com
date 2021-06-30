@@ -11,3 +11,10 @@ export interface InputEvent extends FocusEvent {
 export interface KeyEvent extends KeyboardEvent {
     target: HTMLInputElement;
 }
+
+/**
+ * aタグのクリックイベント
+ */
+export interface AnchorClickEvent extends Event {
+    currentTarget: EventTarget & HTMLAnchorElement;
+}

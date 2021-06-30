@@ -4,7 +4,7 @@
             name="fileType"
             options="{fileTypes}"
             selectedValue="{fileType}"
-            on:change={(e) => { fileType = e.target.value }}
+            on:change={onChangeFileType}
         ></InputRadio>
     </InputGroup>
     <InputGroup label="チームの並べ方">
@@ -12,7 +12,7 @@
             name="outputFormatType"
             options="{outputFormatTypes}"
             selectedValue="{outputFormatType}"
-            on:change={(e) => { outputFormatType = e.target.value }}
+            on:change={onChangeOutputFormatType}
         ></InputRadio>
     </InputGroup>
 
@@ -27,99 +27,101 @@
     </div>
 </CollapseFrame>
 
-<script>
-    import { processing } from 'app/store.js'
-    import { resultUserList } from 'components/shuffleTeam/store.js'
+<script lang="ts">
+    import type { InputEvent, AnchorClickEvent } from '../../@types/event';
 
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputRadio from 'parts/input/InputRadio.svelte'
+    import { processing } from '../../store';
+    import { resultUserList } from './store';
+
+    import CollapseFrame from '../common/collapse/CollapseFrame.svelte';
+    import InputGroup from '../../parts/input/InputGroup.svelte';
+    import InputRadio from '../../parts/input/InputRadio.svelte';
 
     const fileTypes = [
         { value: 'csv', text: 'CSV形式' },
         { value: 'tsv', text: 'TSV形式' },
-    ]
+    ];
     const outputFormatTypes = [
         { value: 'vertical', text: '縦に並べる' },
         { value: 'horizon', text: '横に並べる' },
-    ]
+    ];
 
-    let fileType = 'csv'
-    let outputFormatType = 'vertical'
-    let downloadFileName = ''
+    let fileType = 'csv';
+    let outputFormatType = 'vertical';
+    let downloadFileName = '';
 
     // ボタン無効判定
     $: disabled = $processing ||
-        $resultUserList.filter(row => row.length > 0).length === 0
+        $resultUserList.filter(row => row.length > 0).length === 0;
 
-    function onClickDownload (e) {
+    const onClickDownload = (e: AnchorClickEvent): void => {
         // 区切り文字
-        const sep = fileType === 'csv' ? ',' : '\t'
+        const sep = fileType === 'csv' ? ',' : '\t';
 
         if (outputFormatType === 'vertical') {
-            downloadVertical(e, sep)
+            downloadVertical(e, sep);
         } else {
-            downloadHorizon(e, sep)
+            downloadHorizon(e, sep);
         }
     }
 
     // CSVダウンロード処理（縦並び）
-    function downloadVertical (e, sep) {
-        const list = $resultUserList
-        let contents = ''
+    const downloadVertical = (e: AnchorClickEvent, sep: string): void => {
+        const list = $resultUserList;
+        let contents = '';
 
         // ヘッダーをチーム名で組み立てる
-        let maxRow = 0
+        let maxRow = 0;
         for (const n in list) {
-            contents += `${sep}チーム` + (parseInt(n, 10) + 1)
+            contents += `${sep}チーム` + (parseInt(n, 10) + 1);
             // ついでに最長の要素数を求めておく
-            maxRow = list[n].length > maxRow ? list[n].length : maxRow
+            maxRow = list[n].length > maxRow ? list[n].length : maxRow;
         }
-        contents = contents.slice(1)
-        contents += '\n'
+        contents = contents.slice(1);
+        contents += '\n';
 
         for (let i = 0; i < maxRow; i++) {
-            let row = ''
+            let row = '';
             for (const n in list) {
-                row += sep
+                row += sep;
                 if (list[n][i] !== undefined) {
-                    row += list[n][i].name
+                    row += list[n][i].name;
                 }
             }
-            contents += row.slice(1) + '\n'
+            contents += row.slice(1) + '\n';
         }
 
-        download(e, contents)
+        download(e, contents);
     }
 
     // CSVダウンロード処理（横並び）
-    function downloadHorizon (e, sep) {
-        const list = $resultUserList
-        let contents = ''
+    const downloadHorizon = (e: AnchorClickEvent, sep: string): void => {
+        const list = $resultUserList;
+        let contents = '';
 
         for (const n in list) {
-            contents += 'チーム' + (parseInt(n, 10) + 1)
+            contents += 'チーム' + (parseInt(n, 10) + 1);
             for (const row of list[n]) {
-                contents += `${sep}${row.name}`
+                contents += `${sep}${row.name}`;
             }
-            contents += '\n'
+            contents += '\n';
         }
 
-        download(e, contents)
-    }
+        download(e, contents);
+    };
 
     // ダウンロードの実行
-    function download (e, contents) {
-        setFileName()
-        e.target.href = URL.createObjectURL(new Blob([contents], {
+    const download = (e: AnchorClickEvent, contents: string): void => {
+        setFileName();
+        e.currentTarget.href = URL.createObjectURL(new Blob([contents], {
             type: 'application/octet-stream',
-        }))
-    }
+        }));
+    };
 
     // ファイル名を設定する
-    function setFileName () {
-        const jst = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' })
-        const dt = new Date(jst)
+    const setFileName = (): void => {
+        const jst = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+        const dt = new Date(jst);
         downloadFileName =
             `${dt.getFullYear()}` +
             `${dt.getMonth() + 1}` +
@@ -127,8 +129,16 @@
             `${dt.getHours()}` +
             `${dt.getMinutes()}` +
             `0${dt.getSeconds()}`.slice(-2) +
-            `_suffleteam_${outputFormatType}.${fileType.toLowerCase()}`
-    }
+            `_suffleteam_${outputFormatType}.${fileType.toLowerCase()}`;
+    };
+
+    const onChangeFileType = (event: InputEvent): void => {
+        fileType = event.target.value;
+    };
+
+    const onChangeOutputFormatType = (event: InputEvent): void => {
+        outputFormatType = event.target.value;
+    };
 </script>
 
 <style>

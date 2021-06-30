@@ -5,15 +5,15 @@
 <Button/>
 <Result/>
 
-<script>
-    import { onMount } from 'svelte'
-    import { showUserList } from 'app/store.js'
-    import { isSmartPhone } from 'app/util.js'
+<script lang="ts">
+    import { onMount } from 'svelte';
+    import { showUserList } from '../../store';
+    import { isSmartPhone } from '../../util';
 
-    import Input from 'components/shuffleTeam/Input.svelte'
-    import Button from 'components/shuffleTeam/Button.svelte'
-    import Download from 'components/shuffleTeam/Download.svelte'
-    import Result from 'components/shuffleTeam/Result.svelte'
+    import Input from './Input.svelte';
+    import Button from './Button.svelte';
+    import Download from './Download.svelte';
+    import Result from './Result.svelte';
 
-    onMount(() => showUserList.set(false))
+    onMount(() => showUserList.set(false));
 </script>

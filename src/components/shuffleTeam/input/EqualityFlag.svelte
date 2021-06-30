@@ -6,9 +6,9 @@
     ></InputCheckbox>
 </InputGroup>
 
-<script>
-    import { equalityFlag } from 'components/shuffleTeam/store.js'
+<script lang="ts">
+    import { equalityFlag } from '../store';
 
-    import InputCheckbox from 'parts/input/InputCheckbox.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
+    import InputCheckbox from '../../../parts/input/InputCheckbox.svelte';
+    import InputGroup from '../../../parts/input/InputGroup.svelte';
 </script>

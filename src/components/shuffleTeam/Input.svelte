@@ -4,9 +4,9 @@
     <EqualityFlag/>
 </CollapseFrame>
 
-<script>
-    import CollapseFrame from 'components/common/collapse/CollapseFrame.svelte'
-    import UserList from 'components/shuffleTeam/input/UserList.svelte'
-    import TeamNum from 'components/shuffleTeam/input/TeamNum.svelte'
-    import EqualityFlag from 'components/shuffleTeam/input/EqualityFlag.svelte'
+<script lang="ts">
+    import CollapseFrame from '../common/collapse/CollapseFrame.svelte';
+    import UserList from './input/UserList.svelte';
+    import TeamNum from './input/TeamNum.svelte';
+    import EqualityFlag from './input/EqualityFlag.svelte';
 </script>

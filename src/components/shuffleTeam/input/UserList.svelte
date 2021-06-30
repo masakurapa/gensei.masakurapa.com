@@ -3,7 +3,7 @@
     <InputTextarea
         value={inputUserList}
         on:change={onChange}
-        on:input={onKeydown}
+        on:input={onInput}
     ></InputTextarea>
 
     <div class="btn-area">
@@ -29,46 +29,47 @@
     </div>
 </InputGroup>
 
-<script>
-    import { userList as appUserList } from 'app/store.js'
-    import { userList } from 'components/shuffleTeam/store.js'
-    import MainButton from 'parts/button/MainButton.svelte'
-    import InputGroup from 'parts/input/InputGroup.svelte'
-    import InputTextarea from 'parts/input/InputTextarea.svelte'
+<script lang="ts">
+    import type { InputEvent } from '../../../@types/event';
+    import { userList as appUserList } from '../../../store';
+    import { userList } from '../store';
+    import MainButton from '../../../parts/button/MainButton.svelte';
+    import InputGroup from '../../../parts/input/InputGroup.svelte';
+    import InputTextarea from '../../../parts/input/InputTextarea.svelte';
 
-    let inputUserList = joinUserList($userList)
-    let listSize = 0
+    const onChange = (event: InputEvent): void => {
+        const filtered = filterUserList(event.target.value);
+        inputUserList = joinUserList(filtered);
+        userList.set(filterUserList(event.target.value));
+    };
 
-    function onChange (event) {
-        const filtered = filterUserList(event.target.value)
-        inputUserList = joinUserList(filtered)
-        userList.set(filterUserList(event.target.value))
-    }
+    const onInput = (event: InputEvent): void => {
+        listSize = filterUserList(event.target.value).length;
+    };
 
-    function onKeydown (event) {
-        listSize = filterUserList(event.target.value).length
-    }
-
-    function onClickSetUserList () {
-        const names = $appUserList.map(obj => obj.name)
+    const onClickSetUserList = (): void => {
+        const names = $appUserList.map(obj => obj.name);
 
         inputUserList = joinUserList(names)
-        listSize = names.length
-        userList.set(names)
+        listSize = names.length;
+        userList.set(names);
     }
 
-    function onClickReset () {
-        inputUserList = []
-        listSize = 0
-        userList.set(inputUserList)
+    const onClickReset = (): void => {
+        inputUserList = '';
+        listSize = 0;
+        userList.set([]);
     }
 
-    function filterUserList (str) {
-        return str.trim().split(/\n/).filter((val) => val.trim() !== '')
+    const filterUserList = (str: string): string[] => {
+        return str.trim().split(/\n/).filter((val) => val.trim() !== '');
     }
-    function joinUserList (list) {
-        return list.join('\n')
+    const joinUserList = (list: string[]): string => {
+        return list.join('\n');
     }
+
+    let inputUserList = joinUserList($userList);
+    let listSize = 0;
 </script>
 
 <style>

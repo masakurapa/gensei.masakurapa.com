@@ -28,7 +28,7 @@
     import Amidakuji from '../components/amidakuji/Amidakuji.svelte';
     import Slot from '../components/slot/Slot.svelte';
     import Gift from '../components/gift/Gift.svelte';
-    // import ShuffleTeam from '../components/shuffleTeam/ShuffleTeam.svelte';
+    import ShuffleTeam from '../components/shuffleTeam/ShuffleTeam.svelte';
 
     const components: ComponentList = [
         { value: '', text: '', useSp: true, component: null },
@@ -36,7 +36,7 @@
         { value: 'amidakuji', text: 'あみだくじで選ぶ', useSp: true, component: Amidakuji },
         { value: 'slot', text: 'スロットで選ぶ', useSp: true, component: Slot },
         { value: 'gift', text: '景品を抽選する（β版）', useSp: false, component: Gift },
-        // { value: 'shuffleTeam', text: 'ランダムでチーム分けする', useSp: true, component: ShuffleTeam },
+        { value: 'shuffleTeam', text: 'ランダムでチーム分けする', useSp: true, component: ShuffleTeam },
     ];
 
     let component: any|null = null;

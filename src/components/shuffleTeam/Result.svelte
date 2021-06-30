@@ -14,18 +14,18 @@
     {/each}
 </div>
 
-<script>
-    import { quintOut } from 'svelte/easing'
-    import { crossfade } from 'svelte/transition'
-    import { flip } from 'svelte/animate'
-    import { resultUserList } from 'components/shuffleTeam/store.js'
+<script lang="ts">
+    import { quintOut } from 'svelte/easing';
+    import { crossfade } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
+    import { resultUserList } from './store';
 
     // アニメーションの設定
     const [receive] = crossfade({
         duration: d => Math.sqrt(d * 200),
-        fallback (node, params) {
-            const style = getComputedStyle(node)
-            const transform = style.transform === 'none' ? '' : style.transform
+        fallback (node, _) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
 
             return {
                 duration: 400,
@@ -34,9 +34,9 @@
                     transform: ${transform} scale(${t})
                     opacity: ${t}
                 `,
-            }
+            };
         },
-    })
+    });
 </script>
 
 <style>
