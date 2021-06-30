@@ -1,7 +1,7 @@
 {#if $amidakuji.length > 0}
 <div class="result">
     <div class="row">
-        {#each $userList as user, i}
+        {#each $userList as _, i}
             {#if i !== 0}
                 <div class="line-h line-none"></div>
             {/if}

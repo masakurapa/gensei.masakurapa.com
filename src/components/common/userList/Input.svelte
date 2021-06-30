@@ -41,8 +41,7 @@
     };
 
     const keydown = (event: KeyEvent): void => {
-        // event: 13 == Enterキー
-        if (event.which !== 13 || event.target.value.trim().length === 0) {
+        if (event.key !== 'Enter' || event.target.value.trim().length === 0) {
             return;
         }
         addUser(event.target.value.trim());
