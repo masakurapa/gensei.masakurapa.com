@@ -8,7 +8,7 @@ export const userList = writable<string[]>([]);
 // 均等に人数を振り分けるかのフラグ
 export const equalityFlag = writable(true);
 // 抽選結果
-export const resultUserList = writable<User[][]>([[]]); // FIXME: 型定義
+export const resultUserList = writable<User[][]>([[]]);
 
 // 抽選結果を初期化
 export const resetResultUserList = (): void => {
