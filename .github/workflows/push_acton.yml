@@ -1,0 +1,46 @@
+name: push action
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Use Node.js 14.17.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.1
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        id: node_modules_cache_id
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+      # cache hit時はinstallをスキップ
+      - name: Install dependencies
+        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        run: |
+          npm install
+      - name: Build
+        run: |
+          npm run build
+          rm public/bundle.css.map public/bundle.js.map
+          sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" public/sitemap.xml
+      - name: Deploy
+        env:
+          S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
+        run: |
+          aws s3 cp ./public/* s3://$S3_UPLOAD_BUCKET
+
