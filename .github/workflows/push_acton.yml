@@ -84,8 +84,10 @@ jobs:
         with:
           filters: |
             src:
+              - '.github/workflows/**'
               - 'public/**'
               - 'src/**'
+              - 'package-lock.json'
       - name: Deploy
         if: steps.changes.outputs.src == 'true'
         env:
