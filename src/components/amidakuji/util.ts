@@ -1,4 +1,5 @@
-import { Flag, Amidakuji, Line } from '../../@types/amidakuji';
+import { Flag } from '../../@types/amidakuji';
+import type { Amidakuji, Line } from '../../@types/amidakuji';
 import type { UserList, AmidakujiUserList } from '../../@types/user';
 import { random, randomOdd } from '../../util';
 
