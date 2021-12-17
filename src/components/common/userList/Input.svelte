@@ -1,12 +1,12 @@
-<InputGroup label="抽選対象（5文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}">
+<InputGroup label="抽選対象（{userNameMax}文字以内） <span class='bold-text'>{$userList.length}</span>/{userListMax}">
     <InputText
         {disabled}
         value="{inputValue}"
         placeholder="Enterを押して追加"
         on:keydown={keydown}
         on:change={onChange}
-        size={18}
-        maxlength={5}
+        size={20}
+        maxlength={userNameMax}
     />
     <button
         {disabled}
@@ -23,6 +23,8 @@
 
     let inputValue = '';
 
+    // 入力可能な文字数
+    const userNameMax = 10;
     // 入力可能な対象の最大数
     const userListMax = 15;
     // ユーザー追加の無効判定
@@ -41,7 +43,8 @@
     };
 
     const keydown = (event: KeyEvent): void => {
-        if (event.key !== 'Enter' || event.target.value.trim().length === 0) {
+        console.log(event);
+        if (event.key !== 'Enter' || event.keyCode !== 13 || event.target.value.trim().length === 0) {
             return;
         }
         addUser(event.target.value.trim());

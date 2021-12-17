@@ -85,7 +85,8 @@
 
             const s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1);
             obj.ctx.globalAlpha = s;
-            obj.ctx.font = scale * s + 'px Helvetica';
+            console.log(scale * s);
+            obj.ctx.font = scale * s / 1.9 + 'px Helvetica';
 
             // テキストを描画する
             obj.ctx.fillText($userList[c].name, 0, (j + o) * scale);
