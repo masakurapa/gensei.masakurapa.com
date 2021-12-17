@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  node:
+    build: .
+    tty: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    networks:
+      - default

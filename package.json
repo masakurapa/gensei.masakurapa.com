@@ -3,11 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "engines": {
-      "node": "14.17.1"
+    "node": "14.17.1"
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev": "HOST=0.0.0.0 rollup -c -w",
     "start": "sirv public --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
