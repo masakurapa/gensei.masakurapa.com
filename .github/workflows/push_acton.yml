@@ -1,6 +1,6 @@
 name: push action
 
-on: push:
+on: push
 
 jobs:
   install-dependency:
