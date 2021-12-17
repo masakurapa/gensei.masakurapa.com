@@ -1,9 +1,6 @@
 name: push action
 
-on:
-  push:
-    branches:
-      - master
+on: push:
 
 jobs:
   install-dependency:
@@ -55,6 +52,7 @@ jobs:
     needs:
       - install-dependency
       - lint
+    if: startsWith(github.event.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@v2
         with:
@@ -94,4 +92,3 @@ jobs:
           S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
         run: |
           aws s3 cp ./public s3://$S3_UPLOAD_BUCKET/ --recursive
-
