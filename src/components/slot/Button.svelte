@@ -85,7 +85,6 @@
 
             const s = 1 - Math.abs(j + o) / (obj.canvas.height / 2 / scale + 1);
             obj.ctx.globalAlpha = s;
-            console.log(scale * s);
             obj.ctx.font = scale * s / 1.9 + 'px Helvetica';
 
             // テキストを描画する

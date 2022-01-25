@@ -43,8 +43,7 @@
     };
 
     const keydown = (event: KeyEvent): void => {
-        console.log(event);
-        if (event.key !== 'Enter' || event.keyCode !== 13 || event.target.value.trim().length === 0) {
+        if (event.key !== 'Enter' ||  event.isComposing || event.target.value.trim().length === 0) {
             return;
         }
         addUser(event.target.value.trim());
