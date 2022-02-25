@@ -17,8 +17,13 @@ export const addUser = function (name: string) {
     uid.update(id => id + 1);
 };
 export const setUser = function (value: UserList) {
-    userList.set(value);
-    uid.set(value.length + 1);
+    // idが歯抜けになっているとduplicate keysが出るので1から振り直す
+    const users: UserList = [];
+    value.forEach((val, idx) => {
+        users.push({ name: val.name, id: idx + 1 });
+    });
+    userList.set(users);
+    uid.set(users.length + 1);
 };
 export const removeUser = function (id: number) {
     userList.set(get(userList).filter(row => row.id !== id));
