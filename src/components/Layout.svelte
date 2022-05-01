@@ -1,21 +1,36 @@
-<CollapseSimpleFrame id="header-description" label="ツールについて">
-    <div>ちょっとしたこと、なかなか決められないことなどなど...ツールでサクッと決めちゃいましょう！</div>
-    <div>ランダムで選ぶだけではなく、あみだくじ、スロット形式で気分を変えながら抽選ができます！</div>
-</CollapseSimpleFrame>
+<div class="main-wrapper">
+    <h1>厳正な抽選ツール</h1>
 
-<CollapseFrame id="components" label="①抽選方法を選ぶ">
-    <InputSelect
-        options="{getComponents()}"
-        selectedValue="{defaultSelected}"
-        on:input="{onInputComponent}"
-    ></InputSelect>
-</CollapseFrame>
+    <CollapseSimpleFrame id="header-description" label="ツールについて">
+        <div>ちょっとしたこと、なかなか決められないことなどなど...ツールでサクッと決めちゃいましょう！</div>
+        <div>ランダムで選ぶだけではなく、あみだくじ、スロット形式で気分を変えながら抽選ができます！</div>
+    </CollapseSimpleFrame>
+
+    <CollapseFrame id="components" label="①抽選方法を選ぶ">
+        <InputSelect
+            options="{getComponents()}"
+            selectedValue="{defaultSelected}"
+            on:input="{onInputComponent}"
+        ></InputSelect>
+    </CollapseFrame>
 
 {#if $showUserList}
     <UserList />
 {/if}
 
-<svelte:component this={component}/>
+    <svelte:component this={component}/>
+
+    <div class="footer">
+        <div class="copyright">
+                &copy;2019 厳正な抽選ツール
+        </div>
+        <div class="footer-link">
+            <a href="https://github.com/masakurapa/gensei.masakurapa.com" target="_blank">
+                <i class="fab fa-github-square" style="color: black; font-size: 1.5em;"></i>gensei.masakurapa.com
+            </a>
+        </div>
+    </div>
+</div>
 
 <script lang="ts">
     import type { InputEvent } from '../@types/event';
