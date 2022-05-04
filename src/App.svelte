@@ -1,7 +1,5 @@
-<GlobalCss/>
-
 {#if isSmartPhone()}
-    <Layout/>
+    <LayoutSP/>
 {:else}
     <LayoutPC/>
 {/if}
@@ -9,7 +7,6 @@
 <script lang="ts">
     import { isSmartPhone } from './util';
 
-    import GlobalCss from './GlobalCss.svelte';
-    import Layout from './components/Layout.svelte';
-    import LayoutPC from './components/LayoutPC.svelte';
+    import LayoutPC from './LayoutPC.svelte';
+    import LayoutSP from './components/LayoutSP.svelte';
 </script>

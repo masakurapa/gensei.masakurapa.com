@@ -4,7 +4,7 @@
 export interface Component {
     value: string;
     text: string;
-    useSp: boolean;
+    useSp?: boolean;
     component?: any;
 };
 
