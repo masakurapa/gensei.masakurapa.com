@@ -10,3 +10,28 @@ body {
     color: #2c3e50 !important;
     font-family: 'Hannotate SC','Chalkboard SE','ＭＳ 明朝', 'MS Mincho',sans-serif !important;
 }
+
+header {
+    background-color: #659AD2;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 36px;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 12px 0 12px 12px;
+}
+
+.footer__title {
+    margin-bottom: 5px;
+}
+
+.footer__link {
+    display: inline-flex;
+    align-items: center
+}

@@ -1,5 +1,3 @@
-<header>厳正な抽選ツール</header>
-
 <div class="container">
     <aside class="container__sidebar">
         <div class="menu">
@@ -19,15 +17,6 @@
         <svelte:component this={component.component}/>
     </main>
 </div>
-
-<footer>
-    <div class="footer__name">&copy;2019 厳正な抽選ツール</div>
-    <div class="footer__link">
-        <a href="https://github.com/masakurapa/gensei.masakurapa.com" target="_blank">
-            <i class="fab fa-github-square" style="color: black; font-size: 1.5em;"></i>gensei.masakurapa.com
-        </a>
-    </div>
-</footer>
 
 <script lang="ts">
     import type { Component, ComponentList } from './@types/component';
@@ -51,15 +40,6 @@
 </script>
 
 <style>
-    header {
-        background-color: #659AD2;
-        color: #FFF;
-        font-size: 20px;
-        font-weight: bold;
-        line-height: 36px;
-        text-align: center;
-    }
-
     .container {
         display: flex;
     }
@@ -106,12 +86,5 @@
 
     .menu__active {
         background-color: #F0F0F0;
-    }
-
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        padding: 12px 0 12px 12px;
     }
 </style>
