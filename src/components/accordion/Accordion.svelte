@@ -39,7 +39,7 @@
 
     .accordion__header {
         background: #A1C1E4;
-        padding: 8px;
+        padding: 8px 16px 8px 8px;
         font-weight: bold;
         cursor: pointer;
         display: flex;
