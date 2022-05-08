@@ -4,8 +4,8 @@
 export interface Component {
     value: string;
     text: string;
-    useSp?: boolean;
-    component?: any;
+    useSp?: boolean; // TODO: 削除
+    component?: any; // TODO: 必須にする
 };
 
 /**

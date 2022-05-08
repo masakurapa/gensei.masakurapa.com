@@ -56,6 +56,7 @@
     .container__main {
         flex: 1;
         overflow: auto;
+        padding: 16px;
     }
 
     .menu {
