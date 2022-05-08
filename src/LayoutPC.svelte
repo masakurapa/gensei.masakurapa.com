@@ -14,7 +14,9 @@
     </aside>
 
     <main class="container__main">
-        <svelte:component this={component.component}/>
+        <Users/>
+
+        <!-- <svelte:component this={component.component}/> -->
     </main>
 </div>
 
@@ -25,6 +27,10 @@
     import Amidakuji from './components/amidakuji/Amidakuji.svelte';
     import Slot from './components/slot/Slot.svelte';
     import ShuffleTeam from './components/shuffleTeam/ShuffleTeam.svelte';
+
+
+    import Users from './components/users/Index.svelte';
+
 
     const components: ComponentList = [
         { value: 'amidakuji', text: 'あみだくじ', component: Amidakuji },
