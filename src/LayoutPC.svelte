@@ -16,6 +16,9 @@
     <main class="container__main">
         <Users/>
 
+        <br>
+        <Number value={5} min={0} max={10} step={2}/>
+
         <!-- <svelte:component this={component.component}/> -->
     </main>
 </div>
@@ -30,6 +33,7 @@
 
 
     import Users from './components/users/Index.svelte';
+    import Number from './components/forms/Number.svelte';
 
 
     const components: ComponentList = [
