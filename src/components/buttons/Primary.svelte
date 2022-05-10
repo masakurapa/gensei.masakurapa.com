@@ -10,8 +10,9 @@
     const SIZE = {
         'small': 'small__btn',
         'midium': 'midium__btn',
+        'large': 'large__btn',
     } as const;
-    type SIZE_TYPE = 'small' | 'midium';
+    type SIZE_TYPE = 'small' | 'midium' | 'large';
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false;
@@ -45,5 +46,8 @@
     }
     .midium__btn {
         width: 200px;
+    }
+    .large__btn {
+        width: 400px;
     }
 </style>

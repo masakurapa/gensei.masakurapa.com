@@ -1,12 +1,12 @@
 <div class="accordion">
-    <label class="accordion__header" for={id}>
+    <label class="accordion__header" for="accordion-{id}">
         <div>{title}</div>
         <div><i class="{icon}"></i></div>
     </label>
     <input
         class="accordion__btn"
         type="checkbox"
-        id={id}
+        id="accordion-{id}"
         aria-hidden="true"
         hidden
         bind:checked={open}
@@ -34,7 +34,7 @@
     .accordion {
         border: 1px solid #A1C1E4;
         border-radius: 2px;
-        max-width: 1000px;
+        width: 900px;
     }
 
     .accordion__header {

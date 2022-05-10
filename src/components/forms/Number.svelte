@@ -43,7 +43,8 @@
         }
         oldValue = value;
 
-        dispatch('change');
+        // TODO: detail is any type
+        dispatch('change', { value });
     }
 
     const onClickUp = () => {
@@ -53,7 +54,8 @@
         }
         oldValue = value;
 
-        dispatch('change');
+        // TODO: detail is any type
+        dispatch('change', { value });
     }
 
     // TODO: any type
@@ -72,7 +74,8 @@
         }
         oldValue = value;
 
-        dispatch('change');
+        // TODO: detail is any type
+        dispatch('change', { value: num });
     };
 </script>
 

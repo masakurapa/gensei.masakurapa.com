@@ -1,4 +1,4 @@
-<Accordion id="accordion-users" title="抽選対象" open>
+<Accordion id="users" title="抽選対象" open>
     <Input/>
     <List/>
 

@@ -7,6 +7,7 @@
                 <div
                     class="menu__item"
                     class:menu__active={component.value === row.value}
+                    class:menu__item__disabled={$processing}
                     on:click="{() => onClickMenuItem(row)}"
                 >{row.text}</div>
             {/each}
@@ -14,39 +15,36 @@
     </aside>
 
     <main class="container__main">
-        <Users/>
-
-        <br>
-        <Number value={5} min={0} max={10} step={2}/>
-
-        <!-- <svelte:component this={component.component}/> -->
+        <svelte:component this={component.component}/>
     </main>
 </div>
 
 <script lang="ts">
     import type { Component, ComponentList } from './@types/component';
 
-    import RandomSelect from './components/randomSelect/RandomSelect.svelte';
+    import { processing } from './store';
+
+    import Random from './components/services/random/Index.svelte';
     import Amidakuji from './components/amidakuji/Amidakuji.svelte';
     import Slot from './components/slot/Slot.svelte';
     import ShuffleTeam from './components/shuffleTeam/ShuffleTeam.svelte';
 
-
-    import Users from './components/users/Index.svelte';
-    import Number from './components/forms/Number.svelte';
-
-
     const components: ComponentList = [
-        { value: 'amidakuji', text: 'あみだくじ', component: Amidakuji },
-        { value: 'randomSelect', text: 'ランダム', component: RandomSelect },
-        { value: 'slot', text: 'スロット', component: Slot },
-        { value: 'shuffleTeam', text: 'チーム分け', component: ShuffleTeam },
+        // { value: 'amidakuji', text: 'あみだくじ', component: Amidakuji },
+        { value: 'random', text: 'ランダム', component: Random },
+        // { value: 'slot', text: 'スロット', component: Slot },
+        // { value: 'shuffleTeam', text: 'チーム分け', component: ShuffleTeam },
     ];
 
     // デフォルトはcomponentsの先頭を表示
     let component: Component = components[0];
     // メニュー変更
-    const onClickMenuItem = (value: Component) => component = value;
+    const onClickMenuItem = (value: Component) => {
+        if ($processing) {
+            return;
+        }
+        component = value;
+    }
 </script>
 
 <style>
@@ -93,6 +91,10 @@
 
     .menu__item:hover {
         background-color: #F0F0F0;
+    }
+
+    .menu__item__disabled {
+        cursor: unset;
     }
 
     .menu__active {
