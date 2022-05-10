@@ -1,12 +1,12 @@
 {#if isSmartPhone()}
-    <LayoutSP/>
+    <LegacyLayout/>
 {:else}
-    <LayoutPC/>
+    <Layout/>
 {/if}
 
 <script lang="ts">
     import { isSmartPhone } from './util';
 
-    import LayoutPC from './LayoutPC.svelte';
-    import LayoutSP from './components/LayoutSP.svelte';
+    import Layout from './Layout.svelte';
+    import LegacyLayout from './legacy/components/Layout.svelte';
 </script>
