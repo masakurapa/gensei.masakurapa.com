@@ -9,7 +9,7 @@
         />
     </FormWrapper>
 
-    <FormWrapper>
+    <!-- <FormWrapper>
         <span slot="label">n回選ばれるまで抽選</span>
         <Number
             value="{$trialCount}"
@@ -18,7 +18,7 @@
             step="{$trialCountStep}"
             on:change={onChangeTrialCount}
         />
-    </FormWrapper>
+    </FormWrapper> -->
 </Accordion>
 
 <script lang="ts">
@@ -29,8 +29,6 @@
 
     import {
         choiceNum,
-        trialCount,
-        trialCountStep,
         resetTempUserList,
     } from './store';
 
@@ -64,7 +62,8 @@
 
     // 試行回数変更時のイベント
     // TODO: any type
-    const onChangeTrialCount = (event: InputEvent|any): void => {
-        trialCount.set(toInt(event.detail.value));
-    };
+    // TODO: 試行回数は不要かもしれないので一旦機能から落とす
+    // const onChangeTrialCount = (event: InputEvent|any): void => {
+    //     trialCount.set(toInt(event.detail.value));
+    // };
 </script>
