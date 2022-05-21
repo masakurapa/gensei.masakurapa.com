@@ -1,11 +1,18 @@
-<div class="chip" class:highlight={highlight}>
+<div class="chip {SIZE[size]}"  class:highlight={highlight}>
     <div class="chip__content">
         <slot></slot>
     </div>
 </div>
 
 <script lang="ts">
+    const SIZE = {
+        'midium': 'midium',
+        'large': 'large',
+    } as const;
+    type SIZE_TYPE = 'midium' | 'large';
+
     export let highlight = false;
+    export let size: SIZE_TYPE;
 </script>
 
 <style>
@@ -17,16 +24,26 @@
         border-radius: 16px;
         padding: 4px 12px;
         margin: 4px;
-        height: 40px;
+        height: auto;
+        min-height: 40px;
         width: 300px;
         user-select: none;
     }
 
     .chip__content {
         word-wrap: break-word;
+        word-break: break-all;
+        text-align: left;
     }
 
     .highlight {
         background-color: rgb(180,240,100);
+    }
+
+    .midium {
+        width: 200px;
+    }
+    .large {
+        width: 300px;
     }
 </style>

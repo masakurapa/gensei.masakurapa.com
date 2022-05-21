@@ -22,23 +22,11 @@
     textarea {
         border: 1px solid #668ad8;
         padding: 0.5em;
-        width: 80%;
+        width: 400px;
         resize: vertical;
     }
     textarea:disabled {
         border: 1px solid #aaa;
-        background-color: #eee;
-    }
-
-    input {
-        font-family: inherit;
-        font-size: inherit;
-        padding: 0.4em;
-        box-sizing: border-box;
-        border: 0.05em solid #ccc;
-        border-radius: 0.25em;
-    }
-    input:disabled {
         background-color: #eee;
     }
 </style>

@@ -9,7 +9,7 @@
                 out:send={{ key: item.id }}
                 animate:flip
             >
-                <Chip>{item.name}</Chip>
+                <Chip size="large">{item.name}</Chip>
             </div>
         {/each}
     </div>
@@ -24,7 +24,7 @@
                 out:send={{ key: item.id }}
                 animate:flip
             >
-                <Chip highlight>{item.rank} {item.name}</Chip>
+                <Chip size="large" highlight>{item.rank} {item.name}</Chip>
             </div>
         {/each}
     </div>
