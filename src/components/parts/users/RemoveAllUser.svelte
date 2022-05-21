@@ -4,7 +4,7 @@
 >全て削除</DangerBtn>
 
 <script lang="ts">
-    import { userList, processing } from '../../store';
+    import { userList, processing } from '../../../store';
 
     import DangerBtn from '../buttons/Danger.svelte';
 

@@ -9,7 +9,7 @@
     import { random, sleep } from '../../../util';
     import { trialCount, choiceNum, tempUserList, resetTempUserList } from './store';
 
-    import PrimaryBtn from '../../buttons/Primary.svelte';
+    import PrimaryBtn from '../../parts/buttons/Primary.svelte';
 
     // ボタン無効判定
     $: disabled = $userList.length === 0 || $processing;

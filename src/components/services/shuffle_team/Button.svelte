@@ -9,7 +9,7 @@
     import { random, sleep, shuffle } from '../../../util';
     import { userList, teamNum, equalityFlag, resultUserList, resetResultUserList } from './store';
 
-    import PrimaryBtn from '../../buttons/Primary.svelte';
+    import PrimaryBtn from '../../parts/buttons/Primary.svelte';
 
     let id = 1;
 

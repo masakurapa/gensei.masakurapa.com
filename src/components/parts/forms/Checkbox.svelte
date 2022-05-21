@@ -12,7 +12,7 @@
 
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
-    import { processing } from '../../store';
+    import { processing } from '../../../store';
 
     export let value = false;
     export let disabled = false;

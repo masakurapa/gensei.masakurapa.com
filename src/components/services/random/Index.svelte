@@ -15,7 +15,7 @@
     import { onMount } from 'svelte';
     import { showUserList } from '../../../store';
 
-    import Users from '../../users/Index.svelte';
+    import Users from '../../parts/users/Index.svelte';
 
     import Setting from './Setting.svelte';
     import Button from './Button.svelte';

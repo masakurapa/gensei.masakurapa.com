@@ -10,8 +10,8 @@
 
 <script lang="ts">
     import { onMount } from 'svelte';
-    import { getUserList } from '../../storage';
-    import { setUser } from '../../store';
+    import { getUserList } from '../../../storage';
+    import { setUser } from '../../../store';
 
     import Accordion from '../accordion/Accordion.svelte';
 

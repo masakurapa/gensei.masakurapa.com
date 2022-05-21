@@ -32,9 +32,9 @@
         resetTempUserList,
     } from './store';
 
-    import Accordion from '../../accordion/Accordion.svelte';
-    import FormWrapper from '../../forms/Wrapper.svelte';
-    import Number from '../../forms/Number.svelte';
+    import Accordion from '../../parts/accordion/Accordion.svelte';
+    import FormWrapper from '../../parts/forms/Wrapper.svelte';
+    import Number from '../../parts/forms/Number.svelte';
 
     // 抽選人数の最小数
     const CHOICE_NUM_MIN = 1;

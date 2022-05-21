@@ -1,4 +1,4 @@
-<Accordion id="random" title="設定" open>
+<Accordion id="shuffle_team" title="設定" open>
     <FormWrapper>
         <span slot="label">抽選対象</span>
         <div>
@@ -38,11 +38,11 @@
         resetResultUserList,
     } from './store';
 
-    import Accordion from '../../accordion/Accordion.svelte';
-    import FormWrapper from '../../forms/Wrapper.svelte';
-    import Checkbox from '../../forms/Checkbox.svelte'
-    import Number from '../../forms/Number.svelte'
-    import TextArea from '../../forms/TextArea.svelte'
+    import Accordion from '../../parts/accordion/Accordion.svelte';
+    import FormWrapper from '../../parts/forms/Wrapper.svelte';
+    import Checkbox from '../../parts/forms/Checkbox.svelte'
+    import Number from '../../parts/forms/Number.svelte'
+    import TextArea from '../../parts/forms/TextArea.svelte'
 
     // 抽選数の最低数
     const TEAM_NUM_MIN = 1;

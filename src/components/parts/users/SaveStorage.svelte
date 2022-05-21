@@ -8,8 +8,8 @@
 </div>
 
 <script lang="ts">
-    import { setUserList } from '../../storage';
-    import { userList, processing } from '../../store';
+    import { setUserList } from '../../../storage';
+    import { userList, processing } from '../../../store';
 
     import PrimaryBtn from '../buttons/Primary.svelte';
 

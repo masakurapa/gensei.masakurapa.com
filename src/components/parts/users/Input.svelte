@@ -20,9 +20,9 @@
 </FormWrapper>
 
 <script lang="ts">
-    import type { InputEvent, KeyEvent } from '../../@types/event';
+    import type { InputEvent, KeyEvent } from '../../../@types/event';
 
-    import { userList, processing, addUser } from '../../store';
+    import { userList, processing, addUser } from '../../../store';
 
     import FormWrapper from '../forms/Wrapper.svelte';
     import TextBox from '../forms/TextBox.svelte';

@@ -24,7 +24,7 @@
     import { flip } from 'svelte/animate';
     import { userList, resultUserList } from './store';
 
-    import Chip from '../../chip/Chip.svelte';
+    import Chip from '../../parts/chip/Chip.svelte';
 
     // 結果の表示領域の高さを計算
     // 1boxあたりの高さ = 抽選対象の各行(56px) + タイトルの高さ(56px) + バッファ(24px)

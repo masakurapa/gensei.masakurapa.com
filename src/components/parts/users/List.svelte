@@ -7,7 +7,7 @@
 </div>
 
 <script lang="ts">
-    import { userList, removeUser } from '../../store';
+    import { userList, removeUser } from '../../../store';
     import Chip from '../chip/ChipWithDelete.svelte';
 </script>
 

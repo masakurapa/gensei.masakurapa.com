@@ -8,7 +8,7 @@
 ></textarea>
 
 <script lang="ts">
-    import { processing } from '../../store.js';
+    import { processing } from '../../../store.js';
 
     export let value = '';
     export let placeholder = '';

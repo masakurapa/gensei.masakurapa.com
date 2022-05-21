@@ -37,7 +37,7 @@
     import { tempUserList } from './store';
     import { userList } from '../../../store';
 
-    import Chip from '../../chip/Chip.svelte';
+    import Chip from '../../parts/chip/Chip.svelte';
 
     // 抽選対象用のユーザーリスト
     $: targetUserList = $tempUserList.filter(item => item.rank === 0);

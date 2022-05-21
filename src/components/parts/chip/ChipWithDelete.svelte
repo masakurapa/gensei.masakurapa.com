@@ -13,7 +13,7 @@
 </div>
 
 <script lang="ts">
-    import { processing } from '../../store';
+    import { processing } from '../../../store';
 </script>
 
 <style>
