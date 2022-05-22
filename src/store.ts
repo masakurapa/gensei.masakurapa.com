@@ -5,7 +5,10 @@ import type { User, UserList } from './@types/user';
 export const userList = writable<UserList>([]);
 // 処理中フラグ
 export const processing = writable(false);
-// ユーザーリストの表示フラグ
+/**
+ * ユーザーリストの表示フラグ
+ * @deprecated
+ */
 export const showUserList = writable(true);
 // UID
 export const uid = writable(1);
