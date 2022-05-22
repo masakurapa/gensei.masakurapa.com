@@ -53,6 +53,12 @@
     .checkbox__input:checked + .checkbox__dummy {
         background: #1976d2;
     }
+    .checkbox__input:checked + .checkbox__dummy::before {
+        background: #FFFFFF;
+    }
+    .checkbox__input:checked + .checkbox__dummy::after {
+        background: #FFFFFF;
+    }
     .checkbox__input:disabled + .checkbox__dummy {
         background-color: #ddd;
         cursor: unset;
@@ -69,7 +75,7 @@
         border-radius: 2px;
         transform: translate(-6px, 5px) rotateZ(-135deg);
         transform-origin: 2px 2px;
-        background: #FFFFFF;
+        background: #ddd;
     }
     .checkbox__dummy::after {
         content: "";
@@ -82,7 +88,7 @@
         border-radius: 2px;
         transform: translate(-6px, 5px) rotateZ(-45deg);
         transform-origin: 2px 2px;
-        background: #FFFFFF;
+        background: #ddd;
     }
 
     .checkbox__label {

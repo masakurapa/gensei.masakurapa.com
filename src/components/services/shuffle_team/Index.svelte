@@ -7,8 +7,11 @@
 </div>
 
 {#if !isSmartPhone()}
-    <!-- <Download/> -->
+    <div class="wrapper">
+        <Download/>
+    </div>
 {/if}
+
 <div class="wrapper">
     <Button/>
 </div>
@@ -22,11 +25,11 @@
     import { showUserList } from '../../../store';
     import { isSmartPhone } from '../../../util';
 
-    import Users from '../../users/Index.svelte';
+    import Users from '../../parts/users/Index.svelte';
 
     import Setting from './Setting.svelte';
     import Button from './Button.svelte';
-    // import Download from './Download.svelte';
+    import Download from './Download.svelte';
     import Result from './Result.svelte';
 
     onMount(() => showUserList.set(false));
@@ -35,10 +38,5 @@
 <style>
     .wrapper {
         margin-bottom: 20px;
-    }
-
-    .wrapper__btn {
-        width: 900px;
-        text-align: center;
     }
 </style>

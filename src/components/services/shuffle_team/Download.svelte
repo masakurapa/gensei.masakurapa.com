@@ -1,49 +1,52 @@
-<CollapseFrame id="shuffle-team-download" label="抽選結果を出力" open={false}>
-    <InputGroup label="ファイルの形式">
-        <InputRadio
+<Accordion id="shuffle_team__download" title="抽選結果をダウンロード">
+    <FormWrapper>
+        <span slot="label">ファイルの形式</span>
+        <Radio
             name="fileType"
             options="{fileTypes}"
             selectedValue="{fileType}"
             on:change={onChangeFileType}
-        ></InputRadio>
-    </InputGroup>
-    <InputGroup label="チームの並べ方">
-        <InputRadio
+        />
+    </FormWrapper>
+    <FormWrapper>
+        <span slot="label">出力形式</span>
+        <Radio
             name="outputFormatType"
             options="{outputFormatTypes}"
             selectedValue="{outputFormatType}"
             on:change={onChangeOutputFormatType}
-        ></InputRadio>
-    </InputGroup>
+        />
+    </FormWrapper>
 
-    <div class="download-btn-area">
+    <div class="download">
         <a
-            class="download-btn"
-            class:download-disabled="{disabled}"
+            class="download__btn"
+            class:download__disabled="{disabled}"
             download="{downloadFileName}"
             href="/#"
             on:click="{onClickDownload}"
-        >Download</a>
+        >ダウンロード</a>
     </div>
-</CollapseFrame>
+</Accordion>
 
 <script lang="ts">
     import type { InputEvent, AnchorClickEvent } from '../../../@types/event';
+    import type { RadioOption } from '../../../@types/form';
 
     import { processing } from '../../../store';
     import { resultUserList } from './store';
 
-    import CollapseFrame from '../common/collapse/CollapseFrame.svelte';
-    import InputGroup from '../../parts/input/InputGroup.svelte';
-    import InputRadio from '../../parts/input/InputRadio.svelte';
+    import Accordion from '../../parts/accordion/Accordion.svelte';
+    import FormWrapper from '../../parts/forms/Wrapper.svelte';
+    import Radio from '../../parts/forms/Radio.svelte';
 
-    const fileTypes = [
-        { value: 'csv', text: 'CSV形式' },
-        { value: 'tsv', text: 'TSV形式' },
+    const fileTypes: RadioOption[] = [
+        { value: 'csv', text: 'CSV' },
+        { value: 'tsv', text: 'TSV' },
     ];
-    const outputFormatTypes = [
-        { value: 'vertical', text: '縦に並べる' },
-        { value: 'horizon', text: '横に並べる' },
+    const outputFormatTypes: RadioOption[] = [
+        { value: 'vertical', text: '列ヘッダーがチーム名' },
+        { value: 'horizon', text: '行ヘッダーがチーム名' },
     ];
 
     let fileType = 'csv';
@@ -54,7 +57,8 @@
     $: disabled = $processing ||
         $resultUserList.filter(row => row.length > 0).length === 0;
 
-    const onClickDownload = (e: AnchorClickEvent): void => {
+    // TODO: any type
+    const onClickDownload = (e: AnchorClickEvent | any): void => {
         // 区切り文字
         const sep = fileType === 'csv' ? ',' : '\t';
 
@@ -129,7 +133,7 @@
             `${dt.getHours()}` +
             `${dt.getMinutes()}` +
             `0${dt.getSeconds()}`.slice(-2) +
-            `_suffleteam_${outputFormatType}.${fileType.toLowerCase()}`;
+            `_suffle_team.${fileType.toLowerCase()}`;
     };
 
     const onChangeFileType = (event: InputEvent): void => {
@@ -142,14 +146,17 @@
 </script>
 
 <style>
-    .download-btn-area {
-        width: 90%;
-        margin: 2em auto 0 auto;
+    .download {
+        margin-top: 20px;
         text-align: center;
     }
-    .download-btn {
-        width: 50%;
-        max-width: 300px;
+
+    .download__btn {
+        display: block;
+        margin:  0 auto;
+
+        width: 200px;
+        height: 40px;
         font-family: inherit;
         font-size: inherit;
         padding: 0.5em;
@@ -162,7 +169,8 @@
         cursor: pointer;
         text-decoration: none;
     }
-    .download-disabled {
+
+    .download__disabled {
         background-color: #ddd !important;;
         cursor: unset;
         pointer-events: none;
