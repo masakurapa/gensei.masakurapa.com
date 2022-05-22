@@ -53,7 +53,7 @@
     .result {
         display: flex;
         flex-wrap: wrap;
-        width: 1000px;
+        width: 100%;
     }
 
     .result__box {
@@ -64,8 +64,6 @@
         border-radius: 16px;
         box-sizing: border-box;
         margin-bottom: 24px;
-    }
-    .result__box:nth-child(3n+1), .result__box:nth-child(3n+2) {
         margin-right: 32px;
     }
 
