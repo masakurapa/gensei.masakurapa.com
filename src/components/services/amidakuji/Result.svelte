@@ -193,6 +193,7 @@
      */
     .content {
         align-items: flex-end;
+        margin-left: 36px;
     }
     /* 通過した線 */
     .line__passed {
@@ -204,6 +205,7 @@
         background-color: #666;
         width: 0.5em;
         height: 3em;
+        flex-shrink: 0;
     }
     /* 縦線（通過時の要素の高さを調整するためのスタイル） */
     .line__vertical_pass {
@@ -214,9 +216,10 @@
     /* 横線のベース（線が引かれていない状態） */
     .line_horizon {
         background-color: #eee;
-        width: 4em;
+        width: 4.5em;
         height: 0.5em;
         cursor: pointer;
+        flex-shrink: 0;
     }
     /* 横線（線が引かれている状態） */
     .line_horizon_active {

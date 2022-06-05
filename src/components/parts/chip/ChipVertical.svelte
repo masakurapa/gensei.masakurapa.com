@@ -20,7 +20,6 @@
         padding: 4px 12px;
         margin: 4px;
         height: auto;
-        min-height: 40px;
         width: 32px;
         user-select: none;
     }
