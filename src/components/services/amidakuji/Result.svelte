@@ -1,106 +1,84 @@
 {#if $amidakuji.length > 0}
-<div class="result">
-    <div class="row">
-        {#each $userList as _, i}
-            {#if i !== 0}
-                <div class="line-h line-none"></div>
-            {/if}
-            <div class="line-v line-none number-button-line-v">
-                <div class="line-v-inner">
-                    <button
-                        class="number-button"
-                        on:click="{() => run(i)}"
-                        disabled={$processing || $selectedNumber.indexOf(i) !== -1}
-                    >{numbers[i]}</button>
-                </div>
+<div class="row header">
+    {#each $selectedUserList as user, i}
+        <div class="header__item">
+            <div class="header__select_order">
+                {user.order !== 0 ? user.order : ''}
             </div>
-        {/each}
-    </div>
-
-    {#each $amidakuji as row, h}
-        <div class="row">
-            {#each row as data, v}
-                {#if isHorizon(v)}
-                    <!-- 横線 -->
-                    {#if data.active}
-                        <div class="line-h line-active">
-                            {#if data.rivers}
-                                <div class="line-selected-h line-selected line-selected-h-rivers" style="width: {data.size}%;"></div>
-                            {:else}
-                                <div class="line-selected-h line-selected" style="width: {data.size}%;"></div>
-                            {/if}
-                        </div>
-                    {:else if data.flag === Flag.NONE}
-                        <div class="line-h line-none"></div>
-                    {:else if data.flag === Flag.OFF}
-                        <div class="line-h" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
-                    {:else if data.flag === Flag.ON}
-                        <div class="line-h line-active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
-                    {/if}
-                {:else}
-                    <!-- 縦線 -->
-                    {#if data.active && h === 0}
-                        <div class="line-v">
-                            <div class="line-selected" style="height: {data.size}%;"></div>
-                        </div>
-                    {:else if data.active && h !== 0}
-                        <div class="line-v line-selected-v">
-                            <div class="line-selected" style="height: {data.size}%;"></div>
-                        </div>
-                    {:else}
-                        <div class="line-v"></div>
-                    {/if}
-                {/if}
-            {/each}
+            <div class="header__btn">
+                <PrimaryBtn
+                    size="x-small"
+                    on:click="{() => run(i)}"
+                    disabled={$processing || user.order !== 0}
+                >{i + 1}</PrimaryBtn>
+            </div>
         </div>
     {/each}
+</div>
 
-    <div class="row unset-align-items">
-        {#each $selectedUserList as user, i}
-            {#if i !== 0}
-                <div class="line-h line-none"></div>
+{#each $amidakuji as row, h}
+    <div class="row">
+        {#each row as data, v}
+            {#if isHorizon(v)}
+                <!-- 横線 -->
+                {#if data.active}
+                    <div class="line-h line-active">
+                        {#if data.rivers}
+                            <div class="line-selected-h line-selected line-selected-h-rivers" style="width: {data.size}%;"></div>
+                        {:else}
+                            <div class="line-selected-h line-selected" style="width: {data.size}%;"></div>
+                        {/if}
+                    </div>
+                {:else if data.flag === Flag.NONE}
+                    <div class="line-h line-none"></div>
+                {:else if data.flag === Flag.OFF}
+                    <div class="line-h" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                {:else if data.flag === Flag.ON}
+                    <div class="line-h line-active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                {/if}
+            {:else}
+                <!-- 縦線 -->
+                {#if data.active && h === 0}
+                    <div class="line-v">
+                        <div class="line-selected" style="height: {data.size}%;"></div>
+                    </div>
+                {:else if data.active && h !== 0}
+                    <div class="line-v line-selected-v">
+                        <div class="line-selected" style="height: {data.size}%;"></div>
+                    </div>
+                {:else}
+                    <div class="line-v"></div>
+                {/if}
             {/if}
-            <div class="line-v line-none result-line-v">
-                <div class="line-v-inner result-text-group">
-                    {#if user.rank !== 0}
-                        <div>
-                            <div class="result-text">{user.rank}</div>
-                            <div class="result-name-text">{user.name}</div>
-                        </div>
-                    {:else}
-                        <div class="result-text">㋪</div>
-                    {/if}
-                </div>
-            </div>
         {/each}
     </div>
+{/each}
+
+<div class="row footer">
+    {#each $selectedUserList as user, i}
+        <div class="footer__item">
+            <div class="footer__rank">
+                {user.position !== 0 ? user.position : ''}
+            </div>
+            <div class="footer__user">
+                <ChipVertical size="midium">{user.rank !== 0 ? user.name : ''}</ChipVertical>
+            </div>
+        </div>
+    {/each}
 </div>
 {/if}
 
 <script lang="ts">
     import { Flag } from '../../../@types/amidakuji';
-    import { userList, processing } from '../../../store';
+    import { processing } from '../../../store';
     import { sleep } from '../../../util';
-    import { amidakuji, selectedUserList, disabledWriteLine, selectedNumber, rank } from './store';
+
+    import { amidakuji, selectedUserList, disabledWriteLine, rank } from './store';
     import { isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from './util';
 
-    const numbers = [
-        '①',
-        '②',
-        '③',
-        '④',
-        '⑤',
-        '⑥',
-        '⑦',
-        '⑧',
-        '⑨',
-        '⑩',
-        '⑪',
-        '⑫',
-        '⑬',
-        '⑭',
-        '⑮',
-    ];
+    import PrimaryBtn from '../../parts/buttons/Primary.svelte';
+    import ChipVertical from '../../parts/chip/ChipVertical.svelte';
+
 
     // 抽選
     const run = async (num: number): Promise<void> => {
@@ -110,10 +88,8 @@
         amidakuji.set(clearActiveLine($amidakuji));
         amidakuji.set(hideUnselectedLine($amidakuji));
 
-        selectedNumber.update(val => {
-            val.push(num);
-            return val;
-        })
+        // 選択された順番
+        $selectedUserList[num].order = $rank;
 
         await sleep(500);
 
@@ -164,6 +140,7 @@
         const index = vertical / 2;
         if ($selectedUserList[index].rank === 0) {
             $selectedUserList[index].rank = $rank;
+            $selectedUserList[index].position = num + 1;
             rank.update(val => ++val);
         }
 
@@ -180,30 +157,73 @@
 </script>
 
 <style>
-    /* 結果 */
-    .result2 {
-        margin: auto;
-        margin-top: 1em;
-        margin-bottom: 2.5em;
-        padding: 1em 1.5em 1em 1.5em;
-        width: 80%;
-        background-color: #FFFFFF;
-        border: 0.1em solid #668ad8 !important;
-        border-radius: 2em;
-        height: auto;
-    }
+    /* 各列に共通使用するスタイル */
     .row {
         display: -webkit-flex;
         display: -moz-flex;
         display: -ms-flex;
         display: -o-flex;
         display: flex;
-        justify-content: center;
         align-items: flex-end;
     }
-    .unset-align-items {
-        align-items: unset;
+
+    /* ヘッダー（数字ボタンエリア） */
+    .header {
+        margin-bottom: 20px;
+        align-items: flex-end;
     }
+    .header__item {
+        width: 100px;
+    }
+    .header__select_order {
+        height: 24px;
+        text-align: center;
+    }
+    .header__btn {
+        text-align: center;
+    }
+
+    /* メイン（あみだくじ） */
+
+
+    /* フッター（結果エリア） */
+    .footer {
+        margin-top: 20px;
+        align-items: flex-start;
+    }
+    .footer__item {
+        width: 100px;
+    }
+    .footer__rank {
+        height: 40px;
+        line-height: 40px;
+        width: 30px;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0;
+        box-sizing: border-box;
+        border: 0.05em solid #ccc;
+        border-radius: 0.25em;
+        background-color: #1976d2;
+        color: #FFFFFF;
+        outline: none;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .footer__user {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+
+
+
+
+
+
+
 
     .line-v {
         background-color: #666;
@@ -235,24 +255,6 @@
         background-color: #FFF;
     }
 
-    .number-button-line-v {
-        height: auto;
-        min-height: 4em;
-    }
-    .result-line-v {
-        height: auto;
-        min-height: 3em;
-    }
-    .line-v-inner {
-        text-align: center;
-        width: 1.25em;
-        margin-left: -7px;
-    }
-    .result-text-group {
-        word-break: break-all;
-        vertical-align: top;
-        margin-top: 10px;
-    }
     .result-text {
         font-family: inherit;
         font-size: inherit;
@@ -260,23 +262,5 @@
     }
     .result-name-text {
         margin-bottom: 10px;
-    }
-
-    .number-button {
-        padding: 0;
-        cursor: pointer;
-        width: 1.25em;
-        background-color: #1976d2 !important;
-        border: 0.05em solid #FFF;
-        border-radius: 0.25em;
-        text-align: center;
-        line-height: 2.5em;
-        color: #FFF;
-        font-family: inherit;
-        font-size: inherit;
-    }
-    .number-button:disabled {
-        background-color: #eee !important;
-        cursor: unset;
     }
 </style>

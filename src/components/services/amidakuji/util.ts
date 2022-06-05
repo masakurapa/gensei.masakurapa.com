@@ -61,6 +61,8 @@ export const shuffleUserList = (userList: UserList): AmidakujiUserList => {
             id: item.id,
             name: item.name,
             rank: 0, // 何番目に選ばれたか
+            order: 0, // 何番目に数字ボタンを押したか
+            position: 0,
         };
     });
 

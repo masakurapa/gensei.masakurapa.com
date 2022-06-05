@@ -12,18 +12,11 @@
 </div>
 
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { selectedNumber } from './store';
-
     import Users from '../../parts/users/Index.svelte';
 
     import Setting from './Setting.svelte';
     import Button from './Button.svelte';
     import Result from './Result.svelte';
-
-    onMount(() => {
-        selectedNumber.set([]);
-    });
 </script>
 
 

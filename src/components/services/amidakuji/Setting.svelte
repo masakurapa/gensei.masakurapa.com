@@ -23,7 +23,6 @@
         rank,
         selectedUserList,
         disabledWriteLine,
-        selectedNumber,
     } from './store';
     import {
         generateAmidakuji,
@@ -63,6 +62,5 @@
 
     userList.subscribe((value) => {
         reset(value);
-        selectedNumber.set([]);
     });
 </script>

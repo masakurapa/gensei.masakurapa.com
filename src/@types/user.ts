@@ -28,7 +28,9 @@ export type RandomSelectUserList = RandomSelectUser[];
  * ユーザー情報（あみだくじ用）
  */
  export interface AmidakujiUser extends User {
-    rank: number;
+    rank: number; // 何番目に選ばれたか
+    order: number; // 何番目に数字ボタンを押したか
+    position: number; // 何番のボタンを押したか
 };
 
 /**

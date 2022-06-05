@@ -12,5 +12,3 @@ export const rank = writable(1)
 export const amidakuji = writable<Amidakuji>([])
 // あたりのユーザーリスト
 export const selectedUserList = writable<AmidakujiUserList>([])
-// 抽選済みの番号を保持する
-export const selectedNumber = writable<number[]>([])

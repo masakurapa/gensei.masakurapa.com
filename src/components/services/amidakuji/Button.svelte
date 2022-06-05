@@ -5,14 +5,14 @@
 >線を引き直す</PrimaryBtn>
 <WarningBtn
     size="midium"
-    {disabled}
+    disabled={!disabled || $processing}
     on:click="{reset}"
 >やりなおす</WarningBtn>
 
 <script lang="ts">
     import { userList, processing } from '../../../store';
 
-    import { lineNum, amidakuji, rank, selectedUserList, disabledWriteLine, selectedNumber } from './store';
+    import { lineNum, amidakuji, rank, selectedUserList, disabledWriteLine } from './store';
     import { generateAmidakuji, generateRandomAmidakuji, shuffleUserList } from './util';
 
     import PrimaryBtn from '../../parts/buttons/Primary.svelte';
@@ -28,7 +28,6 @@
     // あみだくじの内容をリセットする
     const reset = (): void => {
         disabledWriteLine.set(false);
-        selectedNumber.set([]);
         rank.set(1)
         const newAmidakuji = generateAmidakuji($userList, $lineNum);
         amidakuji.set(generateRandomAmidakuji(newAmidakuji, $lineNum));

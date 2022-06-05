@@ -8,11 +8,12 @@
 
 <script lang="ts">
     const SIZE = {
+        'x-small': 'x_small__btn',
         'small': 'small__btn',
         'midium': 'midium__btn',
         'large': 'large__btn',
     } as const;
-    type SIZE_TYPE = 'small' | 'midium' | 'large';
+    type SIZE_TYPE = 'x-small' | 'small' | 'midium' | 'large';
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false;
@@ -41,6 +42,10 @@
         border-color: #666;
     }
 
+    .x_small__btn {
+        width: 30px;
+        padding: 0;
+    }
     .small__btn {
         width: 60px;
     }
