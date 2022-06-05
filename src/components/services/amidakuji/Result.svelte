@@ -72,8 +72,19 @@
     import { processing } from '../../../store';
     import { sleep } from '../../../util';
 
-    import { amidakuji, selectedUserList, disabledWriteLine, rank } from './store';
-    import { isHorizon, hideUnselectedLine, writeHrizon, clearActiveLine } from './util';
+    import {
+        amidakuji,
+        selectedUserList,
+        disabledWriteLine,
+        lineNum,
+        rank,
+    } from './store';
+    import {
+        isHorizon,
+        hideUnselectedLine,
+        writeHrizon,
+        clearActiveLine,
+    } from './util';
 
     import PrimaryBtn from '../../parts/buttons/Primary.svelte';
     import ChipVertical from '../../parts/chip/ChipVertical.svelte';
@@ -150,7 +161,14 @@
     const progress = async (h: number, v: number): Promise<void> => {
         for (let i = 1; i <= 10; i++) {
             $amidakuji[h][v].size = i * 10;
-            await sleep(15);
+            const num = $lineNum;
+            if (num >= 20) {
+                await sleep(4);
+            } else if (num >= 10) {
+                await sleep(8);
+            } else {
+                await sleep(12);
+            }
         }
     };
 </script>
