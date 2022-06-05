@@ -1,7 +1,7 @@
 {#if $amidakuji.length > 0}
 <div class="row header">
     {#each $selectedUserList as user, i}
-        <div class="header__item">
+        <div class="row__fixed_item">
             <div class="header__select_order">
                 {user.order !== 0 ? user.order : ''}
             </div>
@@ -17,37 +17,36 @@
 </div>
 
 {#each $amidakuji as row, h}
-    <div class="row">
+    <div class="row content">
         {#each row as data, v}
             {#if isHorizon(v)}
                 <!-- 横線 -->
                 {#if data.active}
-                    <div class="line-h line-active">
-                        {#if data.rivers}
-                            <div class="line-selected-h line-selected line-selected-h-rivers" style="width: {data.size}%;"></div>
-                        {:else}
-                            <div class="line-selected-h line-selected" style="width: {data.size}%;"></div>
-                        {/if}
+                    <div class="line_horizon line_horizon_active">
+                        <div
+                            class="line__horizon_pass line__passed"
+                            class:line__horizon_rivers={data.rivers}
+                            style="width: {data.size}%;"
+                        ></div>
                     </div>
                 {:else if data.flag === Flag.NONE}
-                    <div class="line-h line-none"></div>
+                    <div class="line_horizon line_horizon_none"></div>
                 {:else if data.flag === Flag.OFF}
-                    <div class="line-h" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                    <div class="line_horizon" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
                 {:else if data.flag === Flag.ON}
-                    <div class="line-h line-active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                    <div class="line_horizon line_horizon_active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
                 {/if}
             {:else}
                 <!-- 縦線 -->
-                {#if data.active && h === 0}
-                    <div class="line-v">
-                        <div class="line-selected" style="height: {data.size}%;"></div>
-                    </div>
-                {:else if data.active && h !== 0}
-                    <div class="line-v line-selected-v">
-                        <div class="line-selected" style="height: {data.size}%;"></div>
+                {#if data.active}
+                    <div
+                        class="line_vertical"
+                        class:line__vertical_pass={h !== 0}
+                    >
+                        <div class="line__passed" style="height: {data.size}%;"></div>
                     </div>
                 {:else}
-                    <div class="line-v"></div>
+                    <div class="line_vertical"></div>
                 {/if}
             {/if}
         {/each}
@@ -56,7 +55,7 @@
 
 <div class="row footer">
     {#each $selectedUserList as user, i}
-        <div class="footer__item">
+        <div class="row__fixed_item">
             <div class="footer__rank">
                 {user.position !== 0 ? user.position : ''}
             </div>
@@ -157,23 +156,29 @@
 </script>
 
 <style>
-    /* 各列に共通使用するスタイル */
+    /*
+     * 共通使用するスタイル
+     */
+    /* 各行 */
     .row {
         display: -webkit-flex;
         display: -moz-flex;
         display: -ms-flex;
         display: -o-flex;
         display: flex;
-        align-items: flex-end;
+    }
+    /* header/footerの幅固定 */
+    .row__fixed_item {
+        width: 80px;
+        flex-shrink: 0;
     }
 
-    /* ヘッダー（数字ボタンエリア） */
+    /*
+     * ヘッダー（数字ボタンエリア）
+     */
     .header {
         margin-bottom: 20px;
         align-items: flex-end;
-    }
-    .header__item {
-        width: 100px;
     }
     .header__select_order {
         height: 24px;
@@ -183,16 +188,61 @@
         text-align: center;
     }
 
-    /* メイン（あみだくじ） */
+    /*
+     *メイン（あみだくじ）
+     */
+    .content {
+        align-items: flex-end;
+    }
+    /* 通過した線 */
+    .line__passed {
+        background-color: crimson;
+    }
 
+    /* 縦線のベース */
+    .line_vertical {
+        background-color: #666;
+        width: 0.5em;
+        height: 3em;
+    }
+    /* 縦線（通過時の要素の高さを調整するためのスタイル） */
+    .line__vertical_pass {
+        height: 3.5em;
+        margin-top: -0.5em; /* 横線と縦線を重ねたいため、ネガティブマージンを入れている */
+    }
 
-    /* フッター（結果エリア） */
+    /* 横線のベース（線が引かれていない状態） */
+    .line_horizon {
+        background-color: #eee;
+        width: 4em;
+        height: 0.5em;
+        cursor: pointer;
+    }
+    /* 横線（線が引かれている状態） */
+    .line_horizon_active {
+        background-color: #666;
+        cursor: pointer;
+    }
+    /* 横線（隣接する横線に線が引かれていて、線が引けない状態） */
+    .line_horizon_none {
+        visibility: hidden;
+        cursor: unset;
+    }
+    /* 横線（通過時の要素の高さを確保するためのスタイル） */
+    .line__horizon_pass {
+        height: 0.5em;
+    }
+    /* 横線（右から左に線を動かすためのスタイル） */
+    .line__horizon_rivers {
+        float: right;
+    }
+
+    /*
+     * フッター（結果エリア）
+     */
     .footer {
         margin-top: 20px;
         align-items: flex-start;
-    }
-    .footer__item {
-        width: 100px;
     }
     .footer__rank {
         height: 40px;
@@ -213,54 +263,5 @@
     .footer__user {
         display: flex;
         justify-content: center;
-    }
-
-
-
-
-
-
-
-
-
-
-
-    .line-v {
-        background-color: #666;
-        width: 0.25em;
-        height: 3em;
-    }
-    .line-selected-v {
-        height: 3.5em;
-        margin-top: -0.5em;
-    }
-    .line-h {
-        background-color: #eee;
-        width: 4em;
-        height: 0.5em;
-    }
-    .line-selected-h {
-        height: 0.5em;
-    }
-    .line-selected-h-rivers {
-        float: right;
-    }
-    .line-active {
-        background-color: #666;
-    }
-    .line-selected {
-        background-color: crimson;
-    }
-    .line-none {
-        background-color: #FFF;
-    }
-
-    .result-text {
-        font-family: inherit;
-        font-size: inherit;
-        color: rgb(170,30,30);
-    }
-    .result-name-text {
-        margin-bottom: 10px;
     }
 </style>

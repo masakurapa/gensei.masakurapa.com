@@ -65,6 +65,8 @@
         flex: 1;
         overflow: auto;
         padding: 16px;
+        margin: 0 calc(50% - 50vw);
+        width: 100vw;
     }
 
     .menu {
