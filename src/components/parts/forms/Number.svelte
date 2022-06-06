@@ -1,22 +1,17 @@
 <div class="stepper">
-    <button
-        class="stepper__btn stepper__btn-left"
-        disabled={disabledForm || value <= min}
-        on:click="{onClickDown}"
-    >-</button>
-    <input
-        type="tel"
-        class="stepper__input"
-        bind:value={value}
-        disabled={disabledForm}
-        on:input="{onChange}"
-        on:change="{onChange}"
-    />
-    <button
-        class="stepper__btn stepper__btn-right"
-        disabled={disabledForm || value >= max}
-        on:click="{onClickUp}"
-    >+</button>
+    <div class="slider">
+        <input
+            class="slider__range"
+            type="range"
+            bind:value={value}
+            disabled={disabledForm}
+            min={min}
+            max={max}
+            step={step}
+            on:input="{onChange}"
+        >
+    </div>
+    <div class="slider__label">{value}</div>
  </div>
 
 <script lang="ts">
@@ -35,28 +30,6 @@
     $: disabledForm = disabled || $processing;
 
     const dispatch = createEventDispatcher();
-
-    const onClickDown = () => {
-        value -= step;
-        if (value < min) {
-            value = min;
-        }
-        oldValue = value;
-
-        // TODO: detail is any type
-        dispatch('change', { value });
-    }
-
-    const onClickUp = () => {
-        value += step;
-        if (value > max) {
-            value = max;
-        }
-        oldValue = value;
-
-        // TODO: detail is any type
-        dispatch('change', { value });
-    }
 
     // TODO: any type
     const onChange = (event: any): void => {
@@ -85,36 +58,92 @@
         font-size: 1.5em;
     }
 
-    .stepper__btn {
-        cursor: pointer;
-        color: #fff;
-        font-size: x-large;
-        font-weight: bold;
-        background-color: #1976d2;
-        border: 1px solid #1976d2;
-        height: 40px;
-        width: 40px;
+    .slider {
+        margin: 0 12px 0 12px;
     }
 
-    .stepper__btn:disabled {
-        background-color: #ddd;
+    .slider__range {
+        width: 300px;
+        -webkit-appearance: none;
+    }
+    .slider__range:focus {
+        outline: none;
+    }
+    .slider__range::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #1976d2;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+    .slider__range::-moz-range-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #1976d2;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+    .slider__range::-webkit-slider-thumb {
+        border: 0px solid #1976d2;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background: #1976d2;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -10px;
+    }
+    .slider__range::-moz-range-thumb{
+        border: 0px solid #1976d2;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        background: #1976d2;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -10px;
+    }
+
+    .slider__range:disabled::-webkit-slider-runnable-track {
+        cursor: unset;
+        background: #ccc;
+    }
+    .slider__range:disabled::-moz-range-track {
+        cursor: unset;
+        background: #ccc;
+    }
+    .slider__range:disabled::-webkit-slider-thumb {
+        border: 0px solid #eee;
+        background: #eee;
+        cursor: unset;
+    }
+    .slider__range:disabled::-moz-range-thumb{
+        border: 0px solid #eee;
+        background: #eee;
         cursor: unset;
     }
 
-    .stepper__btn-left {
-        border-radius: 4px 0 0 4px;
+    .slider__range::-moz-focus-outer {
+        border: 0;
     }
 
-    .stepper__btn-right {
-        border-radius: 0 4px 4px 0;
-    }
-
-    .stepper__input {
-        border: 1px solid #1976d2;
+    .slider__label {
+        position: relative;
+        transform-origin: center center;
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border-radius: 50%;
+        line-height: 36px;
         text-align: center;
-        width: 300px;
-    }
-    .stepper__input:disabled {
-        background-color: #eee;
+        font-weight: bold;
+        box-sizing: border-box;
+        border: 2px solid #1976d2;
+        font-size: 16px;
     }
 </style>
