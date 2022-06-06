@@ -22,7 +22,10 @@
             {#if isHorizon(v)}
                 <!-- 横線 -->
                 {#if data.active}
-                    <div class="line_horizon line_horizon_active">
+                    <div
+                        class="line_horizon line_horizon_active"
+                        class:line_unset_cursor={$disabledWriteLine}
+                    >
                         <div
                             class="line__horizon_pass line__passed"
                             class:line__horizon_rivers={data.rivers}
@@ -30,11 +33,20 @@
                         ></div>
                     </div>
                 {:else if data.flag === Flag.NONE}
-                    <div class="line_horizon line_horizon_none"></div>
+                    <div
+                        class="line_horizon line_horizon_none"
+                    ></div>
                 {:else if data.flag === Flag.OFF}
-                    <div class="line_horizon" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                    <div
+                        class="line_horizon"
+                        on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
+                    ></div>
                 {:else if data.flag === Flag.ON}
-                    <div class="line_horizon line_horizon_active" on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"></div>
+                    <div
+                        class="line_horizon line_horizon_active"
+                        class:line_unset_cursor={$disabledWriteLine}
+                        on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
+                    ></div>
                 {/if}
             {:else}
                 <!-- 縦線 -->
@@ -88,7 +100,6 @@
 
     import PrimaryBtn from '../../parts/buttons/Primary.svelte';
     import ChipVertical from '../../parts/chip/ChipVertical.svelte';
-
 
     // 抽選
     const run = async (num: number): Promise<void> => {
@@ -256,6 +267,10 @@
     /* 横線（右から左に線を動かすためのスタイル） */
     .line__horizon_rivers {
         float: right;
+    }
+    /* 横線（カーソルの解除） */
+    .line_unset_cursor {
+        cursor: unset;
     }
 
     /*
