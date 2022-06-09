@@ -7,7 +7,7 @@ export const userList = writable<UserList>([]);
 export const processing = writable(false);
 /**
  * ユーザーリストの表示フラグ
- * @deprecated
+ * TODO: legacy削除後に未使用になる
  */
 export const showUserList = writable(true);
 // UID
