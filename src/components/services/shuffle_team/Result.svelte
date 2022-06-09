@@ -1,4 +1,4 @@
-<div style:height="{itemHeight}px">
+<div>
     <div class="result">
         {#each $resultUserList as users, i}
             <div class="result__box" style:height="{users.length * 56 + 56 + 24}px">
@@ -22,13 +22,9 @@
     import { quintOut } from 'svelte/easing';
     import { crossfade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import { userList, resultUserList } from './store';
+    import { resultUserList } from './store';
 
     import Chip from '../../parts/chip/Chip.svelte';
-
-    // 結果の表示領域の高さを計算
-    // 1boxあたりの高さ = 抽選対象の各行(56px) + タイトルの高さ(56px) + バッファ(24px)
-    $: itemHeight = $userList.length * 56 + 56 + 24;
 
     // アニメーションの設定
     const [receive] = crossfade({

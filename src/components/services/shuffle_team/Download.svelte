@@ -59,6 +59,7 @@
 
     // TODO: any type
     const onClickDownload = (e: AnchorClickEvent | any): void => {
+        console.log(e);
         // 区切り文字
         const sep = fileType === 'csv' ? ',' : '\t';
 

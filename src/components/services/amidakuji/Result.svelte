@@ -1,85 +1,85 @@
 {#if $amidakuji.length > 0}
-<div class="row header">
-    {#each selected as num, i}
-        <div class="row__fixed_item">
-            <div class="header__select_order">
-                {num !== 0 ? num : ''}
+    <div class="row header">
+        {#each selected as num, i}
+            <div class="row__fixed_item">
+                <div class="header__select_order">
+                    {num !== 0 ? num : ''}
+                </div>
+                <div class="header__btn">
+                    <PrimaryBtn
+                        size="x-small"
+                        on:click="{() => run(i)}"
+                        disabled={$processing || num !== 0}
+                    >{i + 1}</PrimaryBtn>
+                </div>
             </div>
-            <div class="header__btn">
-                <PrimaryBtn
-                    size="x-small"
-                    on:click="{() => run(i)}"
-                    disabled={$processing || num !== 0}
-                >{i + 1}</PrimaryBtn>
-            </div>
-        </div>
-    {/each}
-</div>
-
-{#each $amidakuji as row, h}
-    <div class="row content">
-        {#each row as data, v}
-            {#if isHorizon(v)}
-                <!-- 横線 -->
-                {#if data.active}
-                    <div
-                        class="line_horizon line_horizon_active"
-                        class:line_unset_cursor={$disabledWriteLine}
-                    >
-                        <div
-                            class="line__horizon_pass line__passed"
-                            class:line__horizon_rivers={data.rivers}
-                            style="width: {data.size}%;"
-                        ></div>
-                    </div>
-                {:else if data.flag === Flag.NONE}
-                    <div
-                        class="line_horizon line_horizon_none"
-                    ></div>
-                {:else if data.flag === Flag.OFF}
-                    <div
-                        class="line_horizon"
-                        on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
-                    ></div>
-                {:else if data.flag === Flag.ON}
-                    <div
-                        class="line_horizon line_horizon_active"
-                        class:line_unset_cursor={$disabledWriteLine}
-                        on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
-                    ></div>
-                {/if}
-            {:else}
-                <!-- 縦線 -->
-                {#if data.active}
-                    <div
-                        class="line_vertical"
-                        class:line__vertical_pass={h !== 0}
-                    >
-                        <div class="line__passed" style="height: {data.size}%;"></div>
-                    </div>
-                {:else}
-                    <div class="line_vertical"></div>
-                {/if}
-            {/if}
         {/each}
     </div>
-{/each}
 
-<div class="row footer">
-    {#each $selectedUserList as user}
-        <div class="row__fixed_item">
-            <div class="header__select_order">
-                {user.rank !== 0 ? user.rank : ''}
-            </div>
-            <div class="footer__rank">
-                {user.rank !== 0 ? user.position : ''}
-            </div>
-            <div class="footer__user">
-                <ChipVertical size="midium">{user.rank !== 0 ? user.name : ''}</ChipVertical>
-            </div>
+    {#each $amidakuji as row, h}
+        <div class="row content">
+            {#each row as data, v}
+                {#if isHorizon(v)}
+                    <!-- 横線 -->
+                    {#if data.active}
+                        <div
+                            class="line_horizon line_horizon_active"
+                            class:line_unset_cursor={$disabledWriteLine}
+                        >
+                            <div
+                                class="line__horizon_pass line__passed"
+                                class:line__horizon_rivers={data.rivers}
+                                style="width: {data.size}%;"
+                            ></div>
+                        </div>
+                    {:else if data.flag === Flag.NONE}
+                        <div
+                            class="line_horizon line_horizon_none"
+                        ></div>
+                    {:else if data.flag === Flag.OFF}
+                        <div
+                            class="line_horizon"
+                            on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
+                        ></div>
+                    {:else if data.flag === Flag.ON}
+                        <div
+                            class="line_horizon line_horizon_active"
+                            class:line_unset_cursor={$disabledWriteLine}
+                            on:click="{() => !$disabledWriteLine && amidakuji.set(writeHrizon($amidakuji, h, v))}"
+                        ></div>
+                    {/if}
+                {:else}
+                    <!-- 縦線 -->
+                    {#if data.active}
+                        <div
+                            class="line_vertical"
+                            class:line__vertical_pass={h !== 0}
+                        >
+                            <div class="line__passed" style="height: {data.size}%;"></div>
+                        </div>
+                    {:else}
+                        <div class="line_vertical"></div>
+                    {/if}
+                {/if}
+            {/each}
         </div>
     {/each}
-</div>
+
+    <div class="row footer">
+        {#each $selectedUserList as user}
+            <div class="row__fixed_item">
+                <div class="header__select_order">
+                    {user.rank !== 0 ? user.rank : ''}
+                </div>
+                <div class="footer__rank">
+                    {user.rank !== 0 ? user.position : ''}
+                </div>
+                <div class="footer__user">
+                    <ChipVertical size="midium">{user.rank !== 0 ? user.name : ''}</ChipVertical>
+                </div>
+            </div>
+        {/each}
+    </div>
 {/if}
 
 <script lang="ts">
