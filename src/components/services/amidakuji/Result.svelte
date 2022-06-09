@@ -1,15 +1,15 @@
 {#if $amidakuji.length > 0}
 <div class="row header">
-    {#each $selectedUserList as user, i}
+    {#each selected as num, i}
         <div class="row__fixed_item">
             <div class="header__select_order">
-                {user.order !== 0 ? user.order : ''}
+                {num !== 0 ? num : ''}
             </div>
             <div class="header__btn">
                 <PrimaryBtn
                     size="x-small"
                     on:click="{() => run(i)}"
-                    disabled={$processing || user.order !== 0}
+                    disabled={$processing || num !== 0}
                 >{i + 1}</PrimaryBtn>
             </div>
         </div>
@@ -66,10 +66,13 @@
 {/each}
 
 <div class="row footer">
-    {#each $selectedUserList as user, i}
+    {#each $selectedUserList as user}
         <div class="row__fixed_item">
+            <div class="header__select_order">
+                {user.rank !== 0 ? user.rank : ''}
+            </div>
             <div class="footer__rank">
-                {user.position !== 0 ? user.position : ''}
+                {user.rank !== 0 ? user.position : ''}
             </div>
             <div class="footer__user">
                 <ChipVertical size="midium">{user.rank !== 0 ? user.name : ''}</ChipVertical>
@@ -101,6 +104,17 @@
     import PrimaryBtn from '../../parts/buttons/Primary.svelte';
     import ChipVertical from '../../parts/chip/ChipVertical.svelte';
 
+    // 選択した順番を保持する（0 = 未選択）
+    let selected: number[] = [];
+
+    // ユーザーリストが更新されたら抽選結果を保持する配列をクリア
+    selectedUserList.subscribe(value => {
+        if ($disabledWriteLine) {
+            return;
+        }
+        selected = [...value].map(() => 0);
+    });
+
     // 抽選
     const run = async (num: number): Promise<void> => {
         processing.set(true);
@@ -109,8 +123,8 @@
         amidakuji.set(clearActiveLine($amidakuji));
         amidakuji.set(hideUnselectedLine($amidakuji));
 
-        // 選択された順番
-        $selectedUserList[num].order = $rank;
+        // 選択位置を抽選済みにする
+        selected[num] = $rank;
 
         await sleep(500);
 
