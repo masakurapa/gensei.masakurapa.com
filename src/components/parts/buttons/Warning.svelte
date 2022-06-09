@@ -33,6 +33,7 @@
     }
     button:disabled {
         background-color: #ddd !important;
+        color: #FFFFFF;
         cursor: unset;
     }
     button:focus {
