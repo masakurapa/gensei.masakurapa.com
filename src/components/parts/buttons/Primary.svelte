@@ -1,30 +1,36 @@
 <button
     {disabled}
     on:click
-    class="{SIZE[size]}"
+    class="{SIZE[size]} {FONT_SIZE[fontSize]}"
 >
     <slot></slot>
 </button>
 
 <script lang="ts">
     const SIZE = {
-        'x-small': 'x_small__btn',
-        'small': 'small__btn',
-        'midium': 'midium__btn',
-        'large': 'large__btn',
+        '30_200': 'btn__h30_w200',
+        '40_30': 'btn__h40_w30',
+        '40_60': 'btn__h40_w60',
+        '40_200': 'btn__h40_w200',
+        '40_400': 'btn__h40_w400',
     } as const;
-    type SIZE_TYPE = 'x-small' | 'small' | 'midium' | 'large';
+    type SIZE_TYPE = keyof typeof SIZE ;
+
+    const FONT_SIZE = {
+        'default': 'fnt__default',
+        'small': 'fnt__small',
+    }
+    type FONT_SIZE_TYPE = keyof typeof FONT_SIZE ;
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false;
     export let size: SIZE_TYPE;
+    export let fontSize: FONT_SIZE_TYPE = 'default';
 </script>
 
 <style>
     button {
-        height: 40px;
         font-family: inherit;
-        font-size: inherit;
         padding: 0.5em;
         box-sizing: border-box;
         border: 0.05em solid #ccc;
@@ -42,17 +48,34 @@
         border-color: #666;
     }
 
-    .x_small__btn {
+    .fnt__default {
+        font-size: inherit;
+    }
+    .fnt__small {
+        font-size: small;
+    }
+
+    .btn__h30_w200 {
+        height: 30px;
+        width: 200px;
+        padding: 0;
+    }
+
+    .btn__h40_w30 {
+        height: 40px;
         width: 30px;
         padding: 0;
     }
-    .small__btn {
+    .btn__h40_w60 {
+        height: 40px;
         width: 60px;
     }
-    .midium__btn {
+    .btn__h40_w200 {
+        height: 40px;
         width: 200px;
     }
-    .large__btn {
+    .btn__h40_w400 {
+        height: 40px;
         width: 400px;
     }
 </style>

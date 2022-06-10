@@ -1,5 +1,5 @@
 <div class="result">
-    <div class="result__box" style:height="{itemHeight}px">
+    <div class="result__box">
         <div class="result__header">抽選対象</div>
 
         {#each targetUserList as item (item.id)}
@@ -14,7 +14,7 @@
         {/each}
     </div>
 
-    <div class="result__box" style:height="{itemHeight}px">
+    <div class="result__box">
         <div class="result__header">抽選結果</div>
 
         {#each resultUserList as item (item.id)}
@@ -24,7 +24,7 @@
                 out:send={{ key: item.id }}
                 animate:flip
             >
-                <Chip size="large" highlight>{item.rank} {item.name}</Chip>
+                <Chip size="large">{item.rank} {item.name}</Chip>
             </div>
         {/each}
     </div>
@@ -43,9 +43,6 @@
     $: targetUserList = $tempUserList.filter(item => item.rank === 0);
     // 抽選結果用のユーザーリスト
     $: resultUserList = $tempUserList.filter(item => item.rank !== 0).sort((a, b) => a.rank > b.rank ? 1 : -1);
-    // boxの高さ
-    // 抽選対象の各行(56px) + タイトルの高さ(56px) + バッファ(24px)
-    $: itemHeight = $userList.length * 56 + 56 + 24;
 
     // アニメーションの設定
     const [send, receive] = crossfade({

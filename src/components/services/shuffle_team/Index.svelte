@@ -1,8 +1,4 @@
 <div class="wrapper">
-    <Users/>
-</div>
-
-<div class="wrapper">
     <Setting/>
 </div>
 
@@ -25,7 +21,6 @@
 <script lang="ts">
     import { isSmartPhone } from '../../../util';
 
-    import Users from '../../parts/users/Index.svelte';
     import DownloadPNG from '../../parts/download/PNG.svelte';
 
     import Setting from './Setting.svelte';

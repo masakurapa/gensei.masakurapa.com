@@ -12,7 +12,7 @@
 
 <style>
     button {
-        widows: 160px;
+        width: 120px;
         height: 40px;
         font-family: inherit;
         font-size: inherit;

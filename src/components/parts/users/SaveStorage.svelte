@@ -1,9 +1,9 @@
 <div>
     <PrimaryBtn
-        size="midium"
+        size="40_200"
         disabled={$processing}
         on:click="{save}"
-    >抽選対象を保存する</PrimaryBtn>
+    >抽選対象を保存</PrimaryBtn>
     <div class="text">※次回アクセス時に保存した抽選対象を使用します</div>
 </div>
 

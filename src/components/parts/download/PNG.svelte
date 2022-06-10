@@ -1,13 +1,18 @@
-<button
+<PrimaryBtn
+    size="30_200"
+    fontSize="small"
     on:click={download}
     {disabled}
 >
-    <i class="fas fa-download"></i> 結果を保存
-</button>
+    <i class="fas fa-download"></i> PNG画像をダウンロード
+</PrimaryBtn>
 <div id="download"></div>
 
 <script lang="ts">
     import { processing } from "../../../store";
+
+    import PrimaryBtn from "../buttons/Primary.svelte";
+
     import Image from "./Image.svelte";
 
     export let id: string;
@@ -39,27 +44,3 @@
         downloading = false;
     };
 </script>
-
-<style>
-    button {
-        height: 36px;
-        width: 160px;
-        font-family: inherit;
-        font-size: small;
-        padding: 0.5em;
-        box-sizing: border-box;
-        border: 0.05em solid #ccc;
-        border-radius: 0.25em;
-        background-color: #1976d2;
-        color: #FFFFFF;
-        outline: none;
-        cursor: pointer;
-    }
-    button:disabled {
-        background-color: #ddd !important;
-        cursor: unset;
-    }
-    button:focus {
-        border-color: #666;
-    }
-</style>

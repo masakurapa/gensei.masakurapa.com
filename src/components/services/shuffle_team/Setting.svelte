@@ -2,12 +2,27 @@
     <FormWrapper>
         <span slot="label">抽選対象</span>
         <div>
+            <div class="user_list__list_size">{listSize}件</div>
             <TextArea
                 value="{inputUserList}"
                 on:change={onChangeUserList}
                 on:input={onInputUserList}
             />
-            <div class="user_list__list_size">対象数数: {listSize}</div>
+
+            <div class="user_list__btn_wrapper">
+                <PrimaryBtn
+                    size="30_200"
+                    fontSize="small"
+                    disabled={$processing}
+                    on:click={onClickSetUserList}
+                >入力済みの抽選対象を使う</PrimaryBtn>
+                <WarningBtn
+                    size="30_80"
+                    fontSize="small"
+                    disabled={$processing}
+                    on:click={onClickResetUserList}
+                >リセット</WarningBtn>
+            </div>
         </div>
     </FormWrapper>
     <FormWrapper>
@@ -30,6 +45,8 @@
 <script lang="ts">
     import type { InputEvent } from '../../../@types/event';
 
+    import { processing, userList as appUserList } from '../../../store';
+
     import { toInt } from '../../../util';
     import {
         equalityFlag,
@@ -43,6 +60,10 @@
     import Checkbox from '../../parts/forms/Checkbox.svelte'
     import Number from '../../parts/forms/Number.svelte'
     import TextArea from '../../parts/forms/TextArea.svelte'
+
+    import PrimaryBtn from '../../parts/buttons/Primary.svelte';
+    import WarningBtn from '../../parts/buttons/Warning.svelte';
+
 
     // 抽選数の最低数
     const TEAM_NUM_MIN = 1;
@@ -66,6 +87,23 @@
     const onChangeEqualityFlag = (event: InputEvent|any): void => {
         equalityFlag.set(event.detail.value)
     };
+
+    // 入力済みのユーザーリストを設定
+    const onClickSetUserList = (): void => {
+        const names = $appUserList.map(obj => obj.name);
+
+        inputUserList = joinUserList(names)
+        listSize = names.length;
+        userList.set(names);
+    }
+    // ユーザーリストのリセット
+    const onClickResetUserList = (): void => {
+        inputUserList = '';
+        listSize = 0;
+        userList.set([]);
+    }
+
+
 
     // 抽選対象の空行を取り除く
     const filterUserList = (str: string): string[] => {
@@ -95,5 +133,9 @@
 <style>
     .user_list__list_size {
         text-align: right;
+    }
+    .user_list__btn_wrapper {
+        display: flex;
+        justify-content: space-between;
     }
 </style>

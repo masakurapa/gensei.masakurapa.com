@@ -12,7 +12,7 @@
     />
     <div class="btn__wrapper">
         <PrimaryBtn
-            size="small"
+            size="40_60"
             {disabled}
             on:click="{click}"
         >追加</PrimaryBtn>

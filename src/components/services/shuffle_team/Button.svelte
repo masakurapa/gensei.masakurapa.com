@@ -1,5 +1,5 @@
 <PrimaryBtn
-    size="large"
+    size="40_400"
     {disabled}
     on:click="{run}"
 >{$processing ? '抽選中！' : '抽選開始！'}</PrimaryBtn>

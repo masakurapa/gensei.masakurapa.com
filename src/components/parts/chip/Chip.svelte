@@ -1,4 +1,4 @@
-<div class="chip {SIZE[size]}"  class:highlight={highlight}>
+<div class="chip {SIZE[size]}">
     <div class="chip__content">
         <slot></slot>
     </div>
@@ -11,7 +11,6 @@
     } as const;
     type SIZE_TYPE = 'midium' | 'large';
 
-    export let highlight = false;
     export let size: SIZE_TYPE;
 </script>
 
@@ -34,10 +33,6 @@
         word-wrap: break-word;
         word-break: break-all;
         text-align: left;
-    }
-
-    .highlight {
-        background-color: rgb(180,240,100);
     }
 
     .midium {

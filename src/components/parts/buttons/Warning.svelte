@@ -1,25 +1,32 @@
 <button
     {disabled}
     on:click
-    class="{SIZE[size]}"
+    class="{SIZE[size]} {FONT_SIZE[fontSize]}"
 >
     <slot></slot>
 </button>
 
 <script lang="ts">
     const SIZE = {
-        'midium': 'midium__btn',
+        '30_80': 'btn__h30_w80',
+        '40_200': 'btn__h40_w200',
     } as const;
-    type SIZE_TYPE = 'midium';
+    type SIZE_TYPE = keyof typeof SIZE;
+
+    const FONT_SIZE = {
+        'default': 'fnt__default',
+        'small': 'fnt__small',
+    }
+    type FONT_SIZE_TYPE = keyof typeof FONT_SIZE ;
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false;
     export let size: SIZE_TYPE;
+    export let fontSize: FONT_SIZE_TYPE = 'default';
 </script>
 
 <style>
     button {
-        height: 40px;
         font-family: inherit;
         font-size: inherit;
         padding: 0.5em;
@@ -40,13 +47,20 @@
         border-color: #666;
     }
 
-    .small__btn {
-        width: 60px;
+    .fnt__default {
+        font-size: inherit;
     }
-    .midium__btn {
+    .fnt__small {
+        font-size: small;
+    }
+
+    .btn__h30_w80 {
+        height: 30px;
+        width: 80px;
+        padding: 0;
+    }
+    .btn__h40_w200 {
+        height: 40px;
         width: 200px;
-    }
-    .large__btn {
-        width: 400px;
     }
 </style>

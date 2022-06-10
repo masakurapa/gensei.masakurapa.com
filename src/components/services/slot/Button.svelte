@@ -1,5 +1,5 @@
 <PrimaryBtn
-    size="large"
+    size="40_400"
     {disabled}
     on:click="{run}"
 >スタート</PrimaryBtn>
