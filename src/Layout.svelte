@@ -19,6 +19,15 @@
     </main>
 </div>
 
+<!-- TODO: legacy削除後にfooterは削除 -->
+<footer>
+    <div class="footer__title">&copy;2019 厳正な抽選ツール</div>
+    <div class="footer__link">
+        <i class="fab fa-github-square" style="color: black; font-size: 1.5em;"></i>
+        <a href="https://github.com/masakurapa/gensei.masakurapa.com" target="_blank">gensei.masakurapa.com</a>
+    </div>
+</footer>
+
 <script lang="ts">
     import type { Component, ComponentList } from './@types/component';
 
@@ -101,5 +110,30 @@
 
     .menu__active {
         background-color: #F0F0F0;
+    }
+
+    /* TODO: legacy削除後に以下のCSSは削除 */
+    header {
+        background-color: #659AD2;
+        color: #FFF;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 36px;
+        text-align: center;
+    }
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        padding: 12px 0 12px 12px;
+    }
+
+    .footer__title {
+        margin-bottom: 5px;
+    }
+
+    .footer__link {
+        display: inline-flex;
+        align-items: center
     }
 </style>

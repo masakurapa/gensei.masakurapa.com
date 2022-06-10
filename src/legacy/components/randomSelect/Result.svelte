@@ -1,6 +1,6 @@
 <div class="result">
     <div class="left">
-        <h2>抽選対象</h2>
+        <h2 class="legacy-h2">抽選対象</h2>
 
         {#each targetUserList as item (item.id)}
             <label
@@ -14,7 +14,7 @@
     </div>
 
     <div class="right">
-        <h2>抽選結果</h2>
+        <h2 class="legacy-h2">抽選結果</h2>
 
         {#each resultUserList as item (item.id)}
             <label

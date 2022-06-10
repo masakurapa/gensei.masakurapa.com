@@ -11,6 +11,7 @@ body {
     font-family: 'Hannotate SC','Chalkboard SE','ＭＳ 明朝', 'MS Mincho',sans-serif !important;
 }
 
+
 header {
     background-color: #659AD2;
     color: #FFF;
@@ -20,6 +21,7 @@ header {
     text-align: center;
 }
 
+/* TODO: legacy削除後にアンコメント
 footer {
     position: fixed;
     left: 0;
@@ -34,4 +36,4 @@ footer {
 .footer__link {
     display: inline-flex;
     align-items: center
-}
+} */

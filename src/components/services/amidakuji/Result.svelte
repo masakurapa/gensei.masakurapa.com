@@ -1,11 +1,11 @@
 {#if $amidakuji.length > 0}
-    <div class="row header">
+    <div class="row result_header">
         {#each selected as num, i}
             <div class="row__fixed_item">
-                <div class="header__select_order">
+                <div class="result_header__select_order">
                     {num !== 0 ? num : ''}
                 </div>
-                <div class="header__btn">
+                <div class="result_header__btn">
                     <PrimaryBtn
                         size="x-small"
                         on:click="{() => run(i)}"
@@ -65,16 +65,16 @@
         </div>
     {/each}
 
-    <div class="row footer">
+    <div class="row result_footer">
         {#each $selectedUserList as user}
             <div class="row__fixed_item">
                 <div class="header__select_order">
                     {user.rank !== 0 ? user.rank : ''}
                 </div>
-                <div class="footer__rank">
+                <div class="result_footer__rank">
                     {user.rank !== 0 ? user.position : ''}
                 </div>
-                <div class="footer__user">
+                <div class="result_footer__user">
                     <ChipVertical size="midium">{user.rank !== 0 ? user.name : ''}</ChipVertical>
                 </div>
             </div>
@@ -219,15 +219,15 @@
     /*
      * ヘッダー（数字ボタンエリア）
      */
-    .header {
+    .result_header {
         margin-bottom: 20px;
         align-items: flex-end;
     }
-    .header__select_order {
+    .result_header__select_order {
         height: 24px;
         text-align: center;
     }
-    .header__btn {
+    .result_header__btn {
         text-align: center;
     }
 
@@ -290,11 +290,11 @@
     /*
      * フッター（結果エリア）
      */
-    .footer {
+    .result_footer {
         margin-top: 20px;
         align-items: flex-start;
     }
-    .footer__rank {
+    .result_footer__rank {
         height: 40px;
         line-height: 40px;
         width: 30px;
@@ -310,7 +310,7 @@
         text-align: center;
         margin: 0 auto;
     }
-    .footer__user {
+    .result_footer__user {
         display: flex;
         justify-content: center;
     }

@@ -1,6 +1,4 @@
 <div class="main-wrapper">
-    <h1>厳正な抽選ツール</h1>
-
     <CollapseSimpleFrame id="header-description" label="ツールについて">
         <div>ちょっとしたこと、なかなか決められないことなどなど...ツールでサクッと決めちゃいましょう！</div>
         <div>ランダムで選ぶだけではなく、あみだくじ、スロット形式で気分を変えながら抽選ができます！</div>
