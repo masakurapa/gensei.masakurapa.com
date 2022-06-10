@@ -1,5 +1,4 @@
 {#if isSmartPhone()}
-    <GlobalCss/>
     <LegacyLayout/>
 {:else}
     <Layout/>
@@ -10,5 +9,4 @@
 
     import Layout from './Layout.svelte';
     import LegacyLayout from './legacy/components/Layout.svelte';
-    import GlobalCss from './GlobalCss.svelte';
 </script>

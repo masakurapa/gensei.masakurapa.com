@@ -40,6 +40,8 @@
     import { isSmartPhone } from '../../util';
     import { setLot, getLot, removeLot } from '../../storage';
 
+    import './GlobalCss.svelte';
+
     import InputSelect from '../parts/input/InputSelect.svelte';
     import CollapseFrame from '../components/common/collapse/CollapseFrame.svelte';
     import UserList from '../components/common/userList/Index.svelte';
