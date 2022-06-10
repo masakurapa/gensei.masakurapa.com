@@ -5,7 +5,7 @@
 >ダウンロード</a>
 
 <script lang="ts">
-    import domtoimage from 'dom-to-image';
+    import domtoimage from 'dom-to-image-more';
 
     export let id: string;
     export let fileName: string;
