@@ -10,7 +10,7 @@
 <div class="wrapper wrapper__download_btn">
     <DownloadPNG id="amidakuji" />
 </div>
-<div class="wrapper" id="download-amidakuji">
+<div class="wrapper wrapper__download_content" id="download-amidakuji">
     <Result/>
 </div>
 
@@ -36,5 +36,8 @@
         width: 900px;
         text-align: right;
         margin: 28px 0;
+    }
+    .wrapper__download_content {
+        width: fit-content;
     }
 </style>

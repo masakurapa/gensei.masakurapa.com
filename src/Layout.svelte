@@ -121,14 +121,6 @@
     }
 
     /* TODO: legacy削除後に以下のCSSは削除 */
-    header {
-        background-color: #659AD2;
-        color: #FFF;
-        font-size: 20px;
-        font-weight: bold;
-        line-height: 36px;
-        text-align: center;
-    }
     footer {
         position: fixed;
         left: 0;
