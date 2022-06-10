@@ -8,6 +8,7 @@
 
 <script lang="ts">
     const SIZE = {
+        '30_30': 'btn__h30_w30',
         '30_200': 'btn__h30_w200',
         '40_30': 'btn__h40_w30',
         '40_60': 'btn__h40_w60',
@@ -55,6 +56,12 @@
         font-size: small;
     }
 
+    .btn__h30_w30 {
+        height: 30px;
+        width: 30px;
+        line-height: 26px;
+        padding: 0;
+    }
     .btn__h30_w200 {
         height: 30px;
         width: 200px;

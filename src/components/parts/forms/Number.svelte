@@ -1,15 +1,31 @@
 <div class="stepper">
     <div class="slider">
-        <input
-            class="slider__range"
-            type="range"
-            bind:value={value}
-            disabled={disabledForm}
-            min={min}
-            max={max}
-            step={step}
-            on:input="{onChange}"
-        >
+        <div class="slider__minus_btn">
+            <PrimaryBtn
+                size="30_30"
+                disabled={disabledForm || value === min}
+                on:click={onClickCountDown}
+            ><i class="fas fa-minus fa-sm"></i></PrimaryBtn>
+        </div>
+        <div class="slider__range_wrapper">
+            <input
+                class="slider__range"
+                type="range"
+                bind:value={value}
+                disabled={disabledForm}
+                min={min}
+                max={max}
+                step={step}
+                on:input="{onChange}"
+            >
+        </div>
+        <div class="slider__plus_btn">
+            <PrimaryBtn
+                size="30_30"
+                disabled={disabledForm || value === max}
+                on:click={onClickCountUp}
+            ><i class="fas fa-plus fa-sm"></i></PrimaryBtn>
+        </div>
     </div>
     <div class="slider__label">{value}</div>
  </div>
@@ -17,6 +33,8 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { processing } from '../../../store';
+
+    import PrimaryBtn from '../buttons/Primary.svelte';
 
     export let value = 1;
     export let min = 1;
@@ -30,6 +48,22 @@
     $: disabledForm = disabled || $processing;
 
     const dispatch = createEventDispatcher();
+
+    const onClickCountDown = () => {
+        if (value === min)  {
+            return;
+        }
+        oldValue = value;
+        dispatch('change', { value: value - 1 });
+    };
+
+    const onClickCountUp = () => {
+        if (value === max)  {
+            return;
+        }
+        oldValue = value;
+        dispatch('change', { value: value + 1 });
+    };
 
     // TODO: any type
     const onChange = (event: any): void => {
@@ -60,8 +94,20 @@
 
     .slider {
         margin: 0 12px 0 12px;
+        display: flex;
+        align-items: center;
     }
 
+    .slider__minus_btn {
+        margin-right: 8px;
+    }
+    .slider__plus_btn {
+        margin-left: 8px;
+    }
+
+    .slider__range_wrapper {
+        display: flex;
+    }
     .slider__range {
         width: 300px;
         -webkit-appearance: none;
