@@ -15,6 +15,16 @@
         margin: 0;
     }
 
+    :global(header) {
+        display: none;
+        visibility: hidden;
+    }
+
+    :global(footer) {
+        display: none;
+        visibility: hidden;
+    }
+
     :global(h1) {
         font-size: 40px !important;
         font-weight: bold !important;
