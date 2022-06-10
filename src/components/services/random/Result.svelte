@@ -79,6 +79,7 @@
         border: 0.1em solid #668ad8;
         border-radius: 16px;
         box-sizing: border-box;
+        background-color: #FFFFFF;
     }
 
     .result__header {

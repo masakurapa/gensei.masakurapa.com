@@ -61,6 +61,7 @@
         box-sizing: border-box;
         margin-bottom: 24px;
         margin-right: 32px;
+        background-color: #FFFFFF;
     }
 
     .result__header {
