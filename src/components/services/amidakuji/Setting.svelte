@@ -37,7 +37,7 @@
     // 線を引ける最小行数
     const LINE_NUM_MIN = 5;
     // 線を引ける最大行数
-    const LINE_NUM_MAX = 25;
+    const LINE_NUM_MAX = 50;
 
     // 行数変更時のイベント
     const onChangeLineNum = (event: InputEvent|any): void => {

@@ -21,7 +21,7 @@
     const breaks = 0.003;
     const endSpeed = 0.05;
     const firstLetter = 220;
-    const delay = 40;
+    const delay = 20;
 
     const run = async (): Promise<void> => {
         processing.set(true);
@@ -39,7 +39,7 @@
             obj.canvas.height = obj.canvas.clientHeight;
 
             requestAnimationFrame(() => slot(obj));
-            await sleep(50);
+            await sleep(10);
         }
     };
 

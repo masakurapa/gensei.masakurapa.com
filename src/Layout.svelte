@@ -29,9 +29,11 @@
 </footer>
 
 <script lang="ts">
+    import { onMount } from 'svelte';
     import type { Component, ComponentList } from './@types/component';
 
-    import { processing } from './store';
+    import { processing, setUser } from './store';
+    import { getUserList } from './storage';
 
     import Random from './components/services/random/Index.svelte';
     import Amidakuji from './components/services/amidakuji/Index.svelte';
@@ -54,6 +56,12 @@
         }
         component = value;
     }
+
+    onMount(() => {
+        // マウント時にユーザーリストをローカルストレージから復元
+        // ここ以外で復元すると機能切替時に入力内容が消える
+        setUser(getUserList());
+    });
 </script>
 
 <style>

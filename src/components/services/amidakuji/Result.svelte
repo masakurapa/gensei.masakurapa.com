@@ -2,7 +2,7 @@
     <div class="row result_header">
         {#each selected as num, i}
             <div class="row__fixed_item">
-                <div class="result_header__select_order">
+                <div class="select_order">
                     {num !== 0 ? num : ''}
                 </div>
                 <div class="result_header__btn">
@@ -68,7 +68,7 @@
     <div class="row result_footer">
         {#each $selectedUserList as user}
             <div class="row__fixed_item">
-                <div class="header__select_order">
+                <div class="select_order">
                     {user.rank !== 0 ? user.rank : ''}
                 </div>
                 <div class="result_footer__rank">
@@ -186,14 +186,7 @@
     const progress = async (h: number, v: number): Promise<void> => {
         for (let i = 1; i <= 10; i++) {
             $amidakuji[h][v].size = i * 10;
-            const num = $lineNum;
-            if (num >= 20) {
-                await sleep(4);
-            } else if (num >= 10) {
-                await sleep(8);
-            } else {
-                await sleep(12);
-            }
+            await sleep(1);
         }
     };
 </script>
@@ -215,6 +208,11 @@
         width: 80px;
         flex-shrink: 0;
     }
+    /* header/footerに表示する選択順の表示領域 */
+    .select_order {
+        height: 24px;
+        text-align: center;
+    }
 
     /*
      * ヘッダー（数字ボタンエリア）
@@ -222,10 +220,6 @@
     .result_header {
         margin-bottom: 20px;
         align-items: flex-end;
-    }
-    .result_header__select_order {
-        height: 24px;
-        text-align: center;
     }
     .result_header__btn {
         text-align: center;

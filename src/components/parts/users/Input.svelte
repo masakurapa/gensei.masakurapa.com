@@ -1,5 +1,5 @@
 <FormWrapper>
-    <span slot="label">抽選対象（{userNameMax}文字以内）</span>
+    <span slot="label">抽選対象（{USER_NAME_MAX}文字以内）</span>
 
     <TextBox
         {disabled}
@@ -7,8 +7,8 @@
         placeholder="Enterを押して追加"
         on:keydown={keydown}
         on:change={onChange}
-        size={20}
-        maxlength={userNameMax}
+        size={24}
+        maxlength={USER_NAME_MAX}
     />
     <div class="btn__wrapper">
         <PrimaryBtn
@@ -19,11 +19,26 @@
     </div>
 </FormWrapper>
 
+<div class="user_list">
+    <div class="user_list__header">({$userList.length}/{USER_LIST_MAX})</div>
+    <div class="user_list__item">
+        {#each $userList as item (item.id)}
+            <Chip on:click={() => removeUser(item.id)}>{item.name}</Chip>
+        {/each}
+    </div>
+</div>
+
 <script lang="ts">
     import type { InputEvent, KeyEvent } from '../../../@types/event';
 
-    import { userList, processing, addUser } from '../../../store';
+    import {
+        userList,
+        processing,
+        addUser,
+        removeUser,
+     } from '../../../store';
 
+    import Chip from '../chip/ChipWithDelete.svelte';
     import FormWrapper from '../forms/Wrapper.svelte';
     import TextBox from '../forms/TextBox.svelte';
     import PrimaryBtn from '../buttons/Primary.svelte';
@@ -31,11 +46,11 @@
     let inputValue = '';
 
     // 入力可能な文字数
-    const userNameMax = 10;
+    const USER_NAME_MAX = 10;
     // 入力可能な対象の最大数
-    const userListMax = 15;
+    const USER_LIST_MAX = 30;
     // ユーザー追加の無効判定
-    $: disabled = $processing || $userList.length >= userListMax;
+    $: disabled = $processing || $userList.length >= USER_LIST_MAX;
 
     const click = (): void => {
         if (inputValue.trim().length === 0) {
@@ -61,6 +76,20 @@
 
 <style>
     .btn__wrapper {
-        margin-left: 1em;
+        margin-left: 16px;
+    }
+
+    .user_list {
+        margin-top: 16px;
+    }
+
+    .user_list__item {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .user_list__header {
+        margin-bottom: 8px;
+        width: 780px;
+        text-align: right;
     }
 </style>
