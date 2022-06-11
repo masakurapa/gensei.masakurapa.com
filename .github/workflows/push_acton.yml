@@ -87,7 +87,7 @@ jobs:
       #         - 'src/**'
       #         - 'package-lock.json'
       - name: Deploy
-        if: steps.changes.outputs.src == 'true'
+        # if: steps.changes.outputs.src == 'true'
         env:
           S3_UPLOAD_BUCKET: ${{ secrets.S3_UPLOAD_BUCKET }}
         run: |
