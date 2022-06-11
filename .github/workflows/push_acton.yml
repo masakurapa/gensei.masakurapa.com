@@ -77,15 +77,15 @@ jobs:
         run: |
           npm run build
           sed -i -e "s/LASTMOD_DATE/`date +%Y-%m-%d`/" public/sitemap.xml
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            src:
-              - '.github/workflows/**'
-              - 'public/**'
-              - 'src/**'
-              - 'package-lock.json'
+      # - uses: dorny/paths-filter@v2
+      #   id: changes
+      #   with:
+      #     filters: |
+      #       src:
+      #         - '.github/workflows/**'
+      #         - 'public/**'
+      #         - 'src/**'
+      #         - 'package-lock.json'
       - name: Deploy
         if: steps.changes.outputs.src == 'true'
         env:
