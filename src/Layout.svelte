@@ -39,12 +39,14 @@
     import Amidakuji from './components/services/amidakuji/Index.svelte';
     import Slot from './components/services/slot/Index.svelte';
     import ShuffleTeam from './components/services/shuffle_team/Index.svelte';
+    import Gift from './components/services/gift/Index.svelte';
 
     const components: ComponentList = [
         { value: 'amidakuji', text: 'あみだくじ', component: Amidakuji },
         { value: 'random', text: 'ランダム', component: Random },
         { value: 'slot', text: 'スロット', component: Slot },
         { value: 'shuffleTeam', text: 'チーム分け', component: ShuffleTeam },
+        { value: 'gitf', text: '景品を抽選', component: Gift },
     ];
 
     // デフォルトはcomponentsの先頭を表示
