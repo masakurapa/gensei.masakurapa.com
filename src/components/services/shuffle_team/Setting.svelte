@@ -47,7 +47,11 @@
 
     import { processing, userList as appUserList } from '../../../store';
 
-    import { toInt } from '../../../util';
+    import {
+        toInt,
+        filterTextAreaInput,
+        convertTextAreaInput,
+    } from '../../../util';
     import {
         equalityFlag,
         teamNum,
@@ -70,13 +74,13 @@
 
     // 抽選対象の変更時
     const onChangeUserList = (event: InputEvent): void => {
-        const filtered = filterUserList(event.target.value);
-        inputUserList = joinUserList(filtered);
-        userList.set(filterUserList(event.target.value));
+        const filtered = filterTextAreaInput(event.target.value);
+        inputUserList = convertTextAreaInput(filtered);
+        userList.set(filterTextAreaInput(event.target.value));
     };
     // 抽選対象の入力時
     const onInputUserList = (event: InputEvent): void => {
-        listSize = filterUserList(event.target.value).length;
+        listSize = filterTextAreaInput(event.target.value).length;
     };
     // チーム数の入力時
     const onChangeTeamNum = (event: InputEvent|any): void => {
@@ -92,7 +96,7 @@
     const onClickSetUserList = (): void => {
         const names = $appUserList.map(obj => obj.name);
 
-        inputUserList = joinUserList(names)
+        inputUserList = convertTextAreaInput(names)
         listSize = names.length;
         userList.set(names);
     }
@@ -101,17 +105,6 @@
         inputUserList = '';
         listSize = 0;
         userList.set([]);
-    }
-
-
-
-    // 抽選対象の空行を取り除く
-    const filterUserList = (str: string): string[] => {
-        return str.trim().split(/\n/).filter((val) => val.trim() !== '');
-    }
-    // Convert array to string
-    const joinUserList = (list: string[]): string => {
-        return list.join('\n');
     }
 
     // ユーザーリスト更新時に設定値を再初期化
@@ -123,7 +116,7 @@
         teamNum.set($teamNum > value.length ? value.length : $teamNum);
     })
 
-    let inputUserList = joinUserList($userList);
+    let inputUserList = convertTextAreaInput($userList);
     let listSize = 0;
 
     // 抽選人数の最大数

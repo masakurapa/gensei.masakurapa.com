@@ -71,3 +71,21 @@ export const isSmartPhone = (): boolean => {
         return false;
     }
 };
+
+/**
+ * テキストエリアの入力値から空行を取り除く
+ * @param {string} str
+ * @returns string
+ */
+export const filterTextAreaInput = (str: string): string[] => {
+    return str.trim().split(/\n/).filter((val) => val.trim() !== '');
+};
+
+/**
+ * 文字列の配列をテキストエリアに設定可能な文字列に変換して返す
+ * @param {string[]} list
+ * @returns string
+ */
+export const convertTextAreaInput = (list: string[]): string => {
+    return list.join('\n');
+};
