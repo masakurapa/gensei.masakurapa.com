@@ -6,6 +6,7 @@ export interface Component {
     text: string;
     useSp?: boolean; // TODO: 削除
     component?: any; // TODO: 必須にする
+    clickable?: boolean // TODO: 必須にする
 };
 
 /**

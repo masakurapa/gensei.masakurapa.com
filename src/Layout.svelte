@@ -1,15 +1,17 @@
 <div class="container">
     <aside class="container__sidebar">
         <div class="menu">
-            <div class="menu__title">抽選方法</div>
-
             {#each components as row (row.value)}
-                <div
-                    class="menu__item"
-                    class:menu__active={component.value === row.value}
-                    class:menu__item__disabled={$processing}
-                    on:click="{() => onClickMenuItem(row)}"
-                >{row.text}</div>
+                {#if row.clickable}
+                    <div
+                        class="menu__item"
+                        class:menu__active={component.value === row.value}
+                        class:menu__item__disabled={$processing}
+                        on:click="{() => onClickMenuItem(row)}"
+                    >{row.text}</div>
+                {:else}
+                    <div class="menu__title">{row.text}</div>
+                {/if}
             {/each}
         </div>
     </aside>
@@ -33,24 +35,27 @@
     import type { Component, ComponentList } from './@types/component';
 
     import { processing, setUser } from './store';
-    import { getUserList } from './storage';
+    import { getUserList, isSkipAbort } from './storage';
 
-    import Random from './components/services/random/Index.svelte';
+    import About from './components/services/about/Index.svelte';
     import Amidakuji from './components/services/amidakuji/Index.svelte';
+    import Random from './components/services/random/Index.svelte';
     import Slot from './components/services/slot/Index.svelte';
     import ShuffleTeam from './components/services/shuffle_team/Index.svelte';
     import Gift from './components/services/gift/Index.svelte';
 
     const components: ComponentList = [
-        { value: 'amidakuji', text: 'あみだくじ', component: Amidakuji },
-        { value: 'random', text: 'ランダム', component: Random },
-        { value: 'slot', text: 'スロット', component: Slot },
-        { value: 'shuffleTeam', text: 'チーム分け', component: ShuffleTeam },
-        { value: 'gitf', text: '景品を抽選', component: Gift },
+        { value: 'abort', text: 'サイトの説明', clickable: true, component: About },
+        { value: 'lot-title', text: '抽選方法', clickable: false },
+        { value: 'amidakuji', text: 'あみだくじ', clickable: true, component: Amidakuji },
+        { value: 'random', text: 'ランダム', clickable: true, component: Random },
+        { value: 'slot', text: 'スロット', clickable: true, component: Slot },
+        { value: 'shuffleTeam', text: 'チーム分け', clickable: true, component: ShuffleTeam },
+        { value: 'gitf', text: '景品を抽選', clickable: true, component: Gift },
     ];
 
     // デフォルトはcomponentsの先頭を表示
-    let component: Component = components[0];
+    let component: Component = !isSkipAbort() ? components[0] : components[2];
     // メニュー変更
     const onClickMenuItem = (value: Component) => {
         if ($processing) {
