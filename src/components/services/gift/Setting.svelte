@@ -153,8 +153,6 @@
         const gLen = $giftList.length;
         const cnt = gLen - uLen;
 
-        console.log(uLen, gLen, cnt, cnt % uLen);
-
         if (uLen === 0 || gLen <= uLen) {
             // 対象が未入力 of 景品数が対象数以下なら、最小の重複抽選件数は1
             duplicatePrizeCntMin = 1;
