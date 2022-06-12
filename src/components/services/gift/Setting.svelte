@@ -1,5 +1,25 @@
 <Accordion id="gift" title="設定" open>
     <FormWrapper>
+        <span slot="label">景品</span>
+        <div>
+            <div class="textarea_list_size">{gitfListSize}件</div>
+            <TextArea
+                value="{inputGitfList}"
+                on:change={onChangeGiftList}
+                on:input={onInputGiftList}
+                {disabled}
+            />
+            <div class="gift_list__btn_wrapper">
+                <WarningBtn
+                    size="30_80"
+                    fontSize="small"
+                    {disabled}
+                    on:click={onClickResetGiftList}
+                >リセット</WarningBtn>
+            </div>
+        </div>
+    </FormWrapper>
+    <FormWrapper>
         <span slot="label">抽選対象</span>
         <div>
             <div class="textarea_list_size">{userListSize}件</div>
@@ -22,26 +42,6 @@
                     fontSize="small"
                     {disabled}
                     on:click={onClickResetUserList}
-                >リセット</WarningBtn>
-            </div>
-        </div>
-    </FormWrapper>
-    <FormWrapper>
-        <span slot="label">景品</span>
-        <div>
-            <div class="textarea_list_size">{gitfListSize}件</div>
-            <TextArea
-                value="{inputGitfList}"
-                on:change={onChangeGiftList}
-                on:input={onInputGiftList}
-                {disabled}
-            />
-            <div class="gift_list__btn_wrapper">
-                <WarningBtn
-                    size="30_80"
-                    fontSize="small"
-                    {disabled}
-                    on:click={onClickResetGiftList}
                 >リセット</WarningBtn>
             </div>
         </div>
@@ -86,7 +86,7 @@
     // 景品の重複数の変更イベント
     // TODO: any type
     const onChangeDuplicatePrizeCnt = (event: InputEvent|any): void => {
-        duplicatePrizeCnt.set(toInt(event.target.value));
+        duplicatePrizeCnt.set(toInt(event.detail.value));
     };
 
     // 抽選対象の変更イベント
@@ -147,22 +147,23 @@
     // 重複抽選数の最小
     let duplicatePrizeCntMin = $duplicatePrizeCnt;
     // 重複抽選数の最大
-    $: duplicatePrizeCntMax = $giftList.length;
+    $: duplicatePrizeCntMax = $giftList.length > 0 ? $giftList.length : 1;
     $: {
         const uLen = $userList.length;
         const gLen = $giftList.length;
         const cnt = gLen - uLen;
 
-        if (uLen === 0 || cnt < 1) {
+        console.log(uLen, gLen, cnt, cnt % uLen);
+
+        if (uLen === 0 || gLen <= uLen) {
+            // 対象が未入力 of 景品数が対象数以下なら、最小の重複抽選件数は1
             duplicatePrizeCntMin = 1;
             duplicatePrizeCnt.set(1);
         } else {
-            // 景品が抽選対象より多い場合は強制的に重複当選を許容させる
-            if (cnt % uLen === 0) {
-                duplicatePrizeCntMin = (cnt / uLen) + 1;
-            } else {
-                duplicatePrizeCntMin = (cnt / uLen) + (cnt % uLen) + 1;
-            }
+            // 景品数が対象数より多い
+            // 差分をユーザー数で割って + 1 した値の小数点を切り上げると、全ての景品が抽選可能な重複数になる
+            const diffCnt = gLen - uLen;
+            duplicatePrizeCntMin = Math.ceil((diffCnt / uLen) + 1);
             duplicatePrizeCnt.set(duplicatePrizeCntMin);
         }
     }

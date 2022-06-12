@@ -3,7 +3,7 @@
         {#if index < $choiceNum}
             <canvas
                 width="100"
-                height="100"
+                height="88"
                 bind:this="{$canvases[index].canvas}"
             ></canvas>
         {/if}

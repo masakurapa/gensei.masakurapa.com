@@ -1,33 +1,25 @@
-<PrimaryBtn
-    size="40_400"
-    disabled="{disabledFinishBtn}"
-    on:click="{() => finish()}"
->抽選終了</PrimaryBtn>
-
 {#if $giftList.length > 0}
-    <div class="result">
-        {#each $canvases as obj, index (obj.no)}
+    {#each $canvases as obj, index (obj.no)}
+        <div class="result">
             {#if index <= $giftList.length - 1}
-                <div class="table-wrapper">
-                    <div class="table-cell-gift-name">{$giftList[index]}</div>
-                    <div class="table-cell-start-btn">
-                        <PrimaryBtn
-                            size="40_60"
-                            disabled="{disabledBtn || finished.indexOf(index) !== -1}"
-                            on:click="{() => start(index)}"
-                        >抽選!!</PrimaryBtn>
-                    </div>
-                    <div class="table-cell-canvas">
-                        <canvas
-                            width="100"
-                            height="100"
-                            bind:this="{$canvases[index].canvas}"
-                        ></canvas>
-                    </div>
+                <Chip size="large">{$giftList[index]}</Chip>
+                <div>
+                    <PrimaryBtn
+                        size="40_200"
+                        disabled="{disabledBtn || $finishedGiftIndex.indexOf(index) !== -1}"
+                        on:click="{() => start(index)}"
+                    >抽選!!</PrimaryBtn>
+                </div>
+                <div class="result__canvas">
+                    <canvas
+                        width="100"
+                        height="88"
+                        bind:this="{$canvases[index].canvas}"
+                    ></canvas>
                 </div>
             {/if}
-        {/each}
-    </div>
+        </div>
+    {/each}
 {/if}
 
 <script lang="ts">
@@ -35,29 +27,29 @@
 
     import { processing } from '../../../store';
     import { random } from '../../../util';
-    import { giftList, userList, canvases, duplicatePrizeCnt, blocking } from './store';
+    import {
+        giftList,
+        userList,
+        canvases,
+        duplicatePrizeCnt,
+        blocking,
+        winPrizeCount,
+        finishedGiftIndex,
+    } from './store';
 
     import PrimaryBtn from '../../parts/buttons/Primary.svelte';
+    import Chip from '../../parts/chip/Chip.svelte';
 
     const scale = 40;
     const breaks = 0.003;
     const endSpeed = 0.05;
     const firstLetter = 220;
-    const delay = 40;
+    const delay = 20;
 
     $: disabledBtn = $processing || $userList.length === 0;
-    $: disabledFinishBtn = $processing || !$blocking;
     $: userLength = $userList.length;
 
-    let selected: number[] = [];
-    let finished: number[] = [];
     let frameId = 0;
-
-    const finish = (): void => {
-        blocking.set(false);
-        selected = [];
-        finished = [];
-    }
 
     const start = async (no: number): Promise<void> => {
         if (frameId > 0) {
@@ -67,7 +59,12 @@
         processing.set(true);
         blocking.set(true);
         selectEndpoint(no);
-        finished.push(no);
+
+        // 抽選済みの景品をマーク
+        finishedGiftIndex.update(value => {
+            value.push(no)
+            return value;
+        })
 
         const obj = $canvases[no];
         obj.ctx = obj.canvas.getContext('2d');
@@ -79,7 +76,7 @@
         obj.canvas.width = obj.canvas.clientWidth;
         obj.canvas.height = obj.canvas.clientHeight;
 
-        requestAnimationFrame(() => slot(obj));
+        requestAnimationFrame(() => run(obj));
     }
 
     // 当り位置を決める
@@ -87,17 +84,19 @@
         const indexes: number[] = [];
         for (const key in $userList) {
             const n = Number(key);
-            if (selected[n] === undefined || selected[n] < $duplicatePrizeCnt) {
+            const selected = $winPrizeCount[n];
+            if (selected === undefined || selected < $duplicatePrizeCnt) {
                 indexes.push(n);
             }
         }
 
         const idx = indexes[random(indexes.length)];
+        const selected = $winPrizeCount[idx];
         $canvases[no].end = idx;
-        selected[idx] = selected[idx] === undefined ? 1 : selected[idx] + 1;
+        $winPrizeCount[idx] = selected === undefined ? 1 : selected + 1;
     }
 
-    const slot = (obj: Canvas): void => {
+    const run = (obj: Canvas): void => {
         // 変換マトリクスを作る
         obj.ctx.setTransform(1, 0, 0, 1, 0, 0);
         // canvasをクリア
@@ -146,54 +145,29 @@
             return;
         }
 
-        frameId = requestAnimationFrame(() => slot(obj));
+        frameId = requestAnimationFrame(() => run(obj));
     }
 </script>
 
 <style>
     .result {
-        margin: auto;
-        margin-top: 1em;
-        margin-bottom: 2.5em;
-        padding: 1em 2em 1em 2em;
-        width: 60%;
-        background-color: #FFFFFF;
-        border: 0.1em solid #668ad8 !important;
-        border-radius: 2em;
-        height: auto;
+        display: flex;
+        width: 900px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
     }
 
+    .result__canvas {
+        height: 88px;
+    }
     canvas {
         background-color: #e9eefa;
-        height: 100px;
+        height: 88px;
         width: 300px;
         left: 0;
         top: 0;
-        margin: 10px;
         border-radius: 3em;
         border: 0.1em solid #668ad8;
-    }
-
-    .table-wrapper {
-        display: table;
-        margin: auto;
-        widows: 100%;
-    }
-    .table-cell-gift-name {
-        display: table-cell;
-        vertical-align: middle;
-        font-weight: bold;
-        width: 30%;
-        word-break: break-all;
-    }
-    .table-cell-start-btn {
-        display: table-cell;
-        vertical-align: middle;
-        width: 160px;
-    }
-    .table-cell-canvas {
-        display: table-cell;
-        vertical-align: middle;
-
     }
 </style>

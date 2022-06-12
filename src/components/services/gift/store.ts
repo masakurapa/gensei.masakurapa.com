@@ -9,6 +9,11 @@ export const giftList = writable<string[]>([]);
 export const userList = writable<string[]>([]);
 // 許容する重複当選数
 export const duplicatePrizeCnt = writable(1);
+// ユーザーごとに何回景品が抽選されたかを保持するための配列
+// key: ユーザーリストの入力位置 => value: 抽選された回数
+export const winPrizeCount = writable<number[]>([]);
+// 抽選が終了した景品のindexを保持するための配列
+export const finishedGiftIndex = writable<number[]>([]);
 // 抽選結果用のキャンバス
 let no = 1;
 export const canvases = writable<CanvasList>([]);
