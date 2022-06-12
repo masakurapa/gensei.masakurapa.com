@@ -2,7 +2,7 @@
     size="40_200"
     disabled="{disabledFinishBtn}"
     on:click="{() => finish()}"
->リセット</WarningBtn>
+>やりなおす</WarningBtn>
 
 <script lang="ts">
     import { processing } from '../../../store';

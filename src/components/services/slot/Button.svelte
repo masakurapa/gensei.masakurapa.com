@@ -2,7 +2,7 @@
     size="40_400"
     {disabled}
     on:click="{run}"
->スタート</PrimaryBtn>
+>{$processing ? '抽選中！' : '抽選開始！'}</PrimaryBtn>
 
 <script lang="ts">
     import type { Canvas } from '../../../@types/canvas';
