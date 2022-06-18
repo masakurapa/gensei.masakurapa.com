@@ -1,7 +1,7 @@
 <Accordion id="gift" title="設定" open>
     <FormWrapper>
         <span slot="label">景品</span>
-        <div>
+        <div class="textarea__wrapper">
             <div class="textarea_list_size">{gitfListSize}件</div>
             <TextArea
                 value="{inputGitfList}"
@@ -21,7 +21,7 @@
     </FormWrapper>
     <FormWrapper>
         <span slot="label">抽選対象</span>
-        <div>
+        <div class="textarea__wrapper">
             <div class="textarea_list_size">{userListSize}件</div>
             <TextArea
                 value="{inputUserList}"
@@ -173,6 +173,9 @@
 <style>
     .textarea_list_size {
         text-align: right;
+    }
+    .textarea__wrapper {
+        max-width: 400px;
     }
 
     .user_list__btn_wrapper {

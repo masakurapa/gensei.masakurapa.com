@@ -1,7 +1,7 @@
 <Accordion id="shuffle_team" title="設定" open>
     <FormWrapper>
         <span slot="label">抽選対象</span>
-        <div>
+        <div class="user_list__wrapper">
             <div class="user_list__list_size">{listSize}件</div>
             <TextArea
                 value="{inputUserList}"
@@ -124,6 +124,9 @@
 </script>
 
 <style>
+    .user_list__wrapper {
+        max-width: 400px;
+    }
     .user_list__list_size {
         text-align: right;
     }

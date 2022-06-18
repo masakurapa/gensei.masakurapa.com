@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="label"><slot name="label"></slot></div>
-    <slot></slot>
+    <div class="content"><slot></slot></div>
 </div>
 
 <style>
@@ -12,6 +12,9 @@
     .label {
         width: 300px;
         line-height: 40px;
+    }
+    .content {
+        width: 100%;
     }
 
     @media screen and (max-width: 649px) {

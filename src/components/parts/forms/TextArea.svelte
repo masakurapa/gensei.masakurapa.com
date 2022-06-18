@@ -1,11 +1,13 @@
-<textarea
-    bind:value={value}
-    disabled={disabledForm}
-    {placeholder}
-    {rows}
-    on:change
-    on:input
-></textarea>
+<div class="wrapper">
+    <textarea
+        bind:value={value}
+        disabled={disabledForm}
+        {placeholder}
+        {rows}
+        on:change
+        on:input
+    ></textarea>
+</div>
 
 <script lang="ts">
     import { processing } from '../../../store.js';
@@ -19,10 +21,15 @@
 </script>
 
 <style>
+    .wrapper {
+        max-width: 400px;
+        width: 100%;
+    }
+
     textarea {
         border: 1px solid #668ad8;
         padding: 0.5em;
-        width: 400px;
+        width: 95%;
         resize: vertical;
     }
     textarea:disabled {
