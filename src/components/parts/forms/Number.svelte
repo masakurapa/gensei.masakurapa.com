@@ -90,6 +90,7 @@
     .stepper {
         display: flex;
         font-size: 1.5em;
+        flex-wrap: wrap-reverse;
     }
 
     .slider {
@@ -191,5 +192,11 @@
         box-sizing: border-box;
         border: 2px solid #1976d2;
         font-size: 16px;
+    }
+
+    @media screen and (max-width: 719px) {
+        .slider__range {
+            width: 200px;
+        }
     }
 </style>
