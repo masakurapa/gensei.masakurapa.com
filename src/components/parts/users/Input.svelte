@@ -1,21 +1,23 @@
 <FormWrapper>
     <span slot="label">抽選対象（{USER_NAME_MAX}文字以内）</span>
 
-    <TextBox
-        {disabled}
-        value="{inputValue}"
-        placeholder="Enterを押して追加"
-        on:keydown={keydown}
-        on:change={onChange}
-        size={24}
-        maxlength={USER_NAME_MAX}
-    />
-    <div class="btn__wrapper">
-        <PrimaryBtn
-            size="40_60"
+    <div class="input__wrapper">
+        <TextBox
             {disabled}
-            on:click="{click}"
-        >追加</PrimaryBtn>
+            value="{inputValue}"
+            placeholder="Enterを押して追加"
+            on:keydown={keydown}
+            on:change={onChange}
+            size={24}
+            maxlength={USER_NAME_MAX}
+        />
+        <div class="btn__wrapper">
+            <PrimaryBtn
+                size="40_60"
+                {disabled}
+                on:click="{click}"
+            >追加</PrimaryBtn>
+        </div>
     </div>
 </FormWrapper>
 
@@ -75,6 +77,9 @@
 </script>
 
 <style>
+    .input__wrapper {
+        display: flex;
+    }
     .btn__wrapper {
         margin-left: 16px;
     }
@@ -91,5 +96,11 @@
         margin-bottom: 8px;
         width: 780px;
         text-align: right;
+    }
+
+    @media screen and (max-width: 1179px) {
+        .user_list__header {
+            width: 95%;
+        }
     }
 </style>
