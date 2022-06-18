@@ -23,7 +23,7 @@ header {
     text-align: center;
 }
 
-/* TODO: legacy削除後にアンコメント
+
 footer {
     position: fixed;
     left: 0;
@@ -38,4 +38,24 @@ footer {
 .footer__link {
     display: inline-flex;
     align-items: center
-} */
+}
+
+@media screen and (max-width: 1179px) {
+    /* TODO: legacy削除後に以下のCSSは削除 */
+    footer {
+        position: unset;
+        left: unset;
+        bottom: unset;
+        width: 100%;
+        padding: 4px 0;
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    .footer__title {
+        margin-bottom: 5px;
+    }
+    .footer__link {
+        display: inline-flex;
+        align-items: center
+    }
+}
