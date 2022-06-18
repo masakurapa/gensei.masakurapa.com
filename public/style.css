@@ -10,7 +10,9 @@ body {
     color: #2c3e50 !important;
     font-family: 'Hannotate SC','Chalkboard SE','ＭＳ 明朝', 'MS Mincho',sans-serif !important;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 
 header {
     background-color: #659AD2;

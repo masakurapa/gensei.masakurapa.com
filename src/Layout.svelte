@@ -1,5 +1,5 @@
 <div class="container">
-    <aside class="container__sidebar">
+    <aside class="container__menu">
         <div class="menu">
             {#each components as row (row.value)}
                 {#if row.clickable}
@@ -76,13 +76,16 @@
         display: flex;
     }
 
-    .container__sidebar {
+    .container__menu {
         width: 240px;
         height: calc(100vh - 36px - 80px); /* 画面の高さからheader/footer分の高さを引く */
         position: sticky;
         top: 0;
         overflow-y: auto;
         overflow-x: hidden;
+    }
+    .container__menu::-webkit-scrollbar {
+        display: none;
     }
 
     .container__main {
@@ -91,6 +94,9 @@
         padding: 16px;
         margin: 0 calc(50% - 50vw);
         width: 100vw;
+    }
+    .container__main::-webkit-scrollbar {
+        display: none;
     }
 
     .menu {
@@ -142,5 +148,74 @@
     .footer__link {
         display: inline-flex;
         align-items: center
+    }
+
+    @media screen and (max-width: 1179px) {
+        .container {
+            display: block;
+            min-height: calc(100vh - 36px - 40px - 20px); /* 画面の高さからheader/menu/footer分の高さを引く */
+        }
+
+        .container__menu {
+            width: 100%;
+            height: 40px;
+            position: sticky;
+            top: 0;
+            overflow-y: hidden;
+            overflow-x: auto;
+            padding-bottom: 16px;
+            background-color: #FFFFFF;
+            z-index: 1;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: unset;
+        }
+        .menu__title {
+            display: none;
+        }
+        .menu__item {
+            flex-grow: 1;
+            display: inline-block;
+            min-width: 140px;
+            padding-left: 8px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-top: none;
+            border-left: none;
+        }
+
+        .container__main {
+            flex: unset;
+            overflow: auto;
+            padding: 16px;
+            margin: 0;
+            width: unset;
+        }
+        .container__main::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* TODO: legacy削除後に以下のCSSは削除 */
+        footer {
+            position: unset;
+            left: unset;
+            bottom: unset;
+            width: 100%;
+            padding: 4px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        .footer__title {
+            margin-bottom: 5px;
+        }
+        .footer__link {
+            display: inline-flex;
+            align-items: center
+        }
     }
 </style>
