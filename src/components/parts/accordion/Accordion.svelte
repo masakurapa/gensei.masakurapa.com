@@ -67,4 +67,10 @@
     .accordion_content {
         padding: 12px;
     }
+
+    @media screen and (max-width: 1179px) {
+        .accordion {
+            width: 100%;
+        }
+    }
 </style>
