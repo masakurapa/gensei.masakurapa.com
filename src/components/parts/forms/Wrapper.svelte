@@ -13,4 +13,13 @@
         width: 300px;
         line-height: 40px;
     }
+
+    @media screen and (max-width: 649px) {
+        .wrapper {
+            display: block;
+        }
+        .label {
+            width: 100%;
+        }
+    }
 </style>
