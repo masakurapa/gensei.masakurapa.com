@@ -1,18 +1,20 @@
-{#each options as data}
-    <label class="radio">
-        <input
-            class="radio__input"
-            type="radio"
-            name="{name}"
-            value="{data.value}"
-            checked={data.value === selectedValue}
-            disabled={disabledForm}
-            on:change
-        >
-        <span class="radio__dummy"></span>
-        <span class="radio__label">{data.text}</span>
-    </label>
-{/each}
+<div class="wrapper">
+    {#each options as data}
+        <label class="radio">
+            <input
+                class="radio__input"
+                type="radio"
+                name="{name}"
+                value="{data.value}"
+                checked={data.value === selectedValue}
+                disabled={disabledForm}
+                on:change
+            >
+            <span class="radio__dummy"></span>
+            <span class="radio__label">{data.text}</span>
+        </label>
+    {/each}
+</div>
 
 <script lang="ts">
     import type { RadioOption } from '../../../@types/form';
@@ -28,10 +30,17 @@
 </script>
 
 <style>
+    .wrapper {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
     .radio {
         display: flex;
         align-items: center;
         margin-right: 24px;
+        margin-bottom: 4px;
     }
 
     .radio__input {
