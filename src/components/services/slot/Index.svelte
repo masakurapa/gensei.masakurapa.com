@@ -10,7 +10,7 @@
 <div class="wrapper">
     <DownloadPNG id="slot" />
 </div>
-<div class="wrapper" id="download-png-slot">
+<div class="wrapper wrapper__download_content" id="download-png-slot">
     <Result/>
 </div>
 
@@ -26,12 +26,13 @@
 <style>
     .wrapper {
         margin-bottom: 20px;
-        width: fit-content;
     }
-
     .wrapper__btn {
         width: 100%;
         max-width: 900px;
         text-align: center;
+    }
+    .wrapper__download_content {
+        width: fit-content;
     }
 </style>
