@@ -34,7 +34,8 @@
     .accordion {
         border: 1px solid #A1C1E4;
         border-radius: 2px;
-        width: 900px;
+        width: 100%;
+        max-width: 900px;
     }
 
     .accordion__header {
@@ -66,11 +67,5 @@
 
     .accordion_content {
         padding: 12px;
-    }
-
-    @media screen and (max-width: 1179px) {
-        .accordion {
-            width: 100%;
-        }
     }
 </style>

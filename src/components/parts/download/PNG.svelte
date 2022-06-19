@@ -1,5 +1,6 @@
 <PrimaryBtn
-    size="30_200"
+    width="middle"
+    height="small"
     fontSize="small"
     on:click={download}
     {disabled}

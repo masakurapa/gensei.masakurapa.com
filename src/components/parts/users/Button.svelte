@@ -1,10 +1,13 @@
 <div class="wrapper">
     <PrimaryBtn
-        size="40_200"
+        width="middle"
+        height="middle"
         disabled={$processing}
         on:click="{save}"
     >抽選対象を保存</PrimaryBtn>
     <DangerBtn
+        width="middle"
+        height="middle"
         disabled={$processing || $userList.length === 0}
         on:click="{removeAll}"
     >全て削除</DangerBtn>

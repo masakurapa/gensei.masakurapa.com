@@ -5,7 +5,8 @@
                 <Chip size="large">{$giftList[index]}</Chip>
                 <div>
                     <PrimaryBtn
-                        size="40_200"
+                        width="middle"
+                        height="middle"
                         disabled="{disabledBtn || $finishedGiftIndex.indexOf(index) !== -1}"
                         on:click="{() => start(index)}"
                     >抽選!!</PrimaryBtn>

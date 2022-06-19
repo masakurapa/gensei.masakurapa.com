@@ -1,5 +1,6 @@
 <WarningBtn
-    size="40_200"
+    width="middle"
+    height="middle"
     disabled="{disabledFinishBtn}"
     on:click="{() => finish()}"
 >やりなおす</WarningBtn>

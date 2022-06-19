@@ -13,7 +13,8 @@
         />
         <div class="btn__wrapper">
             <PrimaryBtn
-                size="40_60"
+                width="small"
+                height="middle"
                 {disabled}
                 on:click="{click}"
             >追加</PrimaryBtn>
@@ -94,13 +95,8 @@
     }
     .user_list__header {
         margin-bottom: 8px;
-        width: 780px;
+        width: 95%;
+        max-width: 780px;
         text-align: right;
-    }
-
-    @media screen and (max-width: 1179px) {
-        .user_list__header {
-            width: 95%;
-        }
     }
 </style>

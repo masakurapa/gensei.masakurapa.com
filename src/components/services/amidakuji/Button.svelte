@@ -1,10 +1,12 @@
 <PrimaryBtn
-    size="40_400"
+    width="lerge"
+    height="middle"
     {disabled}
     on:click="{generate}"
 >線を引きなおす</PrimaryBtn>
 <WarningBtn
-    size="40_200"
+    width="middle"
+    height="middle"
     disabled={!disabled || $processing}
     on:click="{reset}"
 >やりなおす</WarningBtn>

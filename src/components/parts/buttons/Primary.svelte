@@ -1,32 +1,37 @@
 <button
     {disabled}
     on:click
-    class="{SIZE[size]} {FONT_SIZE[fontSize]}"
+    class="{WIDTH[width]} {HEIGHT[height]} {FONT_SIZE[fontSize]}"
 >
     <slot></slot>
 </button>
 
 <script lang="ts">
-    const SIZE = {
-        '30_30': 'btn__h30_w30',
-        '30_200': 'btn__h30_w200',
-        '40_30': 'btn__h40_w30',
-        '40_60': 'btn__h40_w60',
-        '40_200': 'btn__h40_w200',
-        '40_400': 'btn__h40_w400',
+    const WIDTH = {
+        'x-small': 'width_x-small',
+        'small': 'width_small',
+        'middle': 'width_middle',
+        'lerge': 'width_lerge',
     } as const;
-    type SIZE_TYPE = keyof typeof SIZE ;
+    type WIDTH_TYPE = keyof typeof WIDTH ;
+
+    const HEIGHT = {
+        'small': 'height_small',
+        'middle': 'height_middle',
+    } as const;
+    type HEIGHT_TYPE = keyof typeof HEIGHT ;
 
     const FONT_SIZE = {
-        'default': 'fnt__default',
-        'small': 'fnt__small',
+        'middle': 'font_middle',
+        'small': 'font_small',
     }
     type FONT_SIZE_TYPE = keyof typeof FONT_SIZE ;
 
     // 呼び出し元からボタンを無効にするためのフラグ
     export let disabled = false;
-    export let size: SIZE_TYPE;
-    export let fontSize: FONT_SIZE_TYPE = 'default';
+    export let width: WIDTH_TYPE;
+    export let height: HEIGHT_TYPE;
+    export let fontSize: FONT_SIZE_TYPE = 'middle';
 </script>
 
 <style>
@@ -49,40 +54,27 @@
         border-color: #666;
     }
 
-    .fnt__default {
-        font-size: inherit;
-    }
-    .fnt__small {
-        font-size: small;
-    }
-
-    .btn__h30_w30 {
-        height: 30px;
+    .width_x-small {
         width: 30px;
-        line-height: 26px;
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
     }
-    .btn__h30_w200 {
-        height: 30px;
-        width: 200px;
-        padding: 0;
-    }
-
-    .btn__h40_w30 {
-        height: 40px;
-        width: 30px;
-        padding: 0;
-    }
-    .btn__h40_w60 {
-        height: 40px;
+    .width_small {
         width: 60px;
+        padding-left: 0;
+        padding-right: 0;
     }
-    .btn__h40_w200 {
-        height: 40px;
-        width: 200px;
+    .width_middle { width: 200px; }
+    .width_lerge { width: 400px; }
+
+    .height_small {
+        height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 26px;
     }
-    .btn__h40_w400 {
-        height: 40px;
-        width: 400px;
-    }
+    .height_middle { height: 40px; }
+
+    .font_middle { font-size: inherit; }
+    .font_small { font-size: small; }
 </style>

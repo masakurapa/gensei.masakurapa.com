@@ -2,7 +2,8 @@
     <div class="slider">
         <div class="slider__minus_btn">
             <PrimaryBtn
-                size="30_30"
+                width="x-small"
+                height="small"
                 disabled={disabledForm || value === min}
                 on:click={onClickCountDown}
             ><i class="fas fa-minus fa-sm"></i></PrimaryBtn>
@@ -21,7 +22,8 @@
         </div>
         <div class="slider__plus_btn">
             <PrimaryBtn
-                size="30_30"
+                width="x-small"
+                height="small"
                 disabled={disabledForm || value === max}
                 on:click={onClickCountUp}
             ><i class="fas fa-plus fa-sm"></i></PrimaryBtn>

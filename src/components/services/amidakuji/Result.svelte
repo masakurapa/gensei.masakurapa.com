@@ -7,7 +7,8 @@
                 </div>
                 <div class="result_header__btn">
                     <PrimaryBtn
-                        size="40_30"
+                        width="x-small"
+                        height="middle"
                         on:click="{() => run(i)}"
                         disabled={$processing || num !== 0}
                     >{i + 1}</PrimaryBtn>

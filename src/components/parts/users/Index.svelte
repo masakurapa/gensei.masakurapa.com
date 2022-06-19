@@ -9,10 +9,3 @@
     import Input from './Input.svelte';
     import Button from './Button.svelte';
 </script>
-
-<style>
-    .btn__wrapper {
-        margin-top: 16px;
-        display: flex;
-    }
-</style>

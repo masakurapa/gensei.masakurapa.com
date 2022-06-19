@@ -11,13 +11,15 @@
 
             <div class="user_list__btn_wrapper">
                 <PrimaryBtn
-                    size="30_200"
+                    width="middle"
+                    height="small"
                     fontSize="small"
                     disabled={$processing}
                     on:click={onClickSetUserList}
                 >入力済みの抽選対象を使う</PrimaryBtn>
                 <WarningBtn
-                    size="30_80"
+                    width="small"
+                    height="small"
                     fontSize="small"
                     disabled={$processing}
                     on:click={onClickResetUserList}
