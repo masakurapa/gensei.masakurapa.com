@@ -77,4 +77,8 @@
 
     .font_middle { font-size: inherit; }
     .font_small { font-size: small; }
+
+    @media screen and (max-width: 699px) {
+        .width_lerge { width: 300px; }
+    }
 </style>

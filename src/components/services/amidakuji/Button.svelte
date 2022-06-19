@@ -1,15 +1,21 @@
-<PrimaryBtn
-    width="lerge"
-    height="middle"
-    {disabled}
-    on:click="{generate}"
->線を引きなおす</PrimaryBtn>
-<WarningBtn
-    width="middle"
-    height="middle"
-    disabled={!disabled || $processing}
-    on:click="{reset}"
->やりなおす</WarningBtn>
+<div class="wrapper">
+    <div class="primary">
+        <PrimaryBtn
+            width="lerge"
+            height="middle"
+            {disabled}
+            on:click="{generate}"
+        >線を引きなおす</PrimaryBtn>
+    </div>
+    <div>
+        <WarningBtn
+            width="middle"
+            height="middle"
+            disabled={!disabled || $processing}
+            on:click="{reset}"
+        >やりなおす</WarningBtn>
+    </div>
+</div>
 
 <script lang="ts">
     import { userList, processing } from '../../../store';
@@ -36,3 +42,15 @@
         selectedUserList.set(shuffleUserList($userList));
     };
 </script>
+
+<style>
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .primary {
+        margin-right: 12px;
+        margin-bottom: 12px;
+    }
+</style>
