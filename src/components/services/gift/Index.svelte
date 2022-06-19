@@ -4,10 +4,10 @@
 <div class="wrapper wrapper__btn">
     <Button/>
 </div>
-<div class="wrapper wrapper__download_btn">
+<div class="wrapper">
     <DownloadPNG id="gift" />
 </div>
-<div class="wrapper wrapper__download_content" id="download-gift">
+<div class="wrapper wrapper__download_content" id="download-png-gift">
     <Result/>
 </div>
 
@@ -22,17 +22,11 @@
 <style>
     .wrapper {
         margin-bottom: 20px;
+        width: fit-content;
     }
     .wrapper__btn {
-        width: 900px;
+        width: 100%;
+        max-width: 900px;
         text-align: center;
-    }
-    .wrapper__download_btn {
-        width: 900px;
-        text-align: right;
-        margin: 28px 0;
-    }
-    .wrapper__download_content {
-        width: fit-content;
     }
 </style>

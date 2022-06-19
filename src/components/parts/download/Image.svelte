@@ -13,7 +13,7 @@
     let downloadBtn: any;
 
     export const exec = async (): Promise<void> => {
-        const node = document.getElementById(`download-${id}`);
+        const node = document.getElementById(id);
         const dataUrl = await domtoimage.toPng(node, {
             // width/heightはスクロールを含めた高さに + マージン分を取る
             width: node.scrollWidth + 32,

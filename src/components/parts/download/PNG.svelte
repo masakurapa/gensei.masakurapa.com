@@ -1,22 +1,32 @@
-<PrimaryBtn
-    width="middle"
-    height="small"
-    fontSize="small"
-    on:click={download}
-    {disabled}
->
-    <i class="fas fa-download"></i> PNG画像をダウンロード
-</PrimaryBtn>
+<div class="wrapper">
+    <PrimaryBtn
+        width="middle"
+        height="small"
+        fontSize="small"
+        on:click={download}
+        {disabled}
+    >
+        <i class="fas fa-download"></i> PNG画像をダウンロード
+    </PrimaryBtn>
+</div>
 <div id="download"></div>
 
 <script lang="ts">
     import { processing } from "../../../store";
 
     import PrimaryBtn from "../buttons/Primary.svelte";
-
     import Image from "./Image.svelte";
 
-    export let id: string;
+    const ID = {
+        'amidakuji': 'download-png-amidakuji',
+        'gift': 'download-png-gift',
+        'random': 'download-png-ranndom',
+        'team': 'download-png-team',
+        'slot': 'download-png-slot',
+    } as const;
+    type ID_TYPE = keyof typeof ID ;
+
+    export let id: ID_TYPE;
 
     let downloading = false;
     $: disabled = $processing || downloading;
@@ -37,7 +47,10 @@
 
         const app = new Image({
             target: document.getElementById('download'),
-            props: { id, fileName },
+            props: {
+                id: ID[id],
+                fileName,
+            },
         });
         await app.exec();
         app.$destroy();
@@ -45,3 +58,12 @@
         downloading = false;
     };
 </script>
+
+<style>
+    .wrapper {
+        width: 100%;
+        max-width: 900px;
+        text-align: right;
+        margin: 28px 0;
+    }
+</style>
