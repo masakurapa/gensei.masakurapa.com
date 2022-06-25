@@ -1,11 +1,11 @@
 <div class="result">
     {#each $canvases as obj, index (obj.no)}
         {#if index < $choiceNum}
-            <canvas
-                width="100"
+            <div><canvas
+                width="300"
                 height="88"
                 bind:this="{$canvases[index].canvas}"
-            ></canvas>
+            ></canvas></div>
         {/if}
     {/each}
 </div>
@@ -31,5 +31,17 @@
         margin-right: 32px;
         border-radius: 3em;
         border: 0.1em solid #668ad8;
+    }
+
+    @media screen and (max-width: 704px) {
+        .result {
+            display: block;
+            flex-wrap: unset;
+            text-align: center;
+        }
+        canvas {
+            margin-right: 0;
+            margin-bottom: 12px;
+        }
     }
 </style>
