@@ -20,7 +20,7 @@
     const ID = {
         'amidakuji': 'download-png-amidakuji',
         'gift': 'download-png-gift',
-        'random': 'download-png-ranndom',
+        'random': 'download-png-random',
         'team': 'download-png-team',
         'slot': 'download-png-slot',
     } as const;

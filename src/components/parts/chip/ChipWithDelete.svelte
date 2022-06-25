@@ -25,7 +25,8 @@
         border-radius: 16px;
         padding: 4px 12px;
         margin: 4px;
-        height: 36px;
+        height: fit-content;
+        min-height: 36px;
         width: 100px;
         user-select: none;
         font-size: small;

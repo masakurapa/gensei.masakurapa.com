@@ -23,8 +23,10 @@
         border-radius: 16px;
         padding: 4px 12px;
         margin: 4px;
-        height: 40px;
-        width: 300px;
+        height: fit-content;
+        min-height: 40px;
+        width: 100%;
+        max-width: 300px;
         user-select: none;
     }
 
@@ -38,6 +40,6 @@
         width: 200px;
     }
     .large {
-        width: 300px;
+        width: 100%;
     }
 </style>

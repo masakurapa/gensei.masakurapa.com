@@ -49,7 +49,7 @@
     let inputValue = '';
 
     // 入力可能な文字数
-    const USER_NAME_MAX = 10;
+    const USER_NAME_MAX = 20;
     // 入力可能な対象の最大数
     const USER_LIST_MAX = 30;
     // ユーザー追加の無効判定

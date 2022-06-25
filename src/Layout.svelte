@@ -153,7 +153,7 @@
             flex-grow: 1;
             display: inline-block;
             min-width: 140px;
-            padding-left: 8px;
+            padding-left: 0;
             font-size: 20px;
             line-height: 40px;
             text-align: center;

@@ -35,7 +35,6 @@
     import { crossfade } from 'svelte/transition';
     import { flip } from 'svelte/animate';
     import { tempUserList } from './store';
-    import { userList } from '../../../store';
 
     import Chip from '../../parts/chip/Chip.svelte';
 
@@ -88,5 +87,36 @@
 
     .result__item {
         text-align: center;
+    }
+
+    @media screen and (max-width: 949px) {
+        .result {
+            width: 700px;
+        }
+        .result__box {
+            padding: 4px;
+            width: 300px;
+        }
+        .result__item {
+            width: 240px;
+        }
+    }
+
+    @media screen and (max-width: 749px) {
+        .result {
+            display: block;
+            width: 100%;
+        }
+        .result__box {
+            padding: 4px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-bottom: 24px;
+        }
+        .result__item {
+            width: 240px;
+            margin: 0 auto;
+        }
     }
 </style>
