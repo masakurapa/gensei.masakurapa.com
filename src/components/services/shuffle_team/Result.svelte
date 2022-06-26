@@ -1,21 +1,19 @@
-<div>
-    <div class="result">
-        {#each $resultUserList as users, i}
-            <div class="result__box" style:height="{users.length * 56 + 56 + 24}px">
-                <div class="result__header">チーム{i + 1} <small>({users.length}人)</small></div>
+<div class="result">
+    {#each $resultUserList as users, i}
+        <div class="result__box" style:height="{users.length * 56 + 56 + 24}px">
+            <div class="result__header">チーム{i + 1} <small>({users.length}人)</small></div>
 
-                {#each users as { id, name} (id)}
-                    <div
-                        class="result__item"
-                        in:receive={{ key: id }}
-                        animate:flip
-                    >
-                        <Chip size="midium">{name}</Chip>
-                    </div>
-                {/each}
-            </div>
-        {/each}
-    </div>
+            {#each users as { id, name} (id)}
+                <div
+                    class="result__item"
+                    in:receive={{ key: id }}
+                    animate:flip
+                >
+                    <Chip size="midium">{name}</Chip>
+                </div>
+            {/each}
+        </div>
+    {/each}
 </div>
 
 <script lang="ts">
@@ -73,5 +71,17 @@
 
     .result__item {
         text-align: center;
+    }
+
+    @media screen and (max-width: 699px) {
+        .result {
+            display: block;
+            flex-wrap: unset;
+        }
+        .result__box {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 12px;
+        }
     }
 </style>
