@@ -117,7 +117,7 @@
         }
         .result__item {
             width: 240px;
-            margin: 0 auto;
+            margin: 4px auto;
         }
     }
 </style>

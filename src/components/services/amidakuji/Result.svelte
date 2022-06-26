@@ -206,7 +206,7 @@
     }
     /* header/footerの幅固定 */
     .row__fixed_item {
-        width: 80px;
+        width: 64px;
         flex-shrink: 0;
     }
     /* header/footerに表示する選択順の表示領域 */
@@ -231,7 +231,7 @@
      */
     .content {
         align-items: flex-end;
-        margin-left: 36px;
+        margin-left: 28px;
     }
     /* 通過した線 */
     .line__passed {
@@ -254,7 +254,7 @@
     /* 横線のベース（線が引かれていない状態） */
     .line_horizon {
         background-color: #eee;
-        width: 4.5em;
+        width: 56px;
         height: 0.5em;
         cursor: pointer;
         flex-shrink: 0;
@@ -308,5 +308,20 @@
     .result_footer__user {
         display: flex;
         justify-content: center;
+    }
+
+    @media screen and (max-width: 699px) {
+        .row__fixed_item {
+            width: 44px;
+            flex-shrink: 0;
+        }
+
+        .content {
+            align-items: flex-end;
+            margin-left: 18px;
+        }
+        .line_horizon {
+            width: 36px;
+        }
     }
 </style>
