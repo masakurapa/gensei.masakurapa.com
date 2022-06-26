@@ -2,8 +2,10 @@
     {#each $canvases as obj, index (obj.no)}
         <div class="result">
             {#if index <= $giftList.length - 1}
-                <Chip size="large">{$giftList[index]}</Chip>
-                <div>
+                <div class="result__prize">
+                    <Chip size="large">{$giftList[index]}</Chip>
+                </div>
+                <div class="result__btn">
                     <PrimaryBtn
                         width="middle"
                         height="middle"
@@ -158,7 +160,9 @@
         align-items: center;
         margin-bottom: 32px;
     }
-
+    .result__prize {
+        width: 300px;
+    }
     .result__canvas {
         height: 88px;
     }
@@ -170,5 +174,24 @@
         top: 0;
         border-radius: 3em;
         border: 0.1em solid #668ad8;
+    }
+
+    @media screen and (max-width: 929px) {
+        .result {
+            display: block;
+            width: 100%;
+            justify-content: unset;
+            text-align: center;
+            border: 1px solid #1976d2;
+            padding: 12px 0;
+            border-radius: 4px;
+        }
+        .result__prize {
+            width: 240px;
+            margin: 0 auto;
+        }
+        .result__btn {
+            margin: 8px 0;
+        }
     }
 </style>

@@ -31,4 +31,10 @@
     .wrapper__download_content {
         width: fit-content;
     }
+
+    @media screen and (max-width: 929px) {
+        .wrapper__download_content {
+            width: 100%;
+        }
+    }
 </style>

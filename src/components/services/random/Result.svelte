@@ -87,6 +87,7 @@
 
     .result__item {
         text-align: center;
+        margin: 4px;
     }
 
     @media screen and (max-width: 949px) {

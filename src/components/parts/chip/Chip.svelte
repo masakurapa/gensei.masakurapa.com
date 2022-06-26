@@ -22,7 +22,6 @@
         background-color: #EEE;
         border-radius: 16px;
         padding: 4px 12px;
-        margin: 4px;
         height: fit-content;
         min-height: 40px;
         width: 100%;
