@@ -41,7 +41,6 @@ footer {
 }
 
 @media screen and (max-width: 1179px) {
-    /* TODO: legacy削除後に以下のCSSは削除 */
     footer {
         position: unset;
         left: unset;
