@@ -49,9 +49,6 @@
         disabledWriteLine.set(false);
         rank.set(1);
         const newAmidakuji = generateAmidakuji(value, $lineNum);
-        if (newAmidakuji.length === 0) {
-            return;
-        }
         amidakuji.set(generateRandomAmidakuji(newAmidakuji, $lineNum));
         selectedUserList.set(shuffleUserList(value));
     };

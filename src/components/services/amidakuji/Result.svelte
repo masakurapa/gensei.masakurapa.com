@@ -92,7 +92,6 @@
         amidakuji,
         selectedUserList,
         disabledWriteLine,
-        lineNum,
         rank,
     } from './store';
     import {

@@ -38,6 +38,10 @@ export const generateRandomAmidakuji = (amidakuji: Amidakuji, lineNum: number): 
     }
     clearActiveLine(amidakuji);
 
+    if (amidakuji.length === 0) {
+        return amidakuji;
+    }
+
     // 全行に引けるだけの線を引く
     for (let h = 0; h < lineNum; h++) {
         while (amidakuji[h].filter(v => v.flag === Flag.OFF).length > 0) {
