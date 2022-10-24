@@ -14,7 +14,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.3",
+    "@rollup/plugin-typescript": "^9.0.2",
     "@tsconfig/svelte": "^3.0.0",
     "@types/dom-to-image": "^2.6.4",
     "dom-to-image-more": "^2.11.1",
